@@ -1,4 +1,6 @@
 rootProject.name = 'techtopia-backend-noah'
 
 include 'common'
-include 'vis-backend'
+include 'visitor-information-system'
+include 'park-operations'
+include 'park-planning'
