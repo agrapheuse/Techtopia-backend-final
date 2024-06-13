@@ -33,3 +33,6 @@ replay_pid*
 */build/*
 
 */.gradle/*
+.gradle/*
+gradle/*
+*/gradle/*
