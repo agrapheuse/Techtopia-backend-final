@@ -4,10 +4,7 @@ import be.kdg.prog6.parkplanning.PointOfInterest.addStaffMember.ports.AddStaffMe
 import be.kdg.prog6.parkplanning.PointOfInterest.close.ports.ClosePOIUseCase;
 import be.kdg.prog6.parkplanning.PointOfInterest.deductStaffMember.ports.RemoveStaffMemberUseCase;
 import be.kdg.prog6.parkplanning.PointOfInterest.open.ports.OpenPOIUseCase;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
@@ -26,21 +23,21 @@ public class POIController {
         this.removeStaffMemberUseCase = removeStaffMemberUseCase;
     }
 
-    @GetMapping("/open")
+    @PatchMapping("/open")
     public void openPOI(
             @RequestParam String uuid
     ) {
         openPOIUseCase.openPOI(UUID.fromString(uuid));
     }
 
-    @GetMapping("/close")
+    @PatchMapping("/close")
     public void closePOI(
             @RequestParam String uuid
     ) {
         closePOIUseCase.closePOI(UUID.fromString(uuid));
     }
 
-    @GetMapping("/addStaffMember")
+    @PatchMapping("/addStaffMember")
     public void addStaffMember(
             @RequestParam String poiUuid,
             @RequestParam String staffMemberUuid
@@ -48,7 +45,7 @@ public class POIController {
         addStaffMemberUseCase.addStaffMember(UUID.fromString(poiUuid), UUID.fromString(staffMemberUuid));
     }
 
-    @GetMapping("/removeStaffMember")
+    @PatchMapping("/removeStaffMember")
     public void removeStaffMember(
             @RequestParam String poiUuid,
             @RequestParam String staffMemberUuid
