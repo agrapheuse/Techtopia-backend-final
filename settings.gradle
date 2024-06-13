@@ -1,0 +1,4 @@
+rootProject.name = 'techtopia-backend-noah'
+
+include 'common'
+include 'vis-backend'
