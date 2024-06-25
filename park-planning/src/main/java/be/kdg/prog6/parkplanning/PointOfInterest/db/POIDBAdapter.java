@@ -6,6 +6,8 @@ import be.kdg.prog6.parkplanning.PointOfInterest.deductStaffMember.ports.StaffMe
 import be.kdg.prog6.parkplanning.PointOfInterest.open.ports.POIOpenedPort;
 import be.kdg.prog6.parkplanning.StaffMember.db.StaffMemberJpaEntity;
 import be.kdg.prog6.parkplanning.StaffMember.db.StaffMemberJpaRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +21,8 @@ public class POIDBAdapter implements POIOpenedPort, POIClosedPort, StaffMemberAd
     private final POIJpaRepository poiJpaRepository;
     private final StaffMemberJpaRepository staffMemberJpaRepository;
 
+    public static final Logger log = LoggerFactory.getLogger(POIDBAdapter.class);
+
     public POIDBAdapter(POIJpaRepository poiJpaRepository, StaffMemberJpaRepository staffMemberJpaRepository) {
         this.poiJpaRepository = poiJpaRepository;
         this.staffMemberJpaRepository = staffMemberJpaRepository;
@@ -26,6 +30,7 @@ public class POIDBAdapter implements POIOpenedPort, POIClosedPort, StaffMemberAd
 
     @Override
     public void openPOI(UUID uuid) {
+        log.info("updating DB");
         poiJpaRepository.updateOpenByUuid(uuid);
     }
 

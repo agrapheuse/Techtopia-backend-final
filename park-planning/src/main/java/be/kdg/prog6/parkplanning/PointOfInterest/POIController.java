@@ -4,6 +4,8 @@ import be.kdg.prog6.parkplanning.PointOfInterest.addStaffMember.ports.AddStaffMe
 import be.kdg.prog6.parkplanning.PointOfInterest.close.ports.ClosePOIUseCase;
 import be.kdg.prog6.parkplanning.PointOfInterest.deductStaffMember.ports.RemoveStaffMemberUseCase;
 import be.kdg.prog6.parkplanning.PointOfInterest.open.ports.OpenPOIUseCase;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -15,6 +17,8 @@ public class POIController {
     private final ClosePOIUseCase closePOIUseCase;
     private final AddStaffMemberUseCase addStaffMemberUseCase;
     private final RemoveStaffMemberUseCase removeStaffMemberUseCase;
+
+    public static final Logger log = LoggerFactory.getLogger(POIController.class);
 
     public POIController(OpenPOIUseCase openPOIUseCase, ClosePOIUseCase closePOIUseCase, AddStaffMemberUseCase addStaffMemberUseCase, RemoveStaffMemberUseCase removeStaffMemberUseCase) {
         this.openPOIUseCase = openPOIUseCase;

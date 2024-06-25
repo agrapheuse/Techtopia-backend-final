@@ -2,6 +2,8 @@ package be.kdg.prog6.visitorInformationSystem.PointOfInterest.Attraction;
 
 import be.kdg.prog6.visitorInformationSystem.PointOfInterest.Attraction.showAll.ShowAllAttractionsUseCase;
 import be.kdg.prog6.visitorInformationSystem.PointOfInterest.Attraction.showFiltered.FilterAttractionUseCase;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,6 +17,8 @@ import java.util.Optional;
 public class AttractionController {
     private final ShowAllAttractionsUseCase showAllAttractionsUseCase;
     private final FilterAttractionUseCase filterAttractionUseCase;
+
+    public static final Logger log = LoggerFactory.getLogger(AttractionController.class);
 
     public AttractionController(ShowAllAttractionsUseCase showAllAttractionsUseCase, FilterAttractionUseCase filterAttractionUseCase) {
         this.showAllAttractionsUseCase = showAllAttractionsUseCase;
