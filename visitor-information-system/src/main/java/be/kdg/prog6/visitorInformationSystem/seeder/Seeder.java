@@ -1,11 +1,11 @@
 package be.kdg.prog6.visitorInformationSystem.seeder;
 
-import be.kdg.prog6.visitorInformationSystem.PointOfInterest.Attraction.db.AttractionJpaEntity;
-import be.kdg.prog6.visitorInformationSystem.PointOfInterest.FoodStand.db.FoodStandJpaEntity;
-import be.kdg.prog6.visitorInformationSystem.PointOfInterest.Attraction.db.AttractionJpaRepository;
-import be.kdg.prog6.visitorInformationSystem.PointOfInterest.FoodStand.db.FoodStandJpaRepository;
-import be.kdg.prog6.visitorInformationSystem.PointOfInterest.Attraction.Attraction;
-import be.kdg.prog6.visitorInformationSystem.PointOfInterest.FoodStand.FoodStand;
+import be.kdg.prog6.visitorInformationSystem.adapters.out.JPAEntities.AttractionJpaEntity;
+import be.kdg.prog6.visitorInformationSystem.adapters.out.JPAEntities.FoodStandJpaEntity;
+import be.kdg.prog6.visitorInformationSystem.adapters.out.repositories.AttractionJpaRepository;
+import be.kdg.prog6.visitorInformationSystem.adapters.out.repositories.FoodStandJpaRepository;
+import be.kdg.prog6.visitorInformationSystem.domain.Attraction;
+import be.kdg.prog6.visitorInformationSystem.domain.FoodStand;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
