@@ -3,7 +3,7 @@ package be.kdg.prog6.visitorInformationSystem.domain;
 import java.util.Objects;
 import java.util.UUID;
 
-public class Attraction implements PointOfInterest {
+public class Attraction extends PointOfInterest {
     public record AttractionUUID(UUID uuid) { }
     private AttractionUUID uuid;
     private String name;
@@ -38,72 +38,58 @@ public class Attraction implements PointOfInterest {
         return Objects.hash(name, posX, posY);
     }
 
-    @Override
-    public UUID getPointOfInterestUuid() {
-        return this.uuid.uuid;
+    public UUID getUuid() {
+        return uuid.uuid;
     }
 
-    @Override
-    public void setPointOfInterestUuid(UUID pointOfInterestUuid) {
-        this.uuid = new AttractionUUID(pointOfInterestUuid);
+    public void setUuid(AttractionUUID uuid) {
+        this.uuid = uuid;
     }
 
-    @Override
     public String getName() {
-        return this.name;
+        return name;
     }
 
-    @Override
     public void setName(String name) {
         this.name = name;
     }
 
-    @Override
     public String getDescription() {
-        return this.description;
+        return description;
     }
 
-    @Override
     public void setDescription(String description) {
         this.description = description;
     }
 
-    @Override
     public float getPosX() {
-        return this.posX;
+        return posX;
     }
 
-    @Override
     public void setPosX(float posX) {
         this.posX = posX;
     }
 
-    @Override
     public float getPosY() {
-        return this.posY;
+        return posY;
     }
 
-    @Override
     public void setPosY(float posY) {
         this.posY = posY;
     }
 
-    @Override
     public String getPicturePath() {
         return picturePath;
     }
 
-    @Override
     public void setPicturePath(String picturePath) {
         this.picturePath = picturePath;
     }
 
-    @Override
     public boolean isOpen() {
         return open;
     }
 
-    @Override
     public void setOpen(boolean open) {
         this.open = open;
     }

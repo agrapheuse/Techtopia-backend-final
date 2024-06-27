@@ -2,94 +2,82 @@ package be.kdg.prog6.visitorInformationSystem.adapters.out.JPAEntities;
 
 import be.kdg.prog6.visitorInformationSystem.domain.Attraction;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import org.hibernate.annotations.JdbcTypeCode;
 
-import java.sql.Types;
 import java.util.UUID;
 
-@Table
 @Entity
-public class AttractionJpaEntity {
-    @Id
-    @JdbcTypeCode(Types.VARCHAR)
-    private UUID uuid;
-    private String name;
-    private String description;
-    private float positionX;
-    private float positionY;
-    private String picture;
-    private boolean open;
+@Table(name="Attraction")
+public class AttractionJpaEntity extends PointOfInterestJpaEntity {
     private int minAge;
 
     public AttractionJpaEntity() {    }
 
     public AttractionJpaEntity(Attraction attraction) {
-        this.uuid = attraction.getPointOfInterestUuid();
-        this.name = attraction.getName();
-        this.description = attraction.getDescription();
-        this.positionX = attraction.getPosX();
-        this.positionY = attraction.getPosY();
-        this.picture = attraction.getPicturePath();
-        this.open = attraction.isOpen();
+        super.uuid = attraction.getUuid();
+        super.name = attraction.getName();
+        super.description = attraction.getDescription();
+        super.positionX = attraction.getPosX();
+        super.positionY = attraction.getPosX();
+        super.picture = attraction.getPicturePath();
+        super.open = attraction.isOpen();
         this.minAge = attraction.getMinAge();
     }
 
     public UUID getUuid() {
-        return uuid;
+        return super.uuid;
     }
 
     public void setUuid(UUID uuid) {
-        this.uuid = uuid;
+        super.uuid = uuid;
     }
 
     public String getName() {
-        return name;
+        return super.name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        super.name = name;
     }
 
     public String getDescription() {
-        return description;
+        return super.description;
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        super.description = description;
     }
 
     public float getPositionX() {
-        return positionX;
+        return super.positionX;
     }
 
     public void setPositionX(float positionX) {
-        this.positionX = positionX;
+        super.positionX = positionX;
     }
 
     public float getPositionY() {
-        return positionY;
+        return super.positionY;
     }
 
     public void setPositionY(float positionY) {
-        this.positionY = positionY;
+        super.positionY = positionY;
     }
 
     public String getPicture() {
-        return picture;
+        return super.picture;
     }
 
     public void setPicture(String picture) {
-        this.picture = picture;
+        super.picture = picture;
     }
 
     public boolean isOpen() {
-        return open;
+        return super.open;
     }
 
     public void setOpen(boolean open) {
-        this.open = open;
+        super.open = open;
     }
 
     public int getMinAge() {

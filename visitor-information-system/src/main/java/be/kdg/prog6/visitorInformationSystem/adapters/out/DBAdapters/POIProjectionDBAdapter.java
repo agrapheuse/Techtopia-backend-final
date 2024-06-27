@@ -1,6 +1,5 @@
 package be.kdg.prog6.visitorInformationSystem.adapters.out.DBAdapters;
 
-import be.kdg.prog6.visitorInformationSystem.domain.PointOfInterest;
 import be.kdg.prog6.visitorInformationSystem.ports.out.POIProjectionPort;
 
 import java.util.UUID;

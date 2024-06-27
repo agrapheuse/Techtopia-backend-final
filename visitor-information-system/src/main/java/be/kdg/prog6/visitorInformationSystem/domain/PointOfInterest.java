@@ -2,32 +2,13 @@ package be.kdg.prog6.visitorInformationSystem.domain;
 
 import java.util.UUID;
 
-public interface PointOfInterest {
-    UUID getPointOfInterestUuid();
-
-    void setPointOfInterestUuid(UUID pointOfInterestUuid);
-
-    String getName();
-
-    void setName(String name);
-
-    String getDescription();
-
-    void setDescription(String description);
-
-    float getPosX();
-
-    void setPosX(float posX);
-
-    float getPosY();
-
-    void setPosY(float posY);
-
-    String getPicturePath();
-
-    void setPicturePath(String picturePath);
-
-    boolean isOpen();
-
-    void setOpen(boolean open);
+public abstract class PointOfInterest {
+    public record PointOfInterestUUID(UUID uuid) { }
+    private Attraction.AttractionUUID uuid;
+    private String name;
+    private String description;
+    private float posX;
+    private float posY;
+    private String picturePath;
+    private boolean open;
 }
