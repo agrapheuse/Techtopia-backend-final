@@ -1,9 +1,8 @@
 package be.kdg.prog6.parkplanning.PointOfInterest.db;
 
 import be.kdg.prog6.parkplanning.PointOfInterest.addStaffMember.ports.StaffMemberAddedPort;
-import be.kdg.prog6.parkplanning.PointOfInterest.close.ports.POIClosedPort;
 import be.kdg.prog6.parkplanning.PointOfInterest.deductStaffMember.ports.StaffMemberRemovedPort;
-import be.kdg.prog6.parkplanning.PointOfInterest.open.ports.POIOpenedPort;
+import be.kdg.prog6.parkplanning.PointOfInterest.updateOpenStatus.ports.POIOpenedStatusChangedPort;
 import be.kdg.prog6.parkplanning.StaffMember.db.StaffMemberJpaEntity;
 import be.kdg.prog6.parkplanning.StaffMember.db.StaffMemberJpaRepository;
 import org.slf4j.Logger;
@@ -17,7 +16,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public class POIDBAdapter implements POIOpenedPort, POIClosedPort, StaffMemberAddedPort, StaffMemberRemovedPort {
+public class POIDBAdapter implements StaffMemberAddedPort, StaffMemberRemovedPort, POIOpenedStatusChangedPort {
     private final POIJpaRepository poiJpaRepository;
     private final StaffMemberJpaRepository staffMemberJpaRepository;
 
@@ -26,17 +25,6 @@ public class POIDBAdapter implements POIOpenedPort, POIClosedPort, StaffMemberAd
     public POIDBAdapter(POIJpaRepository poiJpaRepository, StaffMemberJpaRepository staffMemberJpaRepository) {
         this.poiJpaRepository = poiJpaRepository;
         this.staffMemberJpaRepository = staffMemberJpaRepository;
-    }
-
-    @Override
-    public void openPOI(UUID uuid) {
-        log.info("updating DB");
-        poiJpaRepository.updateOpenByUuid(uuid);
-    }
-
-    @Override
-    public void closePOI(UUID uuid) {
-        poiJpaRepository.updateCloseByUuid(uuid);
     }
 
     @Override
@@ -65,5 +53,12 @@ public class POIDBAdapter implements POIOpenedPort, POIClosedPort, StaffMemberAd
             poi.get().setStaff(staffMembers);
             poiJpaRepository.save(poi.get());
         }
+    }
+
+    @Override
+    @Transactional
+    @Modifying
+    public void changeOpenStatus(UUID uuid, boolean open) {
+        poiJpaRepository.updateOpenStatusByUuid(uuid, open);
     }
 }

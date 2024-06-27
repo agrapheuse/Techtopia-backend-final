@@ -11,7 +11,7 @@ import java.sql.Types;
 import java.util.List;
 import java.util.UUID;
 
-@Table
+@Table(name="PointOfInterestParkPlanning")
 @Entity
 public class POIJpaEntity {
     @Id

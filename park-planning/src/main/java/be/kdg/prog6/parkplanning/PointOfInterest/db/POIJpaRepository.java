@@ -10,11 +10,6 @@ import java.util.UUID;
 public interface POIJpaRepository extends JpaRepository<POIJpaEntity, UUID> {
     @Transactional
     @Modifying
-    @Query("update POIJpaEntity p set p.open = true where p.uuid = ?1")
-    void updateOpenByUuid(UUID uuid);
-
-    @Transactional
-    @Modifying
-    @Query("update POIJpaEntity p set p.open = false where p.uuid = ?1")
-    void updateCloseByUuid(UUID uuid);
+    @Query("update POIJpaEntity p set p.open = ?2 where p.uuid = ?1")
+    void updateOpenStatusByUuid(UUID uuid, boolean open);
 }
