@@ -2,5 +2,7 @@ rootProject.name = 'techtopia-backend-noah'
 
 include 'common'
 include 'visitor-information-system'
+include 'park-gate'
 include 'park-operations'
 include 'park-planning'
+include 'ticket'
