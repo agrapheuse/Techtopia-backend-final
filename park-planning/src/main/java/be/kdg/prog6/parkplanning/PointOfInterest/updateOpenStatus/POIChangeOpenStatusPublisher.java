@@ -1,6 +1,6 @@
 package be.kdg.prog6.parkplanning.PointOfInterest.updateOpenStatus;
 
-import be.kdg.prog6.events.PointOfInterestOpenedEvent;
+import be.kdg.prog6.events.PointOfInterestOpenStatusChangedEvent;
 import be.kdg.prog6.parkplanning.PointOfInterest.updateOpenStatus.ports.POIOpenedStatusChangedPort;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +22,6 @@ public class POIChangeOpenStatusPublisher implements POIOpenedStatusChangedPort 
     @Override
     public void changeOpenStatus(UUID uuid, boolean open) {
         log.info("publishing event that POI was opened");
-        applicationEventPublisher.publishEvent(new PointOfInterestOpenedEvent(uuid));
+        applicationEventPublisher.publishEvent(new PointOfInterestOpenStatusChangedEvent(uuid, open));
     }
 }

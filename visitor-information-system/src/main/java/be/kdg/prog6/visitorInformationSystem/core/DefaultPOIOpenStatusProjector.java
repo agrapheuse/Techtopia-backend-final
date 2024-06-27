@@ -1,6 +1,6 @@
 package be.kdg.prog6.visitorInformationSystem.core;
 
-import be.kdg.prog6.events.PointOfInterestOpenedEvent;
+import be.kdg.prog6.events.PointOfInterestOpenStatusChangedEvent;
 import be.kdg.prog6.visitorInformationSystem.ports.in.POIOpenStatusProjector;
 import be.kdg.prog6.visitorInformationSystem.ports.out.POIProjectionPort;
 import org.springframework.transaction.annotation.Propagation;
@@ -15,7 +15,7 @@ public class DefaultPOIOpenStatusProjector implements POIOpenStatusProjector {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public void project(PointOfInterestOpenedEvent event) {
-        projectionPort.updatePOI(event.POIUuid(), true);
+    public void project(PointOfInterestOpenStatusChangedEvent event) {
+        projectionPort.updatePOI(event.POIUuid(), event.open());
     }
 }
