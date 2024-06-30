@@ -1,10 +1,10 @@
 package be.kdg.prog6.parkplanning.seeder;
 
-import be.kdg.prog6.parkplanning.PointOfInterest.db.POIJpaEntity;
-import be.kdg.prog6.parkplanning.PointOfInterest.db.POIJpaRepository;
-import be.kdg.prog6.parkplanning.StaffMember.StaffMember;
-import be.kdg.prog6.parkplanning.StaffMember.db.StaffMemberJpaEntity;
-import be.kdg.prog6.parkplanning.StaffMember.db.StaffMemberJpaRepository;
+import be.kdg.prog6.parkplanning.adapters.out.JPAEntities.POIJpaEntity;
+import be.kdg.prog6.parkplanning.adapters.out.JPARepositories.POIJpaRepository;
+import be.kdg.prog6.parkplanning.domain.StaffMember;
+import be.kdg.prog6.parkplanning.adapters.out.JPAEntities.StaffMemberJpaEntity;
+import be.kdg.prog6.parkplanning.adapters.out.JPARepositories.StaffMemberJpaRepository;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
