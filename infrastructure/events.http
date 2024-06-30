@@ -1,0 +1,7 @@
+###
+POST http://localhost:8095/tickets/create?
+    date=2002-08-22&
+    visitorUuid=039f0c23-dca3-4cd9-8b08-8e894cc25d86&
+    ticketOption=NORMAL&
+    ageType=ADULT&
+    email={{$random.alphanumeric(8)}}

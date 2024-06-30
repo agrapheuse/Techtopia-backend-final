@@ -1,16 +1,29 @@
 package be.kdg.prog6.ticket.domain;
 
+import java.util.UUID;
+
 public class Person {
+    public record PersonUUID(UUID uuid) {}
     public enum Sex {M, MME, OTHER}
 
+    private PersonUUID uuid;
     private String name;
     private Sex sex;
     private int age;
 
-    public Person(String name, Sex sex, int age) {
+    public Person(PersonUUID uuid, String name, Sex sex, int age) {
+        this.uuid = uuid;
         this.name = name;
         this.sex = sex;
         this.age = age;
+    }
+
+    public PersonUUID getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(PersonUUID uuid) {
+        this.uuid = uuid;
     }
 
     public String getName() {

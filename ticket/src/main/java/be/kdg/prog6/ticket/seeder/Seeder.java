@@ -51,17 +51,7 @@ public class Seeder implements ApplicationRunner {
                 "jane.doe@gmail.com"
         );
 
-        TicketJpaEntity ticket2 = new TicketJpaEntity(
-                UUID.randomUUID(),
-                LocalDate.now(),
-                johnDoe,
-                TicketOption.NORMAL,
-                TicketAgeType.ADULT,
-                "jane.doe@gmail.com"
-        );
-
         ticketJpaRepository.save(ticket1);
-        ticketJpaRepository.save(ticket2);
     }
 
     @Override
