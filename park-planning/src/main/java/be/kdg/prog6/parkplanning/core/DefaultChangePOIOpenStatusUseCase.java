@@ -1,11 +1,11 @@
 package be.kdg.prog6.parkplanning.core;
 
+import be.kdg.prog6.parkplanning.ports.in.ChangeOpenStatusCommand;
 import be.kdg.prog6.parkplanning.ports.in.ChangePOIOpenStatusUseCase;
 import be.kdg.prog6.parkplanning.ports.out.POIOpenedStatusChangedPort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class DefaultChangePOIOpenStatusUseCase implements ChangePOIOpenStatusUseCase {
@@ -16,7 +16,7 @@ public class DefaultChangePOIOpenStatusUseCase implements ChangePOIOpenStatusUse
     }
 
     @Override
-    public void changeOpenStatus(UUID uuid, boolean open) {
-        poiOpenedStatusChangedPorts.forEach(port -> port.changeOpenStatus(uuid, open));
+    public void changeOpenStatus(ChangeOpenStatusCommand changeOpenStatusCommand) {
+        poiOpenedStatusChangedPorts.forEach(port -> port.changeOpenStatus(changeOpenStatusCommand.uuid(), changeOpenStatusCommand.open()));
     }
 }

@@ -1,8 +1,6 @@
 package be.kdg.prog6.parkplanning.adapters.in.web;
 
-import be.kdg.prog6.parkplanning.ports.in.AddStaffMemberUseCase;
-import be.kdg.prog6.parkplanning.ports.in.RemoveStaffMemberUseCase;
-import be.kdg.prog6.parkplanning.ports.in.ChangePOIOpenStatusUseCase;
+import be.kdg.prog6.parkplanning.ports.in.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +27,7 @@ public class POIController {
             @RequestParam String uuid,
             @RequestParam boolean open
     ) {
-        changePOIOpenStatusUseCase.changeOpenStatus(UUID.fromString(uuid), open);
+        changePOIOpenStatusUseCase.changeOpenStatus(new ChangeOpenStatusCommand(UUID.fromString(uuid), open));
     }
 
     @PatchMapping("/addStaffMember")
@@ -37,7 +35,7 @@ public class POIController {
             @RequestParam String poiUuid,
             @RequestParam String staffMemberUuid
     ) {
-        addStaffMemberUseCase.addStaffMember(UUID.fromString(poiUuid), UUID.fromString(staffMemberUuid));
+        addStaffMemberUseCase.addStaffMember(new AddStaffMemberCommand(UUID.fromString(poiUuid), UUID.fromString(staffMemberUuid)));
     }
 
     @PatchMapping("/removeStaffMember")
@@ -45,6 +43,6 @@ public class POIController {
             @RequestParam String poiUuid,
             @RequestParam String staffMemberUuid
     ) {
-        removeStaffMemberUseCase.removeStaffMember(UUID.fromString(poiUuid), UUID.fromString(staffMemberUuid));
+        removeStaffMemberUseCase.removeStaffMember(new RemoveStaffMemberCommand(UUID.fromString(poiUuid), UUID.fromString(staffMemberUuid)));
     }
 }

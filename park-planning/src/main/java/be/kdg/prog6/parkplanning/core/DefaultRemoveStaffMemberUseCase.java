@@ -1,10 +1,9 @@
 package be.kdg.prog6.parkplanning.core;
 
+import be.kdg.prog6.parkplanning.ports.in.RemoveStaffMemberCommand;
 import be.kdg.prog6.parkplanning.ports.in.RemoveStaffMemberUseCase;
 import be.kdg.prog6.parkplanning.ports.out.StaffMemberRemovedPort;
 import org.springframework.stereotype.Service;
-
-import java.util.UUID;
 
 @Service
 public class DefaultRemoveStaffMemberUseCase implements RemoveStaffMemberUseCase {
@@ -15,7 +14,7 @@ public class DefaultRemoveStaffMemberUseCase implements RemoveStaffMemberUseCase
     }
 
     @Override
-    public void removeStaffMember(UUID poiUuid, UUID staffMemberUuid) {
-        staffMemberRemovedPort.removeStaffMember(poiUuid, staffMemberUuid);
+    public void removeStaffMember(RemoveStaffMemberCommand removeStaffMemberCommand) {
+        staffMemberRemovedPort.removeStaffMember(removeStaffMemberCommand.poiUuid(), removeStaffMemberCommand.staffMemberUuid());
     }
 }
