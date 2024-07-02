@@ -1,20 +1,17 @@
 package be.kdg.prog6.parkplanning.adapters.config;
 
-import org.springframework.amqp.core.Binding;
-import org.springframework.amqp.core.BindingBuilder;
-import org.springframework.amqp.core.FanoutExchange;
-import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.core.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class RabbitMQTopology {
-    public static final String ATTRACTION_EVENTS_FAN_OUT = "attraction-events";
+    public static final String ATTRACTION_EVENTS_DIRECT = "attraction-events";
     public static final String ATTRACTION_EVENTS_QUEUE = "attraction-park-planning-queue";
 
     @Bean
-    FanoutExchange attractionEventsExchange() {
-        return new FanoutExchange(ATTRACTION_EVENTS_FAN_OUT);
+    DirectExchange attractionEventsExchange() {
+        return new DirectExchange(ATTRACTION_EVENTS_DIRECT);
     }
 
     @Bean
@@ -24,8 +21,7 @@ public class RabbitMQTopology {
 
 
     @Bean
-    Binding eventsBinding(FanoutExchange attractionEventsExchange, Queue attractionEventsQueue) {
-        return BindingBuilder.bind(attractionEventsQueue).to(attractionEventsExchange);
+    Binding eventsBinding(DirectExchange attractionEventsExchange, Queue attractionEventsQueue) {
+        return BindingBuilder.bind(attractionEventsQueue).to(attractionEventsExchange).withQueueName();
     }
-
 }

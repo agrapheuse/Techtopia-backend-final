@@ -10,12 +10,12 @@ import org.springframework.stereotype.Component;
 import java.util.UUID;
 
 @Component
-public class POIChangeOpenStatusPublisher implements POIOpenedStatusChangedPort {
-    public static final Logger log = LoggerFactory.getLogger(POIChangeOpenStatusPublisher.class);
+public class POIOpenStatusChangedPublisher implements POIOpenedStatusChangedPort {
+    public static final Logger log = LoggerFactory.getLogger(POIOpenStatusChangedPublisher.class);
 
     private final ApplicationEventPublisher applicationEventPublisher;
 
-    public POIChangeOpenStatusPublisher(ApplicationEventPublisher applicationEventPublisher) {
+    public POIOpenStatusChangedPublisher(ApplicationEventPublisher applicationEventPublisher) {
         this.applicationEventPublisher = applicationEventPublisher;
     }
 
