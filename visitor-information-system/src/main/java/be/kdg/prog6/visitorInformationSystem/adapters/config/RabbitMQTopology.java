@@ -1,4 +1,4 @@
-package be.kdg.prog6.parkplanning.adapters.config;
+package be.kdg.prog6.visitorInformationSystem.adapters.config;
 
 import org.springframework.amqp.core.*;
 import org.springframework.context.annotation.Bean;
@@ -21,7 +21,7 @@ public class RabbitMQTopology {
 
 
     @Bean
-    Binding attractionEventsBinding(TopicExchange attractionEventsExchange, Queue attractionEventsQueue) {
+    Binding eventsBinding(TopicExchange attractionEventsExchange, Queue attractionEventsQueue) {
         return BindingBuilder.bind(attractionEventsQueue).to(attractionEventsExchange).with("attraction.event.#");
     }
 }

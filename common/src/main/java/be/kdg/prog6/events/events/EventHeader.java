@@ -1,5 +1,6 @@
 package be.kdg.prog6.events.events;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreType;
 
