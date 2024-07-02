@@ -1,6 +1,7 @@
 package be.kdg.prog6.visitorInformationSystem.adapters.out.DBAdapters;
 
 import be.kdg.prog6.visitorInformationSystem.domain.Attraction;
+import be.kdg.prog6.visitorInformationSystem.domain.PointOfInterest;
 import be.kdg.prog6.visitorInformationSystem.ports.out.AttractionLoadPort;
 import be.kdg.prog6.visitorInformationSystem.adapters.out.JPAEntities.AttractionJpaEntity;
 import be.kdg.prog6.visitorInformationSystem.adapters.out.repositories.AttractionJpaRepository;
@@ -18,13 +19,13 @@ public class AttractionDBAdapter implements AttractionLoadPort {
         this.attractionRepository = attractionRepository;
     }
 
-    private List<Attraction> convert(List<AttractionJpaEntity> attractions) {
+    public static List<Attraction> convert(List<AttractionJpaEntity> attractions) {
         if (attractions.isEmpty()) {
             return new ArrayList<>();
         }
         List<Attraction> result = new ArrayList<>();
         for (AttractionJpaEntity attraction : attractions) {
-            result.add(new Attraction(new Attraction.AttractionUUID(attraction.getUuid()), attraction.getName(), attraction.getDescription(), attraction.getPositionX(), attraction.getPositionY(), attraction.getPicture(), attraction.isOpen(), attraction.getMinAge()));
+            result.add(new Attraction(new PointOfInterest.PointOfInterestUUID(attraction.getUuid()), attraction.getName(), attraction.getDescription(), attraction.getPosX(), attraction.getPosY(), attraction.getPicturePath(), attraction.isOpen(), attraction.getMinAge()));
         }
         return result;
     }

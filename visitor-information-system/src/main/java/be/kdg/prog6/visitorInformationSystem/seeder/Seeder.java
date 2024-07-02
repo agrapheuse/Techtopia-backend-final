@@ -4,8 +4,6 @@ import be.kdg.prog6.visitorInformationSystem.adapters.out.JPAEntities.Attraction
 import be.kdg.prog6.visitorInformationSystem.adapters.out.JPAEntities.FoodStandJpaEntity;
 import be.kdg.prog6.visitorInformationSystem.adapters.out.repositories.AttractionJpaRepository;
 import be.kdg.prog6.visitorInformationSystem.adapters.out.repositories.FoodStandJpaRepository;
-import be.kdg.prog6.visitorInformationSystem.domain.Attraction;
-import be.kdg.prog6.visitorInformationSystem.domain.FoodStand;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -23,8 +21,8 @@ public class Seeder implements ApplicationRunner {
     }
 
     void createData() {
-        AttractionJpaEntity flyingDutchman = new AttractionJpaEntity(new Attraction(
-                new Attraction.AttractionUUID(UUID.fromString("f0b71052-b917-48da-8825-e4933a30bc9e")),
+        AttractionJpaEntity flyingDutchman = new AttractionJpaEntity(
+                UUID.fromString("f0b71052-b917-48da-8825-e4933a30bc9e"),
                 "flying dutchman",
                 "De Vliegende Hollander is a combination water coaster and dark ride. The ride is based on the legend of Dutch man of war, the Flying Dutchman.",
                 40,
@@ -32,10 +30,9 @@ public class Seeder implements ApplicationRunner {
                 "images/flying_dutchman.jpg",
                 true,
                 12
-        )
         );
-        AttractionJpaEntity birdRoc = new AttractionJpaEntity(new Attraction(
-                new Attraction.AttractionUUID(UUID.fromString("8ec53056-e427-497a-9a24-af55d0a84898")),
+        AttractionJpaEntity birdRoc = new AttractionJpaEntity(
+                UUID.fromString("8ec53056-e427-497a-9a24-af55d0a84898"),
                 "bird roc",
                 "The name of the ride, Vogel Rok, refers to the adventure of Sinbad and the Bird Roc from the 1001 Arabian Nights.  The building has as a frontage a giant colorful Roc, the largest bird in Europe, according to the Guinness Book of Records. ",
                 28,
@@ -43,10 +40,9 @@ public class Seeder implements ApplicationRunner {
                 "/images/bird_roc.jpg",
                 true,
                 12
-        )
         );
-        AttractionJpaEntity fataMorgana = new AttractionJpaEntity(new Attraction(
-                new Attraction.AttractionUUID(UUID.fromString("6896e678-5184-4652-95cd-8b4f35f9a3ce")),
+        AttractionJpaEntity fataMorgana = new AttractionJpaEntity(
+                UUID.fromString("6896e678-5184-4652-95cd-8b4f35f9a3ce"),
                 "fata morgana",
                 "Fata Morgana is a dark ride. The ride is located in the Arabian themed area of the park, Adventure Realm.",
                 65,
@@ -54,15 +50,14 @@ public class Seeder implements ApplicationRunner {
                 "/images/fata_morgana.jpg",
                 true,
                 8
-        )
         );
 
         attractionJpaEntityRepository.save(flyingDutchman);
         attractionJpaEntityRepository.save(birdRoc);
         attractionJpaEntityRepository.save(fataMorgana);
 
-        FoodStandJpaEntity hotDogStand = new FoodStandJpaEntity(new FoodStand(
-                new FoodStand.FoodStandUuid(UUID.fromString("149e17ef-4233-4b69-9e70-7d68f88ecb6b")),
+        FoodStandJpaEntity hotDogStand = new FoodStandJpaEntity(
+                UUID.fromString("149e17ef-4233-4b69-9e70-7d68f88ecb6b"),
                 "hot dog stand",
                 "The hot dog stand is a place where you can buy hot dogs.",
                 10,
@@ -73,11 +68,10 @@ public class Seeder implements ApplicationRunner {
                         hot dog: 3$\s
                         fries: 3$\s
                         soda: 1$\s"""
-        )
         );
 
-        FoodStandJpaEntity pizzaStand = new FoodStandJpaEntity(new FoodStand(
-                new FoodStand.FoodStandUuid(UUID.fromString("5bf98931-b38e-450d-a463-1fb3e5793913")),
+        FoodStandJpaEntity pizzaStand = new FoodStandJpaEntity(
+                UUID.fromString("5bf98931-b38e-450d-a463-1fb3e5793913"),
                 "pizza stand",
                 "The pizza stand is a place where you can buy pizza.",
                 10,
@@ -88,11 +82,10 @@ public class Seeder implements ApplicationRunner {
                         pizza: 5$\s
                         fries: 3$\s
                         soda: 1$\s"""
-        )
         );
 
-        FoodStandJpaEntity iceCreamStand = new FoodStandJpaEntity(new FoodStand(
-                new FoodStand.FoodStandUuid(UUID.fromString("8349eb6e-f9b7-4299-8907-31e2ea6340b6")),
+        FoodStandJpaEntity iceCreamStand = new FoodStandJpaEntity(
+                UUID.fromString("8349eb6e-f9b7-4299-8907-31e2ea6340b6"),
                 "ice cream stand",
                 "The ice cream stand is a place where you can buy ice cream.",
                 10,
@@ -103,7 +96,6 @@ public class Seeder implements ApplicationRunner {
                         ice cream: 3$\s
                         fries: 3$\s
                         soda: 1$\s"""
-        )
         );
 
         foodStandJpaRepository.save(hotDogStand);

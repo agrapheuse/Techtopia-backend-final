@@ -55,4 +55,6 @@ public class POIJpaEntity {
     public void setOpen(boolean open) {
         this.open = open;
     }
+
+
 }

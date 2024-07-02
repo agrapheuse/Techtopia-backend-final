@@ -1,83 +1,96 @@
 package be.kdg.prog6.visitorInformationSystem.adapters.out.JPAEntities;
 
-import be.kdg.prog6.visitorInformationSystem.domain.FoodStand;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import org.hibernate.annotations.JdbcTypeCode;
 
+import java.sql.Types;
 import java.util.UUID;
 
 @Table
 @Entity(name="FoodStand")
-public class FoodStandJpaEntity extends PointOfInterestJpaEntity {
+public class FoodStandJpaEntity {
+    @Id
+    @JdbcTypeCode(Types.VARCHAR)
+    private UUID uuid;
+    private String name;
+    private String description;
+    private float posX;
+    private float posY;
+    private String picturePath;
+    private boolean open;
     private String menu;
 
-    public FoodStandJpaEntity(FoodStand foodStand) {
-        super.uuid = foodStand.getUuid();
-        super.name = foodStand.getName();
-        super.description = foodStand.getDescription();
-        super.positionX = foodStand.getPositionX();
-        super.positionY = foodStand.getPositionY();
-        super.picture = foodStand.getPicturePath();
-        super.open = foodStand.isOpen();
-        this.menu = foodStand.getMenu();
+    public FoodStandJpaEntity(UUID uuid, String name, String description, float posX, float posY, String picturePath, boolean open, String menu) {
+        this.uuid = uuid;
+        this.name = name;
+        this.description = description;
+        this.posX = posX;
+        this.posY = posY;
+        this.picturePath = picturePath;
+        this.open = open;
+        this.menu = menu;
     }
 
-    public FoodStandJpaEntity() { }
+    public FoodStandJpaEntity() {
+
+    }
 
     public UUID getUuid() {
-        return super.uuid;
+        return uuid;
     }
 
     public void setUuid(UUID uuid) {
-        super.uuid = uuid;
+        this.uuid = uuid;
     }
 
     public String getName() {
-        return super.name;
+        return name;
     }
 
     public void setName(String name) {
-        super.name = name;
+        this.name = name;
     }
 
     public String getDescription() {
-        return super.description;
+        return description;
     }
 
     public void setDescription(String description) {
-        super.description = description;
+        this.description = description;
     }
 
-    public float getPositionX() {
-        return super.positionX;
+    public float getPosX() {
+        return posX;
     }
 
-    public void setPositionX(float positionX) {
-        super.positionX = positionX;
+    public void setPosX(float posX) {
+        this.posX = posX;
     }
 
-    public float getPositionY() {
-        return super.positionY;
+    public float getPosY() {
+        return posY;
     }
 
-    public void setPositionY(float positionY) {
-        super.positionY = positionY;
+    public void setPosY(float posY) {
+        this.posY = posY;
     }
 
     public String getPicturePath() {
-        return super.picture;
+        return picturePath;
     }
 
     public void setPicturePath(String picturePath) {
-        super.picture = picturePath;
+        this.picturePath = picturePath;
     }
 
     public boolean isOpen() {
-        return super.open;
+        return open;
     }
 
     public void setOpen(boolean open) {
-        super.open = open;
+        this.open = open;
     }
 
     public String getMenu() {

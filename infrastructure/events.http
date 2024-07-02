@@ -10,3 +10,12 @@ POST http://localhost:8095/tickets/create?
 PATCH http://localhost:8092/pointOfInterest/changeOpenStatus?
     uuid=149e17ef-4233-4b69-9e70-7d68f88ecb6b&
     open=true
+
+###
+GET http://localhost:8091/pointOfInterest
+
+###
+GET http://localhost:8091/attractions
+
+###
+GET http://localhost:8091/foodStands

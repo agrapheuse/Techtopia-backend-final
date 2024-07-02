@@ -1,6 +1,7 @@
 package be.kdg.prog6.visitorInformationSystem.adapters.out.DBAdapters;
 
 import be.kdg.prog6.visitorInformationSystem.domain.FoodStand;
+import be.kdg.prog6.visitorInformationSystem.domain.PointOfInterest;
 import be.kdg.prog6.visitorInformationSystem.ports.out.FoodStandLoadPort;
 import be.kdg.prog6.visitorInformationSystem.adapters.out.JPAEntities.FoodStandJpaEntity;
 import be.kdg.prog6.visitorInformationSystem.adapters.out.repositories.FoodStandJpaRepository;
@@ -18,13 +19,13 @@ public class FoodStandDBAdapter implements FoodStandLoadPort {
         this.foodStandJpaRepository = foodStandJpaRepository;
     }
 
-    private List<FoodStand> convert(List<FoodStandJpaEntity> foodStands) {
+    public static List<FoodStand> convert(List<FoodStandJpaEntity> foodStands) {
         if (foodStands.isEmpty()) {
             return new ArrayList<>();
         }
         List<FoodStand> result = new ArrayList<>();
         for (FoodStandJpaEntity foodStand : foodStands) {
-            result.add(new FoodStand(new FoodStand.FoodStandUuid(foodStand.getUuid()), foodStand.getName(), foodStand.getDescription(), foodStand.getPositionX(), foodStand.getPositionY(), foodStand.getPicturePath(), foodStand.isOpen(), foodStand.getMenu()));
+            result.add(new FoodStand(new PointOfInterest.PointOfInterestUUID(foodStand.getUuid()), foodStand.getName(), foodStand.getDescription(), foodStand.getPosX(), foodStand.getPosY(), foodStand.getPicturePath(), foodStand.isOpen(), foodStand.getMenu()));
         }
         return result;
     }

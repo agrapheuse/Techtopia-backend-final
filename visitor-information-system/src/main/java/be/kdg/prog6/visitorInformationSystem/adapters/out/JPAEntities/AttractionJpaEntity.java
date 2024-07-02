@@ -1,83 +1,94 @@
 package be.kdg.prog6.visitorInformationSystem.adapters.out.JPAEntities;
 
-import be.kdg.prog6.visitorInformationSystem.domain.Attraction;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import org.hibernate.annotations.JdbcTypeCode;
 
+import java.sql.Types;
 import java.util.UUID;
 
 @Entity
 @Table(name="Attraction")
-public class AttractionJpaEntity extends PointOfInterestJpaEntity {
+public class AttractionJpaEntity {
+    @Id
+    @JdbcTypeCode(Types.VARCHAR)
+    private UUID uuid;
+    private String name;
+    private String description;
+    private float posX;
+    private float posY;
+    private String picturePath;
+    private boolean open;
     private int minAge;
 
     public AttractionJpaEntity() {    }
 
-    public AttractionJpaEntity(Attraction attraction) {
-        super.uuid = attraction.getUuid();
-        super.name = attraction.getName();
-        super.description = attraction.getDescription();
-        super.positionX = attraction.getPosX();
-        super.positionY = attraction.getPosX();
-        super.picture = attraction.getPicturePath();
-        super.open = attraction.isOpen();
-        this.minAge = attraction.getMinAge();
+    public AttractionJpaEntity(UUID uuid, String name, String description, float posX, float posY, String picturePath, boolean open, int minAge) {
+        this.uuid = uuid;
+        this.name = name;
+        this.description = description;
+        this.posX = posX;
+        this.posY = posY;
+        this.picturePath = picturePath;
+        this.open = open;
+        this.minAge = minAge;
     }
 
     public UUID getUuid() {
-        return super.uuid;
+        return uuid;
     }
 
     public void setUuid(UUID uuid) {
-        super.uuid = uuid;
+        this.uuid = uuid;
     }
 
     public String getName() {
-        return super.name;
+        return name;
     }
 
     public void setName(String name) {
-        super.name = name;
+        this.name = name;
     }
 
     public String getDescription() {
-        return super.description;
+        return description;
     }
 
     public void setDescription(String description) {
-        super.description = description;
+        this.description = description;
     }
 
-    public float getPositionX() {
-        return super.positionX;
+    public float getPosX() {
+        return posX;
     }
 
-    public void setPositionX(float positionX) {
-        super.positionX = positionX;
+    public void setPosX(float posX) {
+        this.posX = posX;
     }
 
-    public float getPositionY() {
-        return super.positionY;
+    public float getPosY() {
+        return posY;
     }
 
-    public void setPositionY(float positionY) {
-        super.positionY = positionY;
+    public void setPosY(float posY) {
+        this.posY = posY;
     }
 
-    public String getPicture() {
-        return super.picture;
+    public String getPicturePath() {
+        return picturePath;
     }
 
-    public void setPicture(String picture) {
-        super.picture = picture;
+    public void setPicturePath(String picturePath) {
+        this.picturePath = picturePath;
     }
 
     public boolean isOpen() {
-        return super.open;
+        return open;
     }
 
     public void setOpen(boolean open) {
-        super.open = open;
+        this.open = open;
     }
 
     public int getMinAge() {
