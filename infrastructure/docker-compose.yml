@@ -5,7 +5,6 @@
       image: mysql:8.1.0
       restart: "no"
       environment:
-        MYSQL_DATABASE: 'app_db'
         MYSQL_USER: 'user'
         MYSQL_PASSWORD: 'password'
         MYSQL_ROOT_PASSWORD: 'password'
@@ -15,7 +14,7 @@
         - backend
       volumes:
         - ./mysql/data:/var/lib/mysql
-
+        - ./mysql/init:/docker-entrypoint-initdb.d
 
     app_rabbitmq:
       image: rabbitmq:3-management-alpine
