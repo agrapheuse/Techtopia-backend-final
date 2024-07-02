@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public class AttractionDBAdapter implements AttractionLoadPort {
@@ -41,17 +40,8 @@ public class AttractionDBAdapter implements AttractionLoadPort {
     }
 
     @Override
-    public List<Attraction> loadFilteredAttractions(Optional<String> name, Optional<Boolean> open) {
-        List<AttractionJpaEntity> attractions;
-        if (name.isPresent() && open.isPresent()) {
-            attractions = attractionRepository.findByNameContainsIgnoreCaseAndOpenEquals(name.get(), open.get());
-        } else if (name.isPresent()) {
-            attractions = attractionRepository.findByNameContainsIgnoreCase(name.get());
-        } else if (open.isPresent()) {
-            attractions = attractionRepository.findByOpenEquals(open.get());
-        } else {
-            attractions = attractionRepository.findAll();
-        }
+    public List<Attraction> loadFilteredAttractions(String name, boolean open) {
+        List<AttractionJpaEntity> attractions = attractionRepository.findByNameContainsIgnoreCaseAndOpenEquals(name, open);
         return convert(attractions);
     }
 }

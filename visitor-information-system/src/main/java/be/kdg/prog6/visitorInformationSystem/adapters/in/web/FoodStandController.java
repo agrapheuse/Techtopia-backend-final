@@ -32,7 +32,7 @@ public class FoodStandController {
             @RequestParam Optional<Boolean> open
     ) {
         if (name.isPresent() || open.isPresent()) {
-            return filterFoodStandsUseCase.filterFoodStands(name, open);
+            return filterFoodStandsUseCase.filterFoodStands(name.orElse(""), open.orElse(true));
         } else {
             return showAllFoodStandsUseCase.showAllFoodStands();
         }

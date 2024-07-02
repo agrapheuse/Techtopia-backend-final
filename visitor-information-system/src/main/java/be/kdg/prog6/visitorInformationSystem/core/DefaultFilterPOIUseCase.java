@@ -6,7 +6,6 @@ import be.kdg.prog6.visitorInformationSystem.ports.out.POILoadPort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class DefaultFilterPOIUseCase implements FilterPOIUseCase {
@@ -17,7 +16,7 @@ public class DefaultFilterPOIUseCase implements FilterPOIUseCase {
     }
 
     @Override
-    public List<PointOfInterest> filterPointsOfInterest(Optional<String> name, Optional<Boolean> open) {
+    public List<PointOfInterest> filterPointsOfInterest(String name, Boolean open) {
         return poiLoadPort.loadFilteredPointsOfInterest(name, open);
     }
 }

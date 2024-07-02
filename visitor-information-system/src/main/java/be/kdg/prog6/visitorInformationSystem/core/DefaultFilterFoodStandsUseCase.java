@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class DefaultFilterFoodStandsUseCase implements FilterFoodStandsUseCase {
@@ -20,7 +19,7 @@ public class DefaultFilterFoodStandsUseCase implements FilterFoodStandsUseCase {
     }
 
     @Override
-    public List<FoodStand> filterFoodStands(Optional<String> name, Optional<Boolean> open) {
+    public List<FoodStand> filterFoodStands(String name, boolean open) {
         return foodStandLoadPort.loadFilteredFoodStands(name, open);
     }
 }

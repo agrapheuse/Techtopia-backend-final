@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class DefaultFilterAttractionUseCase implements FilterAttractionUseCase {
@@ -20,7 +19,7 @@ public class DefaultFilterAttractionUseCase implements FilterAttractionUseCase {
     }
 
     @Override
-    public List<Attraction> filterAttractions(Optional<String> name, Optional<Boolean> open) {
+    public List<Attraction> filterAttractions(String name, boolean open) {
         return attractionLoadPort.loadFilteredAttractions(name, open);
     }
 }

@@ -31,7 +31,7 @@ public class PointOfInterestController {
             @RequestParam Optional<Boolean> open
     ) {
         if (name.isPresent() || open.isPresent()) {
-            return filterPOIUseCase.filterPointsOfInterest(name, open);
+            return filterPOIUseCase.filterPointsOfInterest(name.orElse(""), open.orElse(true));
         } else {
             return showAllPOIUseCase.showAllPointOfInterests();
         }

@@ -18,6 +18,10 @@ GET http://localhost:8091/pointOfInterest
 GET http://localhost:8091/attractions
 
 ###
+GET http://localhost:8091/attractions?
+    name=bird
+
+###
 GET http://localhost:8091/foodStands
 
 ###

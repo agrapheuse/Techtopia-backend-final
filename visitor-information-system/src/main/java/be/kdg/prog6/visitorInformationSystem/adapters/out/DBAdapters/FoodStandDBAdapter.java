@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public class FoodStandDBAdapter implements FoodStandLoadPort {
@@ -40,17 +39,8 @@ public class FoodStandDBAdapter implements FoodStandLoadPort {
     }
 
     @Override
-    public List<FoodStand> loadFilteredFoodStands(Optional<String> name, Optional<Boolean> open) {
-        List<FoodStandJpaEntity> foodStands;
-        if (name.isPresent() && open.isPresent()) {
-            foodStands = foodStandJpaRepository.findByNameContainsIgnoreCaseAndOpenEquals(name.get(), open.get());
-        } else if (name.isPresent()) {
-            foodStands = foodStandJpaRepository.findByNameContainsIgnoreCase(name.get());
-        } else if (open.isPresent()) {
-            foodStands = foodStandJpaRepository.findByOpenEquals(open.get());
-        } else {
-            foodStands = foodStandJpaRepository.findAll();
-        }
+    public List<FoodStand> loadFilteredFoodStands(String name, boolean open) {
+        List<FoodStandJpaEntity> foodStands = foodStandJpaRepository.findByNameContainsIgnoreCaseAndOpenEquals(name, open);
         return convert(foodStands);
     }
 }

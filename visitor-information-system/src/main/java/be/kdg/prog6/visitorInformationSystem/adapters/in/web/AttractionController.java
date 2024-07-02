@@ -32,7 +32,7 @@ public class AttractionController {
             @RequestParam Optional<Boolean> open
     ) {
         if (name.isPresent() || open.isPresent()) {
-            return filterAttractionUseCase.filterAttractions(name, open);
+            return filterAttractionUseCase.filterAttractions(name.orElse(""), open.orElse(true));
         } else {
             return showAllAttractionsUseCase.showAllAttractions();
         }
