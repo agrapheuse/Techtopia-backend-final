@@ -22,7 +22,7 @@ public class POIOpenStatusChangedPublisher implements POIOpenedStatusChangedPort
 
     @Override
     public void openStatusChanged(UUID uuid, boolean open) {
-        log.info("publishing rabbitmq event that POI was opened");
+        log.debug("rabbitMQ message will be sent to VIS saying: POI with UUID {} will have its open status changed to {}", uuid, open);
         rabbitTemplate.convertAndSend(RabbitMQTopology.ATTRACTION_EVENTS_TOPIC, "attraction.event.change-open-status", new PointOfInterestOpenStatusChangedEvent(uuid, open));
     }
 }

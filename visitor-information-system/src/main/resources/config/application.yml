@@ -1,8 +1,11 @@
 server:
   port: ${PORT:8091}
 
-spring:
+logging:
+  level:
+    root: ${SPRING_LOGGING_LEVEL:INFO}
 
+spring:
   config:
     additional-location: ${SPRING_CONFIG_ADDITIONAL_LOCATION}
 

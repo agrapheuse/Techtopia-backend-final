@@ -1,6 +1,10 @@
 server:
   port: ${PORT:8092}
 
+logging:
+  level:
+    root: ${SPRING_LOGGING_LEVEL:INFO}
+
 spring:
 
   config:
