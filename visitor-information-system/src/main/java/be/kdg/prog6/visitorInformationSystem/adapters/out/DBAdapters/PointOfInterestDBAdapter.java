@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class PointOfInterestDBAdapter implements POILoadPort {
@@ -33,6 +34,31 @@ public class PointOfInterestDBAdapter implements POILoadPort {
 
         List<Attraction> attractions = AttractionDBAdapter.convert(attractionsJpa);
         List<FoodStand> foodStands = FoodStandDBAdapter.convert(foodStandsJpa);
+
+        List<PointOfInterest> pointOfInterests = new ArrayList<>(attractions);
+        pointOfInterests.addAll(foodStands);
+        return pointOfInterests;
+    }
+
+    @Override
+    public List<PointOfInterest> loadFilteredPointsOfInterest(Optional<String> name, Optional<Boolean> open) {
+        List<AttractionJpaEntity> attractionsJpa;
+        List<FoodStandJpaEntity> foodStandJpa;
+        if (name.isPresent() && open.isPresent()) {
+            attractionsJpa = attractionJpaRepository.findByNameContainsIgnoreCaseAndOpenEquals(name.get(), open.get());
+            foodStandJpa = foodStandJpaRepository.findByNameContainsIgnoreCaseAndOpenEquals(name.get(), open.get());
+        } else if (name.isPresent()) {
+            attractionsJpa = attractionJpaRepository.findByNameContainsIgnoreCase(name.get());
+            foodStandJpa = foodStandJpaRepository.findByNameContainsIgnoreCase(name.get());
+        } else if (open.isPresent()) {
+            attractionsJpa = attractionJpaRepository.findByOpenEquals(open.get());
+            foodStandJpa = foodStandJpaRepository.findByOpenEquals(open.get());
+        } else {
+            attractionsJpa = attractionJpaRepository.findAll();
+            foodStandJpa = foodStandJpaRepository.findAll();
+        }
+        List<Attraction> attractions = AttractionDBAdapter.convert(attractionsJpa);
+        List<FoodStand> foodStands = FoodStandDBAdapter.convert(foodStandJpa);
 
         List<PointOfInterest> pointOfInterests = new ArrayList<>(attractions);
         pointOfInterests.addAll(foodStands);

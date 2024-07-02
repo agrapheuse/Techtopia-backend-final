@@ -1,6 +1,7 @@
 package be.kdg.prog6.visitorInformationSystem.adapters.in.web;
 
 import be.kdg.prog6.visitorInformationSystem.domain.PointOfInterest;
+import be.kdg.prog6.visitorInformationSystem.ports.in.FilterPOIUseCase;
 import be.kdg.prog6.visitorInformationSystem.ports.in.ShowAllPOIUseCase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,10 +17,12 @@ import java.util.Optional;
 @RequestMapping("/pointOfInterest")
 public class PointOfInterestController {
     private final ShowAllPOIUseCase showAllPOIUseCase;
+    private final FilterPOIUseCase filterPOIUseCase;
     public static final Logger log = LoggerFactory.getLogger(PointOfInterestController.class);
 
-    public PointOfInterestController(ShowAllPOIUseCase showAllPOIUseCase) {
+    public PointOfInterestController(ShowAllPOIUseCase showAllPOIUseCase, FilterPOIUseCase filterPOIUseCase) {
         this.showAllPOIUseCase = showAllPOIUseCase;
+        this.filterPOIUseCase = filterPOIUseCase;
     }
 
     @GetMapping("")
@@ -28,7 +31,7 @@ public class PointOfInterestController {
             @RequestParam Optional<Boolean> open
     ) {
         if (name.isPresent() || open.isPresent()) {
-            return null;
+            return filterPOIUseCase.filterPointsOfInterest(name, open);
         } else {
             return showAllPOIUseCase.showAllPointOfInterests();
         }

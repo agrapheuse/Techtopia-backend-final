@@ -19,3 +19,14 @@ GET http://localhost:8091/attractions
 
 ###
 GET http://localhost:8091/foodStands
+
+###
+GET http://localhost:8091/pointOfInterest?
+    name=ice&
+    open=true
+
+###
+GET http://localhost:8091/attractions
+
+###
+GET http://localhost:8091/foodStands
