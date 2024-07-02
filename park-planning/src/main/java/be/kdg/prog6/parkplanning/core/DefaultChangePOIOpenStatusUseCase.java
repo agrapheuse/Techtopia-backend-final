@@ -17,6 +17,6 @@ public class DefaultChangePOIOpenStatusUseCase implements ChangePOIOpenStatusUse
 
     @Override
     public void changeOpenStatus(ChangeOpenStatusCommand changeOpenStatusCommand) {
-        poiOpenedStatusChangedPorts.forEach(port -> port.changeOpenStatus(changeOpenStatusCommand.uuid(), changeOpenStatusCommand.open()));
+        poiOpenedStatusChangedPorts.forEach(port -> port.openStatusChanged(changeOpenStatusCommand.uuid(), changeOpenStatusCommand.open()));
     }
 }

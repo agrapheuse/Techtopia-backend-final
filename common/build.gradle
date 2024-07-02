@@ -3,3 +3,7 @@ plugins {
 }
 
 tasks.register('prepareKotlinBuildScriptModel') {}
+
+dependencies {
+    implementation 'com.fasterxml.jackson.core:jackson-annotations'
+}

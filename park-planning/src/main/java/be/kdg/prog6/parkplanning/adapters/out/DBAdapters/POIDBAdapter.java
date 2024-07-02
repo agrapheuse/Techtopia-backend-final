@@ -60,7 +60,7 @@ public class POIDBAdapter implements StaffMemberAddedPort, StaffMemberRemovedPor
     @Override
     @Transactional
     @Modifying
-    public void changeOpenStatus(UUID uuid, boolean open) {
+    public void openStatusChanged(UUID uuid, boolean open) {
         poiJpaRepository.updateOpenStatusByUuid(uuid, open);
     }
 }
