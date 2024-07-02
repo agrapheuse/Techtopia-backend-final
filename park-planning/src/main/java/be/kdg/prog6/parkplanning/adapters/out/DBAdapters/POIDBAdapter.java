@@ -33,6 +33,7 @@ public class POIDBAdapter implements StaffMemberAddedPort, StaffMemberRemovedPor
     @Transactional
     @Modifying
     public void addStaffMember(UUID poiUuid, UUID staffMemberUuid) {
+        log.debug("add staff member called, POI with UUID {} will have staff member with uuid {} assigned to it", poiUuid, staffMemberUuid);
         Optional<POIJpaEntity> poi = poiJpaRepository.findById(poiUuid);
         Optional<StaffMemberJpaEntity> staffMember = staffMemberJpaRepository.findById(staffMemberUuid);
         if (poi.isPresent() && staffMember.isPresent()) {
@@ -47,6 +48,7 @@ public class POIDBAdapter implements StaffMemberAddedPort, StaffMemberRemovedPor
     @Transactional
     @Modifying
     public void removeStaffMember(UUID poiUuid, UUID staffMemberUuid) {
+        log.debug("remove staff member called, POI with UUID {} will have staff member with uuid {} removed from it", poiUuid, staffMemberUuid);
         Optional<POIJpaEntity> poi = poiJpaRepository.findById(poiUuid);
         Optional<StaffMemberJpaEntity> staffMember = staffMemberJpaRepository.findById(staffMemberUuid);
         if (poi.isPresent() && staffMember.isPresent() && poi.get().getStaff().contains(staffMember.get())) {
@@ -61,6 +63,7 @@ public class POIDBAdapter implements StaffMemberAddedPort, StaffMemberRemovedPor
     @Transactional
     @Modifying
     public void openStatusChanged(UUID uuid, boolean open) {
+        log.debug("change open status called, POI with UUID {} will have its open status changed to {}", uuid, open);
         poiJpaRepository.updateOpenStatusByUuid(uuid, open);
     }
 }

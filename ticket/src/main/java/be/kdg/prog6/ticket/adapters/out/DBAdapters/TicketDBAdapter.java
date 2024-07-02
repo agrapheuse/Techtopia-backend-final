@@ -5,6 +5,8 @@ import be.kdg.prog6.ticket.adapters.out.JPAEntities.TicketJpaEntity;
 import be.kdg.prog6.ticket.adapters.out.repositories.TicketJpaRepository;
 import be.kdg.prog6.ticket.domain.Ticket;
 import be.kdg.prog6.ticket.ports.out.TicketCreatedPort;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
@@ -12,6 +14,7 @@ import java.util.UUID;
 @Repository
 public class TicketDBAdapter implements TicketCreatedPort {
     private final TicketJpaRepository ticketJpaRepository;
+    public static final Logger log = LoggerFactory.getLogger(TicketDBAdapter.class);
 
     public TicketDBAdapter(TicketJpaRepository ticketJpaRepository) {
         this.ticketJpaRepository = ticketJpaRepository;

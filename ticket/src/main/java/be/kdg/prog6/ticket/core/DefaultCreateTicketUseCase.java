@@ -6,6 +6,8 @@ import be.kdg.prog6.ticket.ports.in.CreateTicketCommand;
 import be.kdg.prog6.ticket.ports.in.CreateTicketUseCase;
 import be.kdg.prog6.ticket.ports.out.PersonLoadPort;
 import be.kdg.prog6.ticket.ports.out.TicketCreatedPort;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -14,6 +16,7 @@ import java.util.Optional;
 public class DefaultCreateTicketUseCase implements CreateTicketUseCase {
     private final PersonLoadPort personLoadPort;
     private final TicketCreatedPort createTicket;
+    public static final Logger log = LoggerFactory.getLogger(DefaultCreateTicketUseCase.class);
 
     public DefaultCreateTicketUseCase(PersonLoadPort personLoadPort, TicketCreatedPort createTicket) {
         this.personLoadPort = personLoadPort;

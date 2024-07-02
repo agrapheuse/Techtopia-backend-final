@@ -30,8 +30,10 @@ public class StaffMemberController {
             @RequestParam Optional<String> name
     ) {
         if (name.isPresent()) {
+            log.debug("get staff member with name {} called", name);
             return findStaffMemberByNameUseCase.findStaffMemberByName(name.get());
         } else {
+            log.debug("get all staff member called");
             return findAllStaffMembersUseCase.findAllStaffMembers();
         }
     }

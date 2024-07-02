@@ -5,6 +5,8 @@ import be.kdg.prog6.visitorInformationSystem.domain.PointOfInterest;
 import be.kdg.prog6.visitorInformationSystem.ports.out.AttractionLoadPort;
 import be.kdg.prog6.visitorInformationSystem.adapters.out.JPAEntities.AttractionJpaEntity;
 import be.kdg.prog6.visitorInformationSystem.adapters.out.repositories.AttractionJpaRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -14,6 +16,7 @@ import java.util.Optional;
 @Repository
 public class AttractionDBAdapter implements AttractionLoadPort {
     private final AttractionJpaRepository attractionRepository;
+    public static final Logger log = LoggerFactory.getLogger(AttractionDBAdapter.class);
 
     public AttractionDBAdapter(AttractionJpaRepository attractionRepository) {
         this.attractionRepository = attractionRepository;

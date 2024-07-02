@@ -8,6 +8,8 @@ import be.kdg.prog6.visitorInformationSystem.domain.Attraction;
 import be.kdg.prog6.visitorInformationSystem.domain.FoodStand;
 import be.kdg.prog6.visitorInformationSystem.domain.PointOfInterest;
 import be.kdg.prog6.visitorInformationSystem.ports.out.POILoadPort;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -17,6 +19,7 @@ import java.util.List;
 public class PointOfInterestDBAdapter implements POILoadPort {
     private final AttractionJpaRepository attractionJpaRepository;
     private final FoodStandJpaRepository foodStandJpaRepository;
+    public static final Logger log = LoggerFactory.getLogger(PointOfInterestDBAdapter.class);
 
     public PointOfInterestDBAdapter(AttractionJpaRepository attractionJpaRepository, FoodStandJpaRepository foodStandJpaRepository) {
         this.attractionJpaRepository = attractionJpaRepository;

@@ -5,6 +5,8 @@ import be.kdg.prog6.visitorInformationSystem.domain.PointOfInterest;
 import be.kdg.prog6.visitorInformationSystem.ports.out.FoodStandLoadPort;
 import be.kdg.prog6.visitorInformationSystem.adapters.out.JPAEntities.FoodStandJpaEntity;
 import be.kdg.prog6.visitorInformationSystem.adapters.out.repositories.FoodStandJpaRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -14,6 +16,7 @@ import java.util.Optional;
 @Repository
 public class FoodStandDBAdapter implements FoodStandLoadPort {
     private final FoodStandJpaRepository foodStandJpaRepository;
+    public static final Logger log = LoggerFactory.getLogger(FoodStandDBAdapter.class);
 
     public FoodStandDBAdapter(FoodStandJpaRepository foodStandJpaRepository) {
         this.foodStandJpaRepository = foodStandJpaRepository;

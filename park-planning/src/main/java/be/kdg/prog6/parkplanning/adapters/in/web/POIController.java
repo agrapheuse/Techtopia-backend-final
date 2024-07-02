@@ -27,6 +27,7 @@ public class POIController {
             @RequestParam String uuid,
             @RequestParam boolean open
     ) {
+        log.debug("change open status called, POI with UUID {} will have its open status changed to {}", uuid, open);
         changePOIOpenStatusUseCase.changeOpenStatus(new ChangeOpenStatusCommand(UUID.fromString(uuid), open));
     }
 
@@ -35,6 +36,7 @@ public class POIController {
             @RequestParam String poiUuid,
             @RequestParam String staffMemberUuid
     ) {
+        log.debug("add staff member called, POI with UUID {} will have staff member with uuid {} assigned to it", poiUuid, staffMemberUuid);
         addStaffMemberUseCase.addStaffMember(new AddStaffMemberCommand(UUID.fromString(poiUuid), UUID.fromString(staffMemberUuid)));
     }
 
@@ -43,6 +45,7 @@ public class POIController {
             @RequestParam String poiUuid,
             @RequestParam String staffMemberUuid
     ) {
+        log.debug("remove staff member called, POI with UUID {} will have staff member with uuid {} removed from it", poiUuid, staffMemberUuid);
         removeStaffMemberUseCase.removeStaffMember(new RemoveStaffMemberCommand(UUID.fromString(poiUuid), UUID.fromString(staffMemberUuid)));
     }
 }

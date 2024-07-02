@@ -7,6 +7,8 @@ import be.kdg.prog6.ticket.adapters.out.repositories.TicketJpaRepository;
 import be.kdg.prog6.ticket.domain.Person;
 import be.kdg.prog6.ticket.domain.TicketAgeType;
 import be.kdg.prog6.ticket.domain.TicketOption;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -18,6 +20,7 @@ import java.util.UUID;
 public class Seeder implements ApplicationRunner {
     private final PersonJpaRepository personJpaRepository;
     private final TicketJpaRepository ticketJpaRepository;
+    public static final Logger log = LoggerFactory.getLogger(Seeder.class);
 
     public Seeder(PersonJpaRepository personJpaRepository, TicketJpaRepository ticketJpaRepository) {
         this.personJpaRepository = personJpaRepository;

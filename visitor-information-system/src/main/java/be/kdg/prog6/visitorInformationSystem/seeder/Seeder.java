@@ -4,6 +4,8 @@ import be.kdg.prog6.visitorInformationSystem.adapters.out.JPAEntities.Attraction
 import be.kdg.prog6.visitorInformationSystem.adapters.out.JPAEntities.FoodStandJpaEntity;
 import be.kdg.prog6.visitorInformationSystem.adapters.out.repositories.AttractionJpaRepository;
 import be.kdg.prog6.visitorInformationSystem.adapters.out.repositories.FoodStandJpaRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -14,6 +16,7 @@ import java.util.UUID;
 public class Seeder implements ApplicationRunner {
     private final AttractionJpaRepository attractionJpaEntityRepository;
     private final FoodStandJpaRepository foodStandJpaRepository;
+    public static final Logger log = LoggerFactory.getLogger(Seeder.class);
 
     public Seeder(AttractionJpaRepository attractionJpaEntityRepository, FoodStandJpaRepository foodStandJpaRepository) {
         this.attractionJpaEntityRepository = attractionJpaEntityRepository;

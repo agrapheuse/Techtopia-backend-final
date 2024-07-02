@@ -4,6 +4,8 @@ import be.kdg.prog6.ticket.domain.TicketAgeType;
 import be.kdg.prog6.ticket.domain.TicketOption;
 import be.kdg.prog6.ticket.ports.in.CreateTicketCommand;
 import be.kdg.prog6.ticket.ports.in.CreateTicketUseCase;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,6 +18,7 @@ import java.util.UUID;
 @RequestMapping("/tickets")
 public class TicketController {
     private final CreateTicketUseCase createTicketUseCase;
+    public static final Logger log = LoggerFactory.getLogger(TicketController.class);
 
     public TicketController(CreateTicketUseCase createTicketUseCase) {
         this.createTicketUseCase = createTicketUseCase;
