@@ -5,13 +5,13 @@ import java.util.UUID;
 
 public abstract class PointOfInterest {
     public record PointOfInterestUUID(UUID uuid) { }
-    public PointOfInterestUUID uuid;
-    public String name;
-    public String description;
-    public float posX;
-    public float posY;
-    public String picturePath;
-    public boolean open;
+    private PointOfInterestUUID uuid;
+    private String name;
+    private String description;
+    private float posX;
+    private float posY;
+    private String picturePath;
+    private boolean open;
 
     public PointOfInterestUUID getUuid() {
         return uuid;
@@ -73,12 +73,12 @@ public abstract class PointOfInterest {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        FoodStand that = (FoodStand) o;
-        return Float.compare(posX, that.posX) == 0 && Float.compare(posY, that.posY) == 0 && Objects.equals(name, that.name);
+        PointOfInterest that = (PointOfInterest) o;
+        return Objects.equals(uuid, that.uuid) && Objects.equals(name, that.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, posX, posY);
+        return Objects.hash(uuid, name);
     }
 }
