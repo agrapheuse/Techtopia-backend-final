@@ -66,7 +66,7 @@ public class Seeder implements ApplicationRunner {
                 10,
                 5,
                 "/images/hot_dog_stand.jpg",
-                true,
+                false,
                 """
                         hot dog: 3$\s
                         fries: 3$\s
