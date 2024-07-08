@@ -9,22 +9,21 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class RabbitMQTopology {
-    public static final String ATTRACTION_EVENTS_TOPIC = "attraction-events";
-    public static final String ATTRACTION_EVENTS_QUEUE = "attraction-park-planning-queue";
+    public static final String TICKET_EVENTS_TOPIC = "ticket-events";
+    public static final String TICKET_EVENTS_QUEUE = "ticket-create-queue";
 
     @Bean
-    TopicExchange attractionEventsExchange() {
-        return new TopicExchange(ATTRACTION_EVENTS_TOPIC);
+    TopicExchange ticketEventsExchange() {
+        return new TopicExchange(TICKET_EVENTS_TOPIC);
     }
 
     @Bean
-    Queue attractionEventsQueue() {
-        return new Queue(ATTRACTION_EVENTS_QUEUE);
+    Queue ticketEventsQueue() {
+        return new Queue(TICKET_EVENTS_QUEUE);
     }
 
-
     @Bean
-    Binding eventsBinding(TopicExchange attractionEventsExchange, Queue attractionEventsQueue) {
-        return BindingBuilder.bind(attractionEventsQueue).to(attractionEventsExchange).with("attraction.event.#");
+    Binding ticketEventsBinding(TopicExchange ticketEventsExchange, Queue ticketEventsQueue) {
+        return BindingBuilder.bind(ticketEventsQueue).to(ticketEventsExchange).with("ticket.event.#");
     }
 }

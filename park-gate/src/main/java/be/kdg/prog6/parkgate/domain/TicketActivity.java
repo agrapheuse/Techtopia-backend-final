@@ -1,4 +1,10 @@
 package be.kdg.prog6.parkgate.domain;
 
-public class TicketActivity {
-}
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+public record TicketActivity(
+        Ticket ticket,
+        UUID poiUUID,
+        LocalDateTime dateTime
+) {}

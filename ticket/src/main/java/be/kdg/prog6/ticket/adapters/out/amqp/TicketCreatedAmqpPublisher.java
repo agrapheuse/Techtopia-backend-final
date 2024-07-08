@@ -21,7 +21,7 @@ public class TicketCreatedAmqpPublisher implements TicketCreatedPort {
 
     @Override
     public void createTicket(Ticket ticket) {
-        log.info("rabbitMQ message will be sent to Park-gate saying: Ticket with UUID {} was created", ticket.getUuid().uuid());
+        log.debug("rabbitMQ message will be sent to Park-gate saying: Ticket with UUID {} was created", ticket.getUuid().uuid());
         rabbitTemplate.convertAndSend(RabbitMQTopology.TICKET_EVENTS_TOPIC, "ticket.event.created", new TicketCreatedEvent(ticket.getUuid().uuid()));
     }
 }
