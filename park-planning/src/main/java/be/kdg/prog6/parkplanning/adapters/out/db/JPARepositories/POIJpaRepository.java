@@ -1,6 +1,6 @@
-package be.kdg.prog6.parkplanning.adapters.out.JPARepositories;
+package be.kdg.prog6.parkplanning.adapters.out.db.JPARepositories;
 
-import be.kdg.prog6.parkplanning.adapters.out.JPAEntities.POIJpaEntity;
+import be.kdg.prog6.parkplanning.adapters.out.db.JPAEntities.POIJpaEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

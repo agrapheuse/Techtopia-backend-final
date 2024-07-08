@@ -1,6 +1,6 @@
-package be.kdg.prog6.parkplanning.adapters.out.JPARepositories;
+package be.kdg.prog6.parkplanning.adapters.out.db.JPARepositories;
 
-import be.kdg.prog6.parkplanning.adapters.out.JPAEntities.StaffMemberJpaEntity;
+import be.kdg.prog6.parkplanning.adapters.out.db.JPAEntities.StaffMemberJpaEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

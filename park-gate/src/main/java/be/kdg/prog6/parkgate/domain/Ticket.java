@@ -1,4 +1,4 @@
-package be.kdg.prog6.parkgate.Ticket;
+package be.kdg.prog6.parkgate.domain;
 
 import java.util.UUID;
 

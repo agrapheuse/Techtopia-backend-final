@@ -1,4 +1,4 @@
-package be.kdg.prog6.parkplanning.adapters.out.JPAEntities;
+package be.kdg.prog6.parkplanning.adapters.out.db.JPAEntities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

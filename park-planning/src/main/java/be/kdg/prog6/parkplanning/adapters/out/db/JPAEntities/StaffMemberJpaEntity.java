@@ -1,4 +1,4 @@
-package be.kdg.prog6.parkplanning.adapters.out.JPAEntities;
+package be.kdg.prog6.parkplanning.adapters.out.db.JPAEntities;
 
 import be.kdg.prog6.parkplanning.domain.StaffMember;
 import jakarta.persistence.Entity;

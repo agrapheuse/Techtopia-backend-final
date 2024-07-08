@@ -1,7 +1,7 @@
-package be.kdg.prog6.ticket.adapters.out.DBAdapters;
+package be.kdg.prog6.ticket.adapters.out.db.DBAdapters;
 
-import be.kdg.prog6.ticket.adapters.out.JPAEntities.PersonJpaEntity;
-import be.kdg.prog6.ticket.adapters.out.repositories.PersonJpaRepository;
+import be.kdg.prog6.ticket.adapters.out.db.JPAEntities.PersonJpaEntity;
+import be.kdg.prog6.ticket.adapters.out.db.repositories.PersonJpaRepository;
 import be.kdg.prog6.ticket.domain.Person;
 import be.kdg.prog6.ticket.ports.out.PersonLoadPort;
 import org.slf4j.Logger;

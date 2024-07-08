@@ -5,18 +5,28 @@ import java.util.UUID;
 
 public class Ticket {
     public record TicketUuid(UUID uuid) {}
+    private TicketUuid uuid;
     private LocalDate date;
     private Person visitor;
     private TicketOption option;
     private TicketAgeType ageType;
     private String email;
 
-    public Ticket(LocalDate date, Person visitor, TicketOption option, TicketAgeType ageType, String email) {
+    public Ticket(TicketUuid uuid, LocalDate date, Person visitor, TicketOption option, TicketAgeType ageType, String email) {
+        this.uuid = uuid;
         this.date = date;
         this.visitor = visitor;
         this.option = option;
         this.ageType = ageType;
         this.email = email;
+    }
+
+    public TicketUuid getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(TicketUuid uuid) {
+        this.uuid = uuid;
     }
 
     public LocalDate getDate() {

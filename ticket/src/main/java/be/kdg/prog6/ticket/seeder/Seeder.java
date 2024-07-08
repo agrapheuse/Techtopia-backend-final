@@ -1,9 +1,9 @@
 package be.kdg.prog6.ticket.seeder;
 
-import be.kdg.prog6.ticket.adapters.out.JPAEntities.PersonJpaEntity;
-import be.kdg.prog6.ticket.adapters.out.JPAEntities.TicketJpaEntity;
-import be.kdg.prog6.ticket.adapters.out.repositories.PersonJpaRepository;
-import be.kdg.prog6.ticket.adapters.out.repositories.TicketJpaRepository;
+import be.kdg.prog6.ticket.adapters.out.db.JPAEntities.PersonJpaEntity;
+import be.kdg.prog6.ticket.adapters.out.db.JPAEntities.TicketJpaEntity;
+import be.kdg.prog6.ticket.adapters.out.db.repositories.PersonJpaRepository;
+import be.kdg.prog6.ticket.adapters.out.db.repositories.TicketJpaRepository;
 import be.kdg.prog6.ticket.domain.Person;
 import be.kdg.prog6.ticket.domain.TicketAgeType;
 import be.kdg.prog6.ticket.domain.TicketOption;

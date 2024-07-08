@@ -1,8 +1,8 @@
-package be.kdg.prog6.parkplanning.adapters.out.DBAdapters;
+package be.kdg.prog6.parkplanning.adapters.out.db.DBAdapters;
 
+import be.kdg.prog6.parkplanning.adapters.out.db.JPAEntities.StaffMemberJpaEntity;
 import be.kdg.prog6.parkplanning.domain.StaffMember;
-import be.kdg.prog6.parkplanning.adapters.out.JPAEntities.StaffMemberJpaEntity;
-import be.kdg.prog6.parkplanning.adapters.out.JPARepositories.StaffMemberJpaRepository;
+import be.kdg.prog6.parkplanning.adapters.out.db.JPARepositories.StaffMemberJpaRepository;
 import be.kdg.prog6.parkplanning.ports.out.StaffMemberLoadPort;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

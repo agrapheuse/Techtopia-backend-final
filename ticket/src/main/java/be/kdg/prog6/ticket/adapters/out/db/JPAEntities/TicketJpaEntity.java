@@ -1,4 +1,4 @@
-package be.kdg.prog6.ticket.adapters.out.JPAEntities;
+package be.kdg.prog6.ticket.adapters.out.db.JPAEntities;
 
 import be.kdg.prog6.ticket.domain.TicketAgeType;
 import be.kdg.prog6.ticket.domain.TicketOption;

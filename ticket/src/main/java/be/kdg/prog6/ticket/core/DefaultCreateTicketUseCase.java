@@ -10,17 +10,19 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class DefaultCreateTicketUseCase implements CreateTicketUseCase {
     private final PersonLoadPort personLoadPort;
-    private final TicketCreatedPort createTicket;
+    private final List<TicketCreatedPort> ticketCreatedPorts;
     public static final Logger log = LoggerFactory.getLogger(DefaultCreateTicketUseCase.class);
 
-    public DefaultCreateTicketUseCase(PersonLoadPort personLoadPort, TicketCreatedPort createTicket) {
+    public DefaultCreateTicketUseCase(PersonLoadPort personLoadPort, List<TicketCreatedPort> ticketCreatedPorts) {
         this.personLoadPort = personLoadPort;
-        this.createTicket = createTicket;
+        this.ticketCreatedPorts = ticketCreatedPorts;
     }
 
     @Override
@@ -28,13 +30,13 @@ public class DefaultCreateTicketUseCase implements CreateTicketUseCase {
         Optional<Person> person = personLoadPort.loadPerson(createTicketCommand.visitorUuid());
         if (person.isPresent()) {
             Ticket ticket = new Ticket(
+                    new Ticket.TicketUuid(UUID.randomUUID()),
                     createTicketCommand.date(),
                     person.get(),
                     createTicketCommand.ticketOption(),
                     createTicketCommand.ageType(),
-                    createTicketCommand.email()
-            );
-            createTicket.createTicket(ticket);
+                    createTicketCommand.email());
+            ticketCreatedPorts.forEach(port -> port.createTicket(ticket));
         }
     }
 }

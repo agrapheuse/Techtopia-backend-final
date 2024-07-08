@@ -1,10 +1,10 @@
 package be.kdg.prog6.parkplanning.seeder;
 
-import be.kdg.prog6.parkplanning.adapters.out.JPAEntities.POIJpaEntity;
-import be.kdg.prog6.parkplanning.adapters.out.JPARepositories.POIJpaRepository;
+import be.kdg.prog6.parkplanning.adapters.out.db.JPAEntities.POIJpaEntity;
+import be.kdg.prog6.parkplanning.adapters.out.db.JPARepositories.POIJpaRepository;
 import be.kdg.prog6.parkplanning.domain.StaffMember;
-import be.kdg.prog6.parkplanning.adapters.out.JPAEntities.StaffMemberJpaEntity;
-import be.kdg.prog6.parkplanning.adapters.out.JPARepositories.StaffMemberJpaRepository;
+import be.kdg.prog6.parkplanning.adapters.out.db.JPAEntities.StaffMemberJpaEntity;
+import be.kdg.prog6.parkplanning.adapters.out.db.JPARepositories.StaffMemberJpaRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.ApplicationArguments;
