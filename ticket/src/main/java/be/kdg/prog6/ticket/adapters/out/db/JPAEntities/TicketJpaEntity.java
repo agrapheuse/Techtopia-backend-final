@@ -1,5 +1,6 @@
 package be.kdg.prog6.ticket.adapters.out.db.JPAEntities;
 
+import be.kdg.prog6.ticket.domain.Gender;
 import be.kdg.prog6.ticket.domain.TicketAgeType;
 import be.kdg.prog6.ticket.domain.TicketOption;
 import jakarta.persistence.*;
@@ -16,18 +17,22 @@ public class TicketJpaEntity {
     @JdbcTypeCode(Types.VARCHAR)
     public UUID uuid;
     private LocalDate date;
-    @OneToOne
-    private PersonJpaEntity visitor;
+    private String name;
+    private int age;
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
     @Enumerated(EnumType.STRING)
     private TicketOption ticketOption;
     @Enumerated(EnumType.STRING)
     private TicketAgeType ageType;
     private String email;
 
-    public TicketJpaEntity(UUID uuid, LocalDate date, PersonJpaEntity visitor, TicketOption ticketOption, TicketAgeType ageType, String email) {
+    public TicketJpaEntity(UUID uuid, LocalDate date, String name, int age, Gender gender, TicketOption ticketOption, TicketAgeType ageType, String email) {
         this.uuid = uuid;
         this.date = date;
-        this.visitor = visitor;
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
         this.ticketOption = ticketOption;
         this.ageType = ageType;
         this.email = email;
@@ -52,12 +57,28 @@ public class TicketJpaEntity {
         this.date = date;
     }
 
-    public PersonJpaEntity getVisitor() {
-        return visitor;
+    public String getName() {
+        return name;
     }
 
-    public void setVisitor(PersonJpaEntity visitor) {
-        this.visitor = visitor;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
 
     public TicketOption getTicketOption() {

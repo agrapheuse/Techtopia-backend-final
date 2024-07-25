@@ -1,6 +1,5 @@
 package be.kdg.prog6.ticket.adapters.out.db.DBAdapters;
 
-import be.kdg.prog6.ticket.adapters.out.db.JPAEntities.PersonJpaEntity;
 import be.kdg.prog6.ticket.adapters.out.db.JPAEntities.TicketJpaEntity;
 import be.kdg.prog6.ticket.adapters.out.db.repositories.TicketJpaRepository;
 import be.kdg.prog6.ticket.domain.Ticket;
@@ -22,16 +21,12 @@ public class TicketDBAdapter implements TicketCreatedPort {
 
     @Override
     public void createTicket(Ticket ticket) {
-        PersonJpaEntity person = new PersonJpaEntity(
-                ticket.getVisitor().getUuid().uuid(),
-                ticket.getVisitor().getName(),
-                ticket.getVisitor().getSex(),
-                ticket.getVisitor().getAge()
-        );
         TicketJpaEntity ticketJpaEntity = new TicketJpaEntity(
                 UUID.randomUUID(),
                 ticket.getDate(),
-                person,
+                ticket.getName(),
+                ticket.getAge(),
+                ticket.getGender(),
                 ticket.getOption(),
                 ticket.getAgeType(),
                 ticket.getEmail()

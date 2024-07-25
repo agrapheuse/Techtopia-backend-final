@@ -4,18 +4,24 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 public class Ticket {
-    public record TicketUuid(UUID uuid) {}
+    public record TicketUuid(UUID uuid) {
+    }
+
     private TicketUuid uuid;
     private LocalDate date;
-    private Person visitor;
+    private String name;
+    private int age;
+    private Gender gender;
     private TicketOption option;
     private TicketAgeType ageType;
     private String email;
 
-    public Ticket(TicketUuid uuid, LocalDate date, Person visitor, TicketOption option, TicketAgeType ageType, String email) {
+    public Ticket(TicketUuid uuid, LocalDate date, String name, int age, Gender gender, TicketOption option, TicketAgeType ageType, String email) {
         this.uuid = uuid;
         this.date = date;
-        this.visitor = visitor;
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
         this.option = option;
         this.ageType = ageType;
         this.email = email;
@@ -37,12 +43,28 @@ public class Ticket {
         this.date = date;
     }
 
-    public Person getVisitor() {
-        return visitor;
+    public String getName() {
+        return name;
     }
 
-    public void setVisitor(Person visitor) {
-        this.visitor = visitor;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
 
     public TicketOption getOption() {
