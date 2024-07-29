@@ -30,7 +30,7 @@ public class Seeder implements ApplicationRunner {
                 "De Vliegende Hollander is a combination water coaster and dark ride. The ride is based on the legend of Dutch man of war, the Flying Dutchman.",
                 38,
                 18,
-                "images/flying_dutchman.jpg",
+                "https://lh3.googleusercontent.com/drive-viewer/AKGpihYk-dMJ359y4C9DULs_DYY7AnF7QSB8V2-lpC05j0XMjoE7XruqLm-zT7R6qjA3X7aisFuHcHwg9WBSPecmTzRssLSRpJje9A=s2560",
                 true,
                 120
         );
@@ -40,7 +40,7 @@ public class Seeder implements ApplicationRunner {
                 "The name of the ride, Vogel Rok, refers to the adventure of Sinbad and the Bird Roc from the 1001 Arabian Nights.  The building has as a frontage a giant colorful Roc, the largest bird in Europe, according to the Guinness Book of Records. ",
                 28,
                 64,
-                "/images/bird_roc.jpg",
+                "https://lh3.googleusercontent.com/drive-viewer/AKGpihZR73prch015bZyutf1jqihd8TpgZnc7DkY_o0HEFrOZ9jkl1SsoD1JuZX0KwLlhyN-f2EsFMv58BxMtCn1YUBzINMm_AHuIbY=s1600-rw-v1",
                 true,
                 120
         );
@@ -50,7 +50,7 @@ public class Seeder implements ApplicationRunner {
                 "Fata Morgana is a dark ride. The ride is located in the Arabian themed area of the park, Adventure Realm.",
                 65,
                 12,
-                "/images/fata_morgana.jpg",
+                "https://lh3.googleusercontent.com/drive-viewer/AKGpihZouo9qDLuYo2JeIY43YWYazP4OnRs-UL5o53cT7i4-9vv4a4Y6EEG1f2NM7KVASSm5yE48IfTUY78n1XRaQU20-HM29dlTE20=s1600-rw-v1",
                 true,
                 0
         );
@@ -60,7 +60,7 @@ public class Seeder implements ApplicationRunner {
                 "Catch your breath while the Thai temple rotates at  a height of 45m. You can enjoy phenomenal views over the whole of Efteling and all the surrounding greenery. Do you dare to look over the edge of this covered temple?",
                 41,
                 46,
-                "/images/pagode.jpg",
+                "https://lh3.googleusercontent.com/drive-viewer/AKGpihaZREW5un8gi14g3AT3vmH_dDZeTgy4olKWPAC9QC5R4ojKVm83JWLmuKaki05C253_A9qtDsL8O2iH7EGmXwniBdLiG9CzXA=s1600-rw-v1",
                 true,
                 100
         );
@@ -70,7 +70,7 @@ public class Seeder implements ApplicationRunner {
                 "Enter the spinning house…",
                 45,
                 78,
-                "/images/villa_volta.jpg",
+                "https://lh3.googleusercontent.com/drive-viewer/AKGpihbMHVO8aGcS3MpSbvjcK_tMzFjvI9CYPkB5Szx9ZJsQ1pLvgYDz6LBpPr4Pq-metFqt9qEqETSQRJHryNmT6-A-Zx_c9XdntQ=s1600-rw-v1",
                 true,
                 100
         );
@@ -87,7 +87,7 @@ public class Seeder implements ApplicationRunner {
                 "The hot dog stand is a place where you can buy hot dogs.",
                 50,
                 26,
-                "/images/hot_dog_stand.jpg",
+                "https://lh3.googleusercontent.com/drive-viewer/AKGpihZpRrClD5X6bpc2dOpf-ZIuyVUKAVH6VRim_jvAFf5-dNqZn7fRMO_3qdyi_9zVux4Z2Xfnw5Qc0yUDMwgCpYVNU0ss-CaLPO4=s1600-rw-v1",
                 false,
                 """
                         hot dog: 3$\s
@@ -101,7 +101,7 @@ public class Seeder implements ApplicationRunner {
                 "The pizza stand is a place where you can buy pizza.",
                 35,
                 23,
-                "/images/pizza_stand.jpg",
+                "https://lh3.googleusercontent.com/drive-viewer/AKGpihZE7gg_jTSxlu0DbE5B1lqlN8__86sVfYnFxBLaCLx9mPXfnCFDIsW_fGI8AZM8EquKfAobVxhvzZ9vAexFClEQKK_XYNbrgPY=s1600-rw-v1",
                 true,
                 """
                         pizza: 5$\s
@@ -115,7 +115,7 @@ public class Seeder implements ApplicationRunner {
                 "The ice cream stand is a place where you can buy ice cream.",
                 35,
                 62,
-                "/images/ice_cream_stand.jpg",
+                "https://lh3.googleusercontent.com/drive-viewer/AKGpihb1K9vuzBYlBHnBPbqH-HIcPWA5xTwUMSoGBeubfdp9Ue77_dOio-S27F8URW5KbNu1CoJIE4FFZvaqE73yP65sHih-QtESoL4=s1600-rw-v1",
                 true,
                 """
                         ice cream: 3$\s
