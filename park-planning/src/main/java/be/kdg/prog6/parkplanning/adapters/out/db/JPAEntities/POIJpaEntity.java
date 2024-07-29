@@ -56,5 +56,12 @@ public class POIJpaEntity {
         this.open = open;
     }
 
-
+    @Override
+    public String toString() {
+        return "POIJpaEntity{" +
+                "uuid=" + uuid +
+                ", staff=" + staff +
+                ", open=" + open +
+                '}';
+    }
 }

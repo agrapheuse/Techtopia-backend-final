@@ -38,14 +38,17 @@ public class POIDBAdapter implements POIOpenedStatusChangedPort, POILoadPort, PO
 
     @Override
     public PointOfInterest loadPointOfInterest(UUID uuid) {
-        log.debug("loading POI with UUID {}", uuid);
-        Optional<POIJpaEntity> pointOfInterest = poiJpaRepository.findById(uuid);
-        //TODO: add exception: POINotFoundException
-        return pointOfInterest.map(poiJpaEntity -> new PointOfInterest(
-                new PointOfInterest.PointOfInterestUUID(poiJpaEntity.getUuid()),
-                staffMemberConversionPort.convert(pointOfInterest.get().getStaff()),
-                poiJpaEntity.isOpen()
-        )).orElse(null);
+        log.info("loading POI with UUID {}", uuid);
+        Optional<POIJpaEntity> pointOfInterest = poiJpaRepository.findByIdWithStaff(uuid);
+        if (pointOfInterest.isPresent()) {
+            log.info(pointOfInterest.get().toString());
+            return new PointOfInterest(
+                    new PointOfInterest.PointOfInterestUUID(pointOfInterest.get().getUuid()),
+                    staffMemberConversionPort.convert(pointOfInterest.get().getStaff()),
+                    pointOfInterest.get().isOpen());
+        } else {
+            return null;
+        }
     }
 
     @Override

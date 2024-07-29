@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
 import java.util.UUID;
 
 public interface POIJpaRepository extends JpaRepository<POIJpaEntity, UUID> {
@@ -13,4 +14,7 @@ public interface POIJpaRepository extends JpaRepository<POIJpaEntity, UUID> {
     @Modifying
     @Query("update POIJpaEntity p set p.open = ?2 where p.uuid = ?1")
     void updateOpenStatusByUuid(UUID uuid, boolean open);
+
+    @Query("SELECT p FROM POIJpaEntity p LEFT JOIN FETCH p.staff WHERE p.uuid = :uuid")
+    Optional<POIJpaEntity> findByIdWithStaff(UUID uuid);
 }
