@@ -20,11 +20,11 @@ public class AttractionJpaEntity {
     private float posY;
     private String picturePath;
     private boolean open;
-    private int minAge;
+    private int minHeight;
 
     public AttractionJpaEntity() {    }
 
-    public AttractionJpaEntity(UUID uuid, String name, String description, float posX, float posY, String picturePath, boolean open, int minAge) {
+    public AttractionJpaEntity(UUID uuid, String name, String description, float posX, float posY, String picturePath, boolean open, int minHeight) {
         this.uuid = uuid;
         this.name = name;
         this.description = description;
@@ -32,7 +32,7 @@ public class AttractionJpaEntity {
         this.posY = posY;
         this.picturePath = picturePath;
         this.open = open;
-        this.minAge = minAge;
+        this.minHeight = minHeight;
     }
 
     public UUID getUuid() {
@@ -91,11 +91,11 @@ public class AttractionJpaEntity {
         this.open = open;
     }
 
-    public int getMinAge() {
-        return minAge;
+    public int getMinHeight() {
+        return minHeight;
     }
 
-    public void setMinAge(int minAge) {
-        this.minAge = minAge;
+    public void setMinHeight(int minAge) {
+        this.minHeight = minAge;
     }
 }

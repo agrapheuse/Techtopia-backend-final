@@ -32,7 +32,7 @@ public class Seeder implements ApplicationRunner {
                 18,
                 "images/flying_dutchman.jpg",
                 true,
-                12
+                120
         );
         AttractionJpaEntity birdRoc = new AttractionJpaEntity(
                 UUID.fromString("8ec53056-e427-497a-9a24-af55d0a84898"),
@@ -42,7 +42,7 @@ public class Seeder implements ApplicationRunner {
                 64,
                 "/images/bird_roc.jpg",
                 true,
-                12
+                120
         );
         AttractionJpaEntity fataMorgana = new AttractionJpaEntity(
                 UUID.fromString("6896e678-5184-4652-95cd-8b4f35f9a3ce"),
@@ -52,7 +52,7 @@ public class Seeder implements ApplicationRunner {
                 12,
                 "/images/fata_morgana.jpg",
                 true,
-                8
+                0
         );
         AttractionJpaEntity pagode = new AttractionJpaEntity(
                 UUID.fromString("046a3d69-a70f-49aa-aca1-e0b3e1675ce5"),
@@ -62,7 +62,7 @@ public class Seeder implements ApplicationRunner {
                 46,
                 "/images/pagode.jpg",
                 true,
-                8
+                100
         );
         AttractionJpaEntity villaVolta = new AttractionJpaEntity(
                 UUID.fromString("dda28f97-d2b2-4923-a391-38f13e39bf2b"),
@@ -72,7 +72,7 @@ public class Seeder implements ApplicationRunner {
                 78,
                 "/images/villa_volta.jpg",
                 true,
-                8
+                100
         );
 
         attractionJpaEntityRepository.save(flyingDutchman);

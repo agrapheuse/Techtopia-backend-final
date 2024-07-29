@@ -1,9 +1,9 @@
 package be.kdg.prog6.visitorInformationSystem.domain;
 
 public class Attraction extends PointOfInterest {
-    private int minAge;
+    private int minHeight;
 
-    public Attraction(PointOfInterestUUID uuid, String name, String description, float posX, float posY, String picturePath, boolean open, int minAge) {
+    public Attraction(PointOfInterestUUID uuid, String name, String description, float posX, float posY, String picturePath, boolean open, int minHeight) {
         super.setUuid(uuid);
         super.setName(name);
         super.setDescription(description);
@@ -11,14 +11,14 @@ public class Attraction extends PointOfInterest {
         super.setPosY(posY);
         super.setPicturePath(picturePath);
         super.setOpen(open);
-        this.minAge = minAge;
+        this.minHeight = minHeight;
     }
 
-    public int getMinAge() {
-        return minAge;
+    public int getMinHeight() {
+        return minHeight;
     }
 
-    public void setMinAge(int minAge) {
-        this.minAge = minAge;
+    public void setMinHeight(int minHeight) {
+        this.minHeight = minHeight;
     }
 }
