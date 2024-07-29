@@ -8,7 +8,6 @@ import be.kdg.prog6.visitorInformationSystem.domain.Attraction;
 import be.kdg.prog6.visitorInformationSystem.domain.FoodStand;
 import be.kdg.prog6.visitorInformationSystem.domain.PointOfInterest;
 import be.kdg.prog6.visitorInformationSystem.ports.out.POILoadPort;
-import be.kdg.prog6.visitorInformationSystem.ports.out.POIUpdatePort;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -19,7 +18,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public class PointOfInterestDBAdapter implements POILoadPort, POIUpdatePort {
+public class PointOfInterestDBAdapter implements POILoadPort {
     private final AttractionJpaRepository attractionJpaRepository;
     private final FoodStandJpaRepository foodStandJpaRepository;
     public static final Logger log = LoggerFactory.getLogger(PointOfInterestDBAdapter.class);
@@ -82,38 +81,6 @@ public class PointOfInterestDBAdapter implements POILoadPort, POIUpdatePort {
                     foodStandJpa.get().isOpen(),
                     foodStandJpa.get().getMenu()
             );
-        }
-    }
-
-    @Override
-    public void updatePOI(PointOfInterest pointOfInterest) {
-        //TODO: do the checking of class in the use case and then call Attraction/FoodStand DB Adapter instead
-        if (pointOfInterest.getClass() == Attraction.class) {
-            Attraction attraction = (Attraction) pointOfInterest;
-            AttractionJpaEntity attractionJpa = new AttractionJpaEntity(
-                    attraction.getUuid().uuid(),
-                    attraction.getName(),
-                    attraction.getDescription(),
-                    attraction.getPosX(),
-                    attraction.getPosY(),
-                    attraction.getPicturePath(),
-                    attraction.isOpen(),
-                    attraction.getMinAge()
-            );
-            attractionJpaRepository.save(attractionJpa);
-        } else if (pointOfInterest.getClass() == FoodStand.class) {
-            FoodStand foodStand = (FoodStand) pointOfInterest;
-            FoodStandJpaEntity foodStandJpa = new FoodStandJpaEntity(
-                    foodStand.getUuid().uuid(),
-                    foodStand.getName(),
-                    foodStand.getDescription(),
-                    foodStand.getPosX(),
-                    foodStand.getPosY(),
-                    foodStand.getPicturePath(),
-                    foodStand.isOpen(),
-                    foodStand.getMenu()
-                    );
-            foodStandJpaRepository.save(foodStandJpa);
         }
     }
 }

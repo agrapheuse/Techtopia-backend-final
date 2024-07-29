@@ -5,6 +5,7 @@ import be.kdg.prog6.visitorInformationSystem.domain.PointOfInterest;
 import be.kdg.prog6.visitorInformationSystem.ports.out.FoodStandLoadPort;
 import be.kdg.prog6.visitorInformationSystem.adapters.out.JPAEntities.FoodStandJpaEntity;
 import be.kdg.prog6.visitorInformationSystem.adapters.out.repositories.FoodStandJpaRepository;
+import be.kdg.prog6.visitorInformationSystem.ports.out.FoodStandUpdatePort;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class FoodStandDBAdapter implements FoodStandLoadPort {
+public class FoodStandDBAdapter implements FoodStandLoadPort, FoodStandUpdatePort {
     private final FoodStandJpaRepository foodStandJpaRepository;
     public static final Logger log = LoggerFactory.getLogger(FoodStandDBAdapter.class);
 
@@ -42,5 +43,20 @@ public class FoodStandDBAdapter implements FoodStandLoadPort {
     public List<FoodStand> loadFilteredFoodStands(String name, boolean open) {
         List<FoodStandJpaEntity> foodStands = foodStandJpaRepository.findByNameContainsIgnoreCaseAndOpenEquals(name, open);
         return convert(foodStands);
+    }
+
+    @Override
+    public void updateFoodStand(FoodStand foodStand) {
+        FoodStandJpaEntity foodStandJpa = new FoodStandJpaEntity(
+                foodStand.getUuid().uuid(),
+                foodStand.getName(),
+                foodStand.getDescription(),
+                foodStand.getPosX(),
+                foodStand.getPosY(),
+                foodStand.getPicturePath(),
+                foodStand.isOpen(),
+                foodStand.getMenu()
+        );
+        foodStandJpaRepository.save(foodStandJpa);
     }
 }
