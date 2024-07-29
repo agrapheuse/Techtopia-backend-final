@@ -50,10 +50,38 @@ public class Seeder implements ApplicationRunner {
         )
         );
 
+        StaffMemberJpaEntity jamesRobert = new StaffMemberJpaEntity(new StaffMember(
+                new StaffMember.StaffMemberUUID(UUID.randomUUID()),
+                "James Robert"
+        )
+        );
+
+        StaffMemberJpaEntity emilyGrace = new StaffMemberJpaEntity(new StaffMember(
+                new StaffMember.StaffMemberUUID(UUID.randomUUID()),
+                "Emily Grace"
+        )
+        );
+
+        StaffMemberJpaEntity michaelDavid = new StaffMemberJpaEntity(new StaffMember(
+                new StaffMember.StaffMemberUUID(UUID.randomUUID()),
+                "Michael David"
+        )
+        );
+
+        StaffMemberJpaEntity sarahBrown = new StaffMemberJpaEntity(new StaffMember(
+                new StaffMember.StaffMemberUUID(UUID.randomUUID()),
+                "Sarah Brown"
+        )
+        );
+
         staffMemberJpaRepository.save(johnDoe);
         staffMemberJpaRepository.save(janeDoe);
         staffMemberJpaRepository.save(jackSmith);
         staffMemberJpaRepository.save(johnSmith);
+        staffMemberJpaRepository.save(jamesRobert);
+        staffMemberJpaRepository.save(emilyGrace);
+        staffMemberJpaRepository.save(michaelDavid);
+        staffMemberJpaRepository.save(sarahBrown);
 
         POIJpaEntity flyingDutchman = new POIJpaEntity(
                 UUID.fromString("f0b71052-b917-48da-8825-e4933a30bc9e"),
@@ -61,14 +89,56 @@ public class Seeder implements ApplicationRunner {
                 true
         );
 
+        POIJpaEntity birdRoc = new POIJpaEntity(
+                UUID.fromString("8ec53056-e427-497a-9a24-af55d0a84898"),
+                List.of(janeDoe),
+                true
+        );
+
+        POIJpaEntity fataMorgana = new POIJpaEntity(
+                UUID.fromString("6896e678-5184-4652-95cd-8b4f35f9a3ce"),
+                List.of(jackSmith),
+                true
+        );
+
+        POIJpaEntity pagode = new POIJpaEntity(
+                UUID.fromString("046a3d69-a70f-49aa-aca1-e0b3e1675ce5"),
+                List.of(johnSmith),
+                true
+        );
+
+        POIJpaEntity villaVolta = new POIJpaEntity(
+                UUID.fromString("dda28f97-d2b2-4923-a391-38f13e39bf2b"),
+                List.of(jamesRobert),
+                true
+        );
+
+        POIJpaEntity pizzaStand = new POIJpaEntity(
+                UUID.fromString("5bf98931-b38e-450d-a463-1fb3e5793913"),
+                List.of(emilyGrace),
+                true
+        );
+
         POIJpaEntity hotDogStand = new POIJpaEntity(
                 UUID.fromString("149e17ef-4233-4b69-9e70-7d68f88ecb6b"),
-                List.of(jackSmith),
+                List.of(michaelDavid),
                 false
         );
 
+        POIJpaEntity iceCreamStand = new POIJpaEntity(
+                UUID.fromString("8349eb6e-f9b7-4299-8907-31e2ea6340b6"),
+                List.of(sarahBrown),
+                true
+        );
+
         poiJpaRepository.save(flyingDutchman);
+        poiJpaRepository.save(birdRoc);
+        poiJpaRepository.save(fataMorgana);
+        poiJpaRepository.save(pagode);
+        poiJpaRepository.save(villaVolta);
+        poiJpaRepository.save(pizzaStand);
         poiJpaRepository.save(hotDogStand);
+        poiJpaRepository.save(iceCreamStand);
     }
 
     @Override

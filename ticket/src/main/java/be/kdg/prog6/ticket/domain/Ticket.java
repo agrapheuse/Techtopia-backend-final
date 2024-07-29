@@ -12,7 +12,7 @@ public class Ticket {
     private String name;
     private int age;
     private Gender gender;
-    private TicketOption option;
+    private TicketOption ticketOption;
     private TicketAgeType ageType;
     private String email;
 
@@ -22,7 +22,7 @@ public class Ticket {
         this.name = name;
         this.age = age;
         this.gender = gender;
-        this.option = option;
+        this.ticketOption = option;
         this.ageType = ageType;
         this.email = email;
     }
@@ -67,12 +67,12 @@ public class Ticket {
         this.gender = gender;
     }
 
-    public TicketOption getOption() {
-        return option;
+    public TicketOption getTicketOption() {
+        return ticketOption;
     }
 
-    public void setOption(TicketOption option) {
-        this.option = option;
+    public void setTicketOption(TicketOption ticketOption) {
+        this.ticketOption = ticketOption;
     }
 
     public TicketAgeType getAgeType() {

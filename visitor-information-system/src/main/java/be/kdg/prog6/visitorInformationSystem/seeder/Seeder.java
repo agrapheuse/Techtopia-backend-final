@@ -26,17 +26,17 @@ public class Seeder implements ApplicationRunner {
     void createData() {
         AttractionJpaEntity flyingDutchman = new AttractionJpaEntity(
                 UUID.fromString("f0b71052-b917-48da-8825-e4933a30bc9e"),
-                "flying dutchman",
+                "De Vliegende Hollander",
                 "De Vliegende Hollander is a combination water coaster and dark ride. The ride is based on the legend of Dutch man of war, the Flying Dutchman.",
-                40,
-                15,
+                38,
+                18,
                 "images/flying_dutchman.jpg",
                 true,
                 12
         );
         AttractionJpaEntity birdRoc = new AttractionJpaEntity(
                 UUID.fromString("8ec53056-e427-497a-9a24-af55d0a84898"),
-                "bird roc",
+                "Vogel Rok",
                 "The name of the ride, Vogel Rok, refers to the adventure of Sinbad and the Bird Roc from the 1001 Arabian Nights.  The building has as a frontage a giant colorful Roc, the largest bird in Europe, according to the Guinness Book of Records. ",
                 28,
                 64,
@@ -46,7 +46,7 @@ public class Seeder implements ApplicationRunner {
         );
         AttractionJpaEntity fataMorgana = new AttractionJpaEntity(
                 UUID.fromString("6896e678-5184-4652-95cd-8b4f35f9a3ce"),
-                "fata morgana",
+                "Fata Morgana",
                 "Fata Morgana is a dark ride. The ride is located in the Arabian themed area of the park, Adventure Realm.",
                 65,
                 12,
@@ -54,17 +54,39 @@ public class Seeder implements ApplicationRunner {
                 true,
                 8
         );
+        AttractionJpaEntity pagode = new AttractionJpaEntity(
+                UUID.fromString("046a3d69-a70f-49aa-aca1-e0b3e1675ce5"),
+                "Pagode",
+                "Catch your breath while the Thai temple rotates at  a height of 45m. You can enjoy phenomenal views over the whole of Efteling and all the surrounding greenery. Do you dare to look over the edge of this covered temple?",
+                41,
+                46,
+                "/images/pagode.jpg",
+                true,
+                8
+        );
+        AttractionJpaEntity villaVolta = new AttractionJpaEntity(
+                UUID.fromString("dda28f97-d2b2-4923-a391-38f13e39bf2b"),
+                "Villa Volta",
+                "Enter the spinning house…",
+                45,
+                78,
+                "/images/villa_volta.jpg",
+                true,
+                8
+        );
 
         attractionJpaEntityRepository.save(flyingDutchman);
         attractionJpaEntityRepository.save(birdRoc);
         attractionJpaEntityRepository.save(fataMorgana);
+        attractionJpaEntityRepository.save(pagode);
+        attractionJpaEntityRepository.save(villaVolta);
 
         FoodStandJpaEntity hotDogStand = new FoodStandJpaEntity(
                 UUID.fromString("149e17ef-4233-4b69-9e70-7d68f88ecb6b"),
-                "hot dog stand",
+                "Hot Dog Stand",
                 "The hot dog stand is a place where you can buy hot dogs.",
-                10,
-                5,
+                50,
+                26,
                 "/images/hot_dog_stand.jpg",
                 false,
                 """
@@ -75,10 +97,10 @@ public class Seeder implements ApplicationRunner {
 
         FoodStandJpaEntity pizzaStand = new FoodStandJpaEntity(
                 UUID.fromString("5bf98931-b38e-450d-a463-1fb3e5793913"),
-                "pizza stand",
+                "Pizza Stand",
                 "The pizza stand is a place where you can buy pizza.",
-                10,
-                5,
+                35,
+                23,
                 "/images/pizza_stand.jpg",
                 true,
                 """
@@ -89,10 +111,10 @@ public class Seeder implements ApplicationRunner {
 
         FoodStandJpaEntity iceCreamStand = new FoodStandJpaEntity(
                 UUID.fromString("8349eb6e-f9b7-4299-8907-31e2ea6340b6"),
-                "ice cream stand",
+                "Ice Cream Stand",
                 "The ice cream stand is a place where you can buy ice cream.",
-                10,
-                5,
+                35,
+                62,
                 "/images/ice_cream_stand.jpg",
                 true,
                 """

@@ -27,7 +27,7 @@ public class TicketDBAdapter implements TicketCreatedPort {
                 ticket.getName(),
                 ticket.getAge(),
                 ticket.getGender(),
-                ticket.getOption(),
+                ticket.getTicketOption(),
                 ticket.getAgeType(),
                 ticket.getEmail()
         );
