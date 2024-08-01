@@ -15,7 +15,7 @@ import java.util.UUID;
 public class TicketJpaEntity {
     @Id
     @JdbcTypeCode(Types.VARCHAR)
-    public UUID uuid;
+    private UUID uuid;
     private LocalDate date;
     private String name;
     private int age;

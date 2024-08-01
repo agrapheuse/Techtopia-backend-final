@@ -34,3 +34,23 @@ GET http://localhost:8091/attractions
 
 ###
 GET http://localhost:8091/foodStands
+
+###
+POST http://localhost:8180/realms/techtopia/protocol/openid-connect/token HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+client_id=client&client_secret=JWO0PfbHBYA74kaMDPDlqMnnJhOiNTLE&username=admin&password=admin&grant_type=password&scope=openid
+
+//saving the access token
+> {%
+    client.global.set("access_token", response.body.access_token);
+%}
+
+### Access secured endpoint via admin role
+GET http://localhost:8091/attractions HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+###
+GET http://localhost:8095/tickets/fetchByEmail?email=jane.doe@gmail.com
+Content-Type: application/json

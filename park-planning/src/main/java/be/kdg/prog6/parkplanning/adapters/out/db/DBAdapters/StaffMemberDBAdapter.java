@@ -24,7 +24,6 @@ public class StaffMemberDBAdapter implements StaffMemberLoadPort, StaffMemberCon
     }
 
     public List<StaffMember> convert(List<StaffMemberJpaEntity> staffMembers) {
-        staffMembers.forEach(s -> log.info(s.getUuid().toString()));
         if (staffMembers.isEmpty()) {
             return new ArrayList<>();
         }
