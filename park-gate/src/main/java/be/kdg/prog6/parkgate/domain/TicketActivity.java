@@ -4,7 +4,8 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 public record TicketActivity(
-        Ticket ticket,
+        UUID ticketUUID,
         UUID poiUUID,
+        ActivityType activityType,
         LocalDateTime dateTime
 ) {}
