@@ -25,7 +25,7 @@ public class Seeder implements ApplicationRunner {
 
     void createData() {
         TicketJpaEntity ticket1 = new TicketJpaEntity(
-                UUID.randomUUID(),
+                UUID.fromString("f6500e86-f240-423b-8980-fb98d0f8426d"),
                 LocalDate.now(),
                 "John Doe",
                 24,
