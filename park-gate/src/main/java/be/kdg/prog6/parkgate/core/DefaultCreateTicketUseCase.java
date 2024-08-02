@@ -6,30 +6,32 @@ import be.kdg.prog6.parkgate.domain.Status;
 import be.kdg.prog6.parkgate.domain.Ticket;
 import be.kdg.prog6.parkgate.domain.TicketActivity;
 import be.kdg.prog6.parkgate.ports.in.CreateTicketUseCase;
-import be.kdg.prog6.parkgate.ports.out.TicketActivityCreatePort;
+import be.kdg.prog6.parkgate.ports.out.TicketActivityCreatedPort;
 import be.kdg.prog6.parkgate.ports.out.TicketCreatedPort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class DefaultCreateTicketUseCase implements CreateTicketUseCase {
-    private final TicketCreatedPort ticketCreatedPort;
-    private final TicketActivityCreatePort ticketActivityCreatePort;
+    private final List<TicketCreatedPort> ticketCreatedPorts;
+    private final TicketActivityCreatedPort ticketActivityCreatePort;
 
-    public DefaultCreateTicketUseCase(TicketCreatedPort ticketCreatedPort, TicketActivityCreatePort ticketActivityCreatePort) {
-        this.ticketCreatedPort = ticketCreatedPort;
+    public DefaultCreateTicketUseCase(List<TicketCreatedPort> ticketCreatedPorts, TicketActivityCreatedPort ticketActivityCreatePort) {
+        this.ticketCreatedPorts = ticketCreatedPorts;
         this.ticketActivityCreatePort = ticketActivityCreatePort;
     }
 
     @Override
     public void createTicket(TicketCreatedEvent ticketCreatedEvent) {
-        ticketCreatedPort.createTicket(
+        ticketCreatedPorts.forEach(port -> port.createTicket(
                 new Ticket(
                         new Ticket.TicketUUID(ticketCreatedEvent.uuid()),
                         Status.NEW
                 )
-        );
+        ));
+
         ticketActivityCreatePort.createTicketActivity(new TicketActivity(
                 ticketCreatedEvent.uuid(),
                 null,

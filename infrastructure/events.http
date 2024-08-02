@@ -57,3 +57,6 @@ Content-Type: application/json
 
 ###
 GET http://localhost:8094/tickets/ticketStatus?ticketUUID=f6500e86-f240-423b-8980-fb98d0f8426d
+
+###
+POST http://localhost:8094/ticketActivity/enter?ticketUUID=f6500e86-f240-423b-8980-fb98d0f8426d
