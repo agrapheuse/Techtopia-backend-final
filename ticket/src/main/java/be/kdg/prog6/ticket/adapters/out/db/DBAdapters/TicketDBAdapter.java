@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Repository
 public class TicketDBAdapter implements TicketCreatedPort, TicketLoadPort {
@@ -45,7 +44,7 @@ public class TicketDBAdapter implements TicketCreatedPort, TicketLoadPort {
     @Override
     public void createTicket(Ticket ticket) {
         TicketJpaEntity ticketJpaEntity = new TicketJpaEntity(
-                UUID.randomUUID(),
+                ticket.getUuid().uuid(),
                 ticket.getDate(),
                 ticket.getName(),
                 ticket.getAge(),
