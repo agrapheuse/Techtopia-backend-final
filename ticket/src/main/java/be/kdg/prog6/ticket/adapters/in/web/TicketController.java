@@ -6,6 +6,8 @@ import be.kdg.prog6.ticket.ports.in.CreateTicketUseCase;
 import be.kdg.prog6.ticket.ports.in.GetTicketsForAccountUseCase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,21 +25,31 @@ public class TicketController {
     }
 
     @PostMapping("/create")
-    public void createTicket(@RequestBody Ticket ticket) {
-        createTicketUseCase.createTicket(new CreateTicketCommand(
-                ticket.getDate(),
-                ticket.getName(),
-                ticket.getAge(),
-                ticket.getGender(),
-                ticket.getTicketOption(),
-                ticket.getAgeType(),
-                ticket.getEmail()
-        ));
+    public ResponseEntity<Void> createTicket(@RequestBody Ticket ticket) {
+        try {
+            createTicketUseCase.createTicket(new CreateTicketCommand(
+                    ticket.getDate(),
+                    ticket.getName(),
+                    ticket.getAge(),
+                    ticket.getGender(),
+                    ticket.getTicketOption(),
+                    ticket.getAgeType(),
+                    ticket.getEmail()
+            ));
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping("/fetchByEmail")
-    public List<Ticket> getAllTicketForAnAccount(@RequestParam String email) {
+    public ResponseEntity<List<Ticket>> getAllTicketForAnAccount(@RequestParam String email) {
         log.debug("requested to get all tickets for the email: {}", email);
-        return getTicketsForAccountUseCase.getTicketsForAccount(email);
+        try {
+            List<Ticket> tickets = getTicketsForAccountUseCase.getTicketsForAccount(email);
+            return new ResponseEntity<>(tickets, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

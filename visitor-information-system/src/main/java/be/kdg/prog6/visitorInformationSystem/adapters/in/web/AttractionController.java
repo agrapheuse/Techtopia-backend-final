@@ -5,6 +5,8 @@ import be.kdg.prog6.visitorInformationSystem.ports.in.ShowAllAttractionsUseCase;
 import be.kdg.prog6.visitorInformationSystem.ports.in.FilterAttractionUseCase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,14 +29,20 @@ public class AttractionController {
     }
 
     @GetMapping("")
-    public List<Attraction> getAttractions(
+    public ResponseEntity<List<Attraction>> getAttractions(
             @RequestParam Optional<String> name,
             @RequestParam Optional<Boolean> open
     ) {
-        if (name.isPresent() || open.isPresent()) {
-            return filterAttractionUseCase.filterAttractions(name.orElse(""), open.orElse(true));
-        } else {
-            return showAllAttractionsUseCase.showAllAttractions();
+        try {
+            List<Attraction> attractions;
+            if (name.isPresent() || open.isPresent()) {
+                attractions = filterAttractionUseCase.filterAttractions(name.orElse(""), open.orElse(true));
+            } else {
+                attractions = showAllAttractionsUseCase.showAllAttractions();
+            }
+            return new ResponseEntity<>(attractions, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

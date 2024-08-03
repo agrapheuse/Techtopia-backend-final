@@ -5,6 +5,8 @@ import be.kdg.prog6.visitorInformationSystem.ports.in.FilterPOIUseCase;
 import be.kdg.prog6.visitorInformationSystem.ports.in.ShowAllPOIUseCase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,14 +28,20 @@ public class PointOfInterestController {
     }
 
     @GetMapping("")
-    public List<PointOfInterest> getAttractions(
+    public ResponseEntity<List<PointOfInterest>> getPointsOfInterest(
             @RequestParam Optional<String> name,
             @RequestParam Optional<Boolean> open
     ) {
-        if (name.isPresent() || open.isPresent()) {
-            return filterPOIUseCase.filterPointsOfInterest(name.orElse(""), open.orElse(true));
-        } else {
-            return showAllPOIUseCase.showAllPointOfInterests();
+        try {
+            List<PointOfInterest> pointOfInterests;
+            if (name.isPresent() || open.isPresent()) {
+                pointOfInterests = filterPOIUseCase.filterPointsOfInterest(name.orElse(""), open.orElse(true));
+            } else {
+                pointOfInterests = showAllPOIUseCase.showAllPointOfInterests();
+            }
+            return new ResponseEntity<>(pointOfInterests, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

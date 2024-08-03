@@ -3,6 +3,8 @@ package be.kdg.prog6.parkplanning.adapters.in.web;
 import be.kdg.prog6.parkplanning.ports.in.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -23,29 +25,44 @@ public class POIController {
     }
 
     @PatchMapping("/changeOpenStatus")
-    public void changeOpenStatus(
+    public ResponseEntity<Void> changeOpenStatus(
             @RequestParam String uuid,
             @RequestParam boolean open
     ) {
         log.debug("change open status called, POI with UUID {} will have its open status changed to {}", uuid, open);
-        changePOIOpenStatusUseCase.changeOpenStatus(new ChangeOpenStatusCommand(UUID.fromString(uuid), open));
+        try {
+            changePOIOpenStatusUseCase.changeOpenStatus(new ChangeOpenStatusCommand(UUID.fromString(uuid), open));
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PatchMapping("/addStaffMember")
-    public void addStaffMember(
+    public ResponseEntity<Void> addStaffMember(
             @RequestParam String poiUuid,
             @RequestParam String staffMemberUuid
     ) {
         log.debug("add staff member called, POI with UUID {} will have staff member with uuid {} assigned to it", poiUuid, staffMemberUuid);
-        addStaffMemberUseCase.addStaffMember(new AddStaffMemberCommand(UUID.fromString(poiUuid), UUID.fromString(staffMemberUuid)));
+        try {
+            addStaffMemberUseCase.addStaffMember(new AddStaffMemberCommand(UUID.fromString(poiUuid), UUID.fromString(staffMemberUuid)));
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PatchMapping("/removeStaffMember")
-    public void removeStaffMember(
+    public ResponseEntity<Void> removeStaffMember(
             @RequestParam String poiUuid,
             @RequestParam String staffMemberUuid
     ) {
         log.debug("remove staff member called, POI with UUID {} will have staff member with uuid {} removed from it", poiUuid, staffMemberUuid);
-        removeStaffMemberUseCase.removeStaffMember(new RemoveStaffMemberCommand(UUID.fromString(poiUuid), UUID.fromString(staffMemberUuid)));
+        try {
+            removeStaffMemberUseCase.removeStaffMember(new RemoveStaffMemberCommand(UUID.fromString(poiUuid), UUID.fromString(staffMemberUuid)));
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

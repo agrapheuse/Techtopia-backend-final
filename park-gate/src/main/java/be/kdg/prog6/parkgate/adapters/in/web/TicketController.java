@@ -4,6 +4,8 @@ import be.kdg.prog6.parkgate.domain.Status;
 import be.kdg.prog6.parkgate.ports.in.LoadTicketUseCase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,9 +24,14 @@ public class TicketController {
     }
 
     @GetMapping("/ticketStatus")
-    public Status getTicketStatus(
+    public ResponseEntity<Status> getTicketStatus(
             @RequestParam String ticketUUID
     ) {
-        return loadTicketUseCase.getTicket(UUID.fromString(ticketUUID)).getStatus();
+        try {
+            Status status = loadTicketUseCase.getTicket(UUID.fromString(ticketUUID)).getStatus();
+            return new ResponseEntity<>(status, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
