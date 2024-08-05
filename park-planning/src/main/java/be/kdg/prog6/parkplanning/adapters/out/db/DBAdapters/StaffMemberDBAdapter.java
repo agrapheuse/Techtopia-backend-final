@@ -7,6 +7,7 @@ import be.kdg.prog6.parkplanning.adapters.out.db.JPARepositories.StaffMemberJpaR
 import be.kdg.prog6.parkplanning.exceptions.StaffNotFoundException;
 import be.kdg.prog6.parkplanning.ports.out.StaffMemberConversionPort;
 import be.kdg.prog6.parkplanning.ports.out.StaffMemberLoadPort;
+import be.kdg.prog6.parkplanning.ports.out.StaffMemberUpdatedPort;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -17,7 +18,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public class StaffMemberDBAdapter implements StaffMemberLoadPort, StaffMemberConversionPort {
+public class StaffMemberDBAdapter implements StaffMemberLoadPort, StaffMemberConversionPort, StaffMemberUpdatedPort {
     private final StaffMemberJpaRepository staffMemberJpaRepository;
     public static final Logger log = LoggerFactory.getLogger(StaffMemberDBAdapter.class);
 
@@ -61,5 +62,17 @@ public class StaffMemberDBAdapter implements StaffMemberLoadPort, StaffMemberCon
                 new PointOfInterest.PointOfInterestUUID(staffMemberJpaEntity.getPoiUUID()),
                 staffMemberJpaEntity.getName()
         )).orElseThrow(StaffNotFoundException::new);
+    }
+
+    @Override
+    public void updateStaffMember(StaffMember staffMember) {
+        log.debug("updating staff member {} called in StaffMemberDBAdapter", staffMember.getUuid().uuid());
+        staffMemberJpaRepository.save(
+                new StaffMemberJpaEntity(
+                        staffMember.getUuid().uuid(),
+                        staffMember.getName(),
+                        staffMember.getPoiUUID().uuid()
+                )
+        );
     }
 }

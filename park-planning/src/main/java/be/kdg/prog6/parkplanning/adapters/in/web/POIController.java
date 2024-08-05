@@ -10,7 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/pointOfInterest")
@@ -18,13 +20,15 @@ public class POIController {
     private final AddStaffMemberUseCase addStaffMemberUseCase;
     private final RemoveStaffMemberUseCase removeStaffMemberUseCase;
     private final ChangePOIOpenStatusUseCase changePOIOpenStatusUseCase;
+    private final UpdateStaffMembersUseCase updateStaffMembersUseCase;
 
     public static final Logger log = LoggerFactory.getLogger(POIController.class);
 
-    public POIController(AddStaffMemberUseCase addStaffMemberUseCase, RemoveStaffMemberUseCase removeStaffMemberUseCase, ChangePOIOpenStatusUseCase changePOIOpenStatusUseCase) {
+    public POIController(AddStaffMemberUseCase addStaffMemberUseCase, RemoveStaffMemberUseCase removeStaffMemberUseCase, ChangePOIOpenStatusUseCase changePOIOpenStatusUseCase, UpdateStaffMembersUseCase updateStaffMembersUseCase) {
         this.addStaffMemberUseCase = addStaffMemberUseCase;
         this.removeStaffMemberUseCase = removeStaffMemberUseCase;
         this.changePOIOpenStatusUseCase = changePOIOpenStatusUseCase;
+        this.updateStaffMembersUseCase = updateStaffMembersUseCase;
     }
 
     @PatchMapping("/changeOpenStatus")
@@ -42,6 +46,30 @@ public class POIController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PatchMapping("/updateStaffMembers")
+    public ResponseEntity<Void> updateStaffMembers(
+            @RequestParam String poiUuid,
+            @RequestParam List<String> staffMemberUuids
+    ) {
+        log.debug("update staff members called, POI with UUID {} will have staff members {} assigned to it", poiUuid, staffMemberUuids);
+        try {
+            updateStaffMembersUseCase.updateStaffMembers(new UpdateStaffMemberCommand(
+                    UUID.fromString(poiUuid),
+                    staffMemberUuids.stream()
+                            .map(UUID::fromString)
+                            .collect(Collectors.toList())
+            ));
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (StaffNotFoundException | POINotFoundException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
+
 
     @PatchMapping("/addStaffMember")
     public ResponseEntity<Void> addStaffMember(
