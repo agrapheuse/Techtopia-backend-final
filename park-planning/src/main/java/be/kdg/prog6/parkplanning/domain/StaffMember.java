@@ -40,6 +40,15 @@ public class StaffMember {
     }
 
     @Override
+    public String toString() {
+        return "StaffMember{" +
+                "uuid=" + uuid +
+                ", poiUUID=" + poiUUID +
+                ", name='" + name + '\'' +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

@@ -63,3 +63,6 @@ POST http://localhost:8094/ticketActivity/enter?ticketUUID=f6500e86-f240-423b-89
 
 ### TicketNotFoundException
 POST http://localhost:8094/ticketActivity/enter?ticketUUID=f6500e32-f240-423b-8980-fb98d0f8426d
+
+###
+PATCH http://localhost:8092/pointOfInterest/updateStaffMembers?poiUuid=6896e678-5184-4652-95cd-8b4f35f9a3ce&staffMemberUuids=0cd452d0-7ebc-4a2f-b5c3-0b99eb0ab984,0c29d528-b1d0-43fb-9a8d-1dbc428d8265

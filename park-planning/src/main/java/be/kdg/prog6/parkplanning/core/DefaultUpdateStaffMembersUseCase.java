@@ -32,9 +32,10 @@ public class DefaultUpdateStaffMembersUseCase implements UpdateStaffMembersUseCa
 
     @Override
     public void updateStaffMembers(UpdateStaffMemberCommand updateStaffMemberCommand) {
+        log.info("updating poi {} and assigning staffMembers {} called in use case", updateStaffMemberCommand.poiUuid(), updateStaffMemberCommand.staffMemberUuids());
         PointOfInterest poi = poiLoadPort.loadPointOfInterest(updateStaffMemberCommand.poiUuid());
         poi.getStaff().forEach(staff -> {
-            staff.setPoiUUID(null);
+            staff.setPoiUUID(new PointOfInterest.PointOfInterestUUID(null));
             staffMemberUpdatedPort.updateStaffMember(staff);
         });
         List<StaffMember> staffMemberList = updateStaffMemberCommand.staffMemberUuids().stream().map(uuid -> {

@@ -39,7 +39,7 @@ public class POIDBAdapter implements POIOpenedStatusChangedPort, POILoadPort, PO
 
     @Override
     public PointOfInterest loadPointOfInterest(UUID uuid) {
-        log.info("loading POI with UUID {}", uuid);
+        log.debug("loading POI with UUID {}", uuid);
         Optional<POIJpaEntity> pointOfInterest = poiJpaRepository.findByIdWithStaff(uuid);
         return pointOfInterest.map(poiJpaEntity -> new PointOfInterest(
                 new PointOfInterest.PointOfInterestUUID(poiJpaEntity.getUuid()),
