@@ -8,6 +8,8 @@ import be.kdg.prog6.parkgate.domain.TicketActivity;
 import be.kdg.prog6.parkgate.ports.in.CreateTicketUseCase;
 import be.kdg.prog6.parkgate.ports.out.TicketActivityCreatedPort;
 import be.kdg.prog6.parkgate.ports.out.TicketCreatedPort;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -17,6 +19,7 @@ import java.util.List;
 public class DefaultCreateTicketUseCase implements CreateTicketUseCase {
     private final List<TicketCreatedPort> ticketCreatedPorts;
     private final TicketActivityCreatedPort ticketActivityCreatePort;
+    public static final Logger log = LoggerFactory.getLogger(DefaultCreateTicketUseCase.class);
 
     public DefaultCreateTicketUseCase(List<TicketCreatedPort> ticketCreatedPorts, TicketActivityCreatedPort ticketActivityCreatePort) {
         this.ticketCreatedPorts = ticketCreatedPorts;
@@ -25,6 +28,7 @@ public class DefaultCreateTicketUseCase implements CreateTicketUseCase {
 
     @Override
     public void createTicket(TicketCreatedEvent ticketCreatedEvent) {
+        log.debug("create ticket called in DefaultCreateTicketUseCase");
         ticketCreatedPorts.forEach(port -> port.createTicket(
                 new Ticket(
                         new Ticket.TicketUUID(ticketCreatedEvent.uuid()),

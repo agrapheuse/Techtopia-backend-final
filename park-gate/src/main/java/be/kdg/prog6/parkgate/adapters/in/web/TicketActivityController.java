@@ -19,7 +19,7 @@ import java.util.UUID;
 public class TicketActivityController {
     private final EnterParkUseCase enterParkUseCase;
     private final ExitParkUseCase exitParkUseCase;
-    public static final Logger log = LoggerFactory.getLogger(TicketController.class);
+    public static final Logger log = LoggerFactory.getLogger(TicketActivityController.class);
 
     public TicketActivityController(EnterParkUseCase enterParkUseCase, ExitParkUseCase exitParkUseCase) {
         this.enterParkUseCase = enterParkUseCase;

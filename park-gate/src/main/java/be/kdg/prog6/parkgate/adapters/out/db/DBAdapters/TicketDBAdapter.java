@@ -25,6 +25,7 @@ public class TicketDBAdapter implements TicketCreatedPort, TicketLoadedPort, Tic
 
     @Override
     public void createTicket(Ticket ticket) {
+        log.debug("creating ticket in ticket db adapter");
         TicketJpaEntity ticketJpaEntity = new TicketJpaEntity(
                 ticket.getUuid().uuid(),
                 ticket.getStatus()
@@ -34,6 +35,7 @@ public class TicketDBAdapter implements TicketCreatedPort, TicketLoadedPort, Tic
 
     @Override
     public Ticket getTicket(UUID ticketUUID) {
+        log.debug("loading ticket {} in ticket db adapter", ticketUUID);
         Optional<TicketJpaEntity> ticket = ticketJpaRepository.findById(ticketUUID);
         return ticket.map(ticketJpaEntity -> new Ticket(
                 new Ticket.TicketUUID(ticketJpaEntity.getUuid()),
@@ -43,7 +45,7 @@ public class TicketDBAdapter implements TicketCreatedPort, TicketLoadedPort, Tic
 
     @Override
     public void updateTicket(Ticket ticket) {
-        log.info("{}, {}", ticket.getUuid(), ticket.getStatus());
+        log.debug("{}, {}", ticket.getUuid(), ticket.getStatus());
         ticketJpaRepository.save(
                 new TicketJpaEntity(
                         ticket.getUuid().uuid(),

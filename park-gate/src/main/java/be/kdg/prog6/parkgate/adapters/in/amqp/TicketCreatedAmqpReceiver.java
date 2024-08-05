@@ -20,7 +20,7 @@ public class TicketCreatedAmqpReceiver {
 
     @RabbitListener(queues = RabbitMQTopology.TICKET_EVENTS_QUEUE, messageConverter = "#{jackson2JsonMessageConverter}")
     public void changeOpenStatus(TicketCreatedEvent ticketCreatedEvent) {
-        log.info("message received: {} created", ticketCreatedEvent.uuid());
+        log.debug("message received: {} created", ticketCreatedEvent.uuid());
         createTicketUseCase.createTicket(ticketCreatedEvent);
     }
 }
