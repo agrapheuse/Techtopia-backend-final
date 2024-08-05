@@ -51,7 +51,11 @@ public class POIDBAdapter implements POIOpenedStatusChangedPort, POILoadPort, PO
     public void updatePOI(PointOfInterest pointOfInterest) {
         log.debug("updating POI with UUID {}", pointOfInterest.getUuid().uuid());
         List<StaffMemberJpaEntity> staffMembers = new ArrayList<>();
-        pointOfInterest.getStaff().forEach(staffMember -> staffMembers.add(new StaffMemberJpaEntity(staffMember)));
+        pointOfInterest.getStaff().forEach(staffMember -> staffMembers.add(new StaffMemberJpaEntity(
+                staffMember.getUuid().uuid(),
+                staffMember.getName(),
+                staffMember.getPoiUUID().uuid()
+        )));
         POIJpaEntity poiJpaEntity = new POIJpaEntity(
                 pointOfInterest.getUuid().uuid(),
                 staffMembers,

@@ -6,10 +6,12 @@ import java.util.UUID;
 public class StaffMember {
     public record StaffMemberUUID(UUID uuid) { }
     private StaffMemberUUID uuid;
+    private PointOfInterest.PointOfInterestUUID poiUUID;
     private String name;
 
-    public StaffMember(StaffMemberUUID uuid, String name) {
+    public StaffMember(StaffMemberUUID uuid, PointOfInterest.PointOfInterestUUID poiUUID, String name) {
         this.uuid = uuid;
+        this.poiUUID = poiUUID;
         this.name = name;
     }
 
@@ -19,6 +21,14 @@ public class StaffMember {
 
     public void setUuid(StaffMemberUUID uuid) {
         this.uuid = uuid;
+    }
+
+    public PointOfInterest.PointOfInterestUUID getPoiUUID() {
+        return poiUUID;
+    }
+
+    public void setPoiUUID(PointOfInterest.PointOfInterestUUID poiUUID) {
+        this.poiUUID = poiUUID;
     }
 
     public String getName() {

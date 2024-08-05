@@ -1,6 +1,7 @@
 package be.kdg.prog6.parkplanning.adapters.out.db.DBAdapters;
 
 import be.kdg.prog6.parkplanning.adapters.out.db.JPAEntities.StaffMemberJpaEntity;
+import be.kdg.prog6.parkplanning.domain.PointOfInterest;
 import be.kdg.prog6.parkplanning.domain.StaffMember;
 import be.kdg.prog6.parkplanning.adapters.out.db.JPARepositories.StaffMemberJpaRepository;
 import be.kdg.prog6.parkplanning.exceptions.StaffNotFoundException;
@@ -30,7 +31,11 @@ public class StaffMemberDBAdapter implements StaffMemberLoadPort, StaffMemberCon
         }
         List<StaffMember> result = new ArrayList<>();
         for (StaffMemberJpaEntity staffMember : staffMembers) {
-            result.add(new StaffMember(new StaffMember.StaffMemberUUID(staffMember.getUuid()), staffMember.getName()));
+            result.add(new StaffMember(
+                    new StaffMember.StaffMemberUUID(staffMember.getUuid()),
+                    new PointOfInterest.PointOfInterestUUID(staffMember.getPoiUUID()),
+                    staffMember.getName())
+            );
         }
         return result;
     }
@@ -53,6 +58,7 @@ public class StaffMemberDBAdapter implements StaffMemberLoadPort, StaffMemberCon
         Optional<StaffMemberJpaEntity> staffMember = staffMemberJpaRepository.findById(uuid);
         return staffMember.map(staffMemberJpaEntity -> new StaffMember(
                 new StaffMember.StaffMemberUUID(staffMemberJpaEntity.getUuid()),
+                new PointOfInterest.PointOfInterestUUID(staffMemberJpaEntity.getPoiUUID()),
                 staffMemberJpaEntity.getName()
         )).orElseThrow(StaffNotFoundException::new);
     }

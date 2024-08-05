@@ -2,7 +2,6 @@ package be.kdg.prog6.parkplanning.seeder;
 
 import be.kdg.prog6.parkplanning.adapters.out.db.JPAEntities.POIJpaEntity;
 import be.kdg.prog6.parkplanning.adapters.out.db.JPARepositories.POIJpaRepository;
-import be.kdg.prog6.parkplanning.domain.StaffMember;
 import be.kdg.prog6.parkplanning.adapters.out.db.JPAEntities.StaffMemberJpaEntity;
 import be.kdg.prog6.parkplanning.adapters.out.db.JPARepositories.StaffMemberJpaRepository;
 import org.slf4j.Logger;
@@ -26,52 +25,52 @@ public class Seeder implements ApplicationRunner {
     }
 
     void createData() {
-        StaffMemberJpaEntity johnDoe = new StaffMemberJpaEntity(new StaffMember(
-                new StaffMember.StaffMemberUUID(UUID.randomUUID()),
-                "John Doe"
-        )
+        StaffMemberJpaEntity johnDoe = new StaffMemberJpaEntity(
+                UUID.randomUUID(),
+                "John Doe",
+                UUID.fromString("f0b71052-b917-48da-8825-e4933a30bc9e")
         );
 
-        StaffMemberJpaEntity janeDoe = new StaffMemberJpaEntity(new StaffMember(
-                new StaffMember.StaffMemberUUID(UUID.randomUUID()),
-                "Jane Doe"
-        )
+        StaffMemberJpaEntity janeDoe = new StaffMemberJpaEntity(
+                UUID.randomUUID(),
+                "Jane Doe",
+                UUID.fromString("8ec53056-e427-497a-9a24-af55d0a84898")
         );
 
-        StaffMemberJpaEntity jackSmith = new StaffMemberJpaEntity(new StaffMember(
-                new StaffMember.StaffMemberUUID(UUID.randomUUID()),
-                "Jack Smith"
-        )
+        StaffMemberJpaEntity jackSmith = new StaffMemberJpaEntity(
+                UUID.randomUUID(),
+                "Jack Smith",
+                UUID.fromString("6896e678-5184-4652-95cd-8b4f35f9a3ce")
         );
 
-        StaffMemberJpaEntity johnSmith = new StaffMemberJpaEntity(new StaffMember(
-                new StaffMember.StaffMemberUUID(UUID.randomUUID()),
-                "John Smith"
-        )
+        StaffMemberJpaEntity johnSmith = new StaffMemberJpaEntity(
+                UUID.randomUUID(),
+                "John Smith",
+                UUID.fromString("046a3d69-a70f-49aa-aca1-e0b3e1675ce5")
         );
 
-        StaffMemberJpaEntity jamesRobert = new StaffMemberJpaEntity(new StaffMember(
-                new StaffMember.StaffMemberUUID(UUID.randomUUID()),
-                "James Robert"
-        )
+        StaffMemberJpaEntity jamesRobert = new StaffMemberJpaEntity(
+                UUID.randomUUID(),
+                "James Robert",
+                UUID.fromString("dda28f97-d2b2-4923-a391-38f13e39bf2b")
         );
 
-        StaffMemberJpaEntity emilyGrace = new StaffMemberJpaEntity(new StaffMember(
-                new StaffMember.StaffMemberUUID(UUID.randomUUID()),
-                "Emily Grace"
-        )
+        StaffMemberJpaEntity emilyGrace = new StaffMemberJpaEntity(
+                UUID.randomUUID(),
+                "Emily Grace",
+                UUID.fromString("5bf98931-b38e-450d-a463-1fb3e5793913")
         );
 
-        StaffMemberJpaEntity michaelDavid = new StaffMemberJpaEntity(new StaffMember(
-                new StaffMember.StaffMemberUUID(UUID.randomUUID()),
-                "Michael David"
-        )
+        StaffMemberJpaEntity michaelDavid = new StaffMemberJpaEntity(
+                UUID.randomUUID(),
+                "Michael David",
+                UUID.fromString("149e17ef-4233-4b69-9e70-7d68f88ecb6b")
         );
 
-        StaffMemberJpaEntity sarahBrown = new StaffMemberJpaEntity(new StaffMember(
-                new StaffMember.StaffMemberUUID(UUID.randomUUID()),
-                "Sarah Brown"
-        )
+        StaffMemberJpaEntity sarahBrown = new StaffMemberJpaEntity(
+                UUID.randomUUID(),
+                "Sarah Brown",
+                UUID.fromString("8349eb6e-f9b7-4299-8907-31e2ea6340b6")
         );
 
         staffMemberJpaRepository.save(johnDoe);
