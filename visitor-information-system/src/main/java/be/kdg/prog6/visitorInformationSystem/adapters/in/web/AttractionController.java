@@ -33,6 +33,7 @@ public class AttractionController {
             @RequestParam Optional<String> name,
             @RequestParam Optional<Boolean> open
     ) {
+        log.debug("get all attractions called");
         try {
             List<Attraction> attractions;
             if (name.isPresent() || open.isPresent()) {

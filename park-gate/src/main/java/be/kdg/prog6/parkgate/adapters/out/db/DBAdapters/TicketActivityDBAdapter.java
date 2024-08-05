@@ -24,7 +24,7 @@ public class TicketActivityDBAdapter implements TicketCreatedPort, TicketActivit
 
     @Override
     public void createTicket(Ticket ticket) {
-        log.debug("saving create ticket activity in ticket activity db adapter");
+        log.debug("saving create ticket activity for ticket {} in ticket activity db adapter", ticket.getUuid().uuid());
         TicketActivityJpaEntity ticketActivityJpaEntity = new TicketActivityJpaEntity(
                 ticket.getUuid().uuid(),
                 null,
@@ -36,7 +36,7 @@ public class TicketActivityDBAdapter implements TicketCreatedPort, TicketActivit
 
     @Override
     public void createTicketActivity(TicketActivity ticketActivity) {
-        log.debug("saving ticket activity in ticket activity db adapter");
+        log.debug("saving ticket activity {} in ticket activity db adapter", ticketActivity.activityType());
         TicketActivityJpaEntity ticketActivityJpaEntity = new TicketActivityJpaEntity(
                 ticketActivity.ticketUUID(),
                 ticketActivity.poiUUID(),

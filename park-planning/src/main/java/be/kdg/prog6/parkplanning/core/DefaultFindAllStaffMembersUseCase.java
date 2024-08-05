@@ -20,6 +20,7 @@ public class DefaultFindAllStaffMembersUseCase implements FindAllStaffMembersUse
 
     @Override
     public List<StaffMember> findAllStaffMembers() {
+        log.debug("find all staff members called in use case");
         return staffMemberLoadPort.loadAllStaffMembers();
     }
 }

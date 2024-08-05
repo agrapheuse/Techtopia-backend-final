@@ -35,18 +35,21 @@ public class FoodStandDBAdapter implements FoodStandLoadPort, FoodStandUpdatePor
 
     @Override
     public List<FoodStand> loadAllFoodStands() {
+        log.debug("load all foodStands called in db adapter");
         List<FoodStandJpaEntity> foodStands = foodStandJpaRepository.findAll();
         return convert(foodStands);
     }
 
     @Override
     public List<FoodStand> loadFilteredFoodStands(String name, boolean open) {
+        log.debug("load all foodStands with name {} and open status {} called in db adapter", name, open);
         List<FoodStandJpaEntity> foodStands = foodStandJpaRepository.findByNameContainsIgnoreCaseAndOpenEquals(name, open);
         return convert(foodStands);
     }
 
     @Override
     public void updateFoodStand(FoodStand foodStand) {
+        log.debug("update foodStand {} called in db adapter", foodStand.getUuid().uuid());
         FoodStandJpaEntity foodStandJpa = new FoodStandJpaEntity(
                 foodStand.getUuid().uuid(),
                 foodStand.getName(),

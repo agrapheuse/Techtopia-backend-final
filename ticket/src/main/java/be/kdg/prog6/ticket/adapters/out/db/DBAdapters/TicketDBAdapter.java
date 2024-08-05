@@ -43,6 +43,7 @@ public class TicketDBAdapter implements TicketCreatedPort, TicketLoadPort {
 
     @Override
     public void createTicket(Ticket ticket) {
+        log.debug("creating ticket {} called in db adapter", ticket.getUuid().uuid());
         TicketJpaEntity ticketJpaEntity = new TicketJpaEntity(
                 ticket.getUuid().uuid(),
                 ticket.getDate(),

@@ -22,6 +22,7 @@ public class DefaultCreateTicketUseCase implements CreateTicketUseCase {
 
     @Override
     public void createTicket(CreateTicketCommand createTicketCommand) {
+        log.debug("create ticket called in use case");
             Ticket ticket = new Ticket(
                     new Ticket.TicketUuid(UUID.randomUUID()),
                     createTicketCommand.date(),

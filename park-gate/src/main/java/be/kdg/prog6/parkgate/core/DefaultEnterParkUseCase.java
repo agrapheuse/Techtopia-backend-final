@@ -30,7 +30,7 @@ public class DefaultEnterParkUseCase implements EnterParkUseCase {
 
     @Override
     public void enterPark(UUID ticketUUID) {
-        log.debug("enter park called in DefaultEnterParkUseCase");
+        log.debug("enter park with ticket {} called in DefaultEnterParkUseCase", ticketUUID);
         Ticket ticket = ticketLoadedPort.getTicket(ticketUUID);
         ticket.setStatus(Status.ENTERED);
         ticketUpdatedPort.updateTicket(ticket);

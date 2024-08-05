@@ -37,16 +37,19 @@ public class StaffMemberDBAdapter implements StaffMemberLoadPort, StaffMemberCon
 
     @Override
     public List<StaffMember> loadAllStaffMembers() {
+        log.debug("loading all staff members called in StaffMemberDBAdapter");
         return convert(staffMemberJpaRepository.findAll());
     }
 
     @Override
     public List<StaffMember> loadStaffMembersByName(String name) {
+        log.debug("loading staff members by name {} called in StaffMemberDBAdapter", name);
         return convert(staffMemberJpaRepository.findByNameContainsIgnoreCase(name));
     }
 
     @Override
     public StaffMember loadStaffMember(UUID uuid) {
+        log.debug("loading staff members by UUID {} called in StaffMemberDBAdapter", uuid);
         Optional<StaffMemberJpaEntity> staffMember = staffMemberJpaRepository.findById(uuid);
         return staffMember.map(staffMemberJpaEntity -> new StaffMember(
                 new StaffMember.StaffMemberUUID(staffMemberJpaEntity.getUuid()),

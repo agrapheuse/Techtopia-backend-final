@@ -20,6 +20,7 @@ public class DefaultShowAllAttractionsUseCase implements ShowAllAttractionsUseCa
 
     @Override
     public List<Attraction> showAllAttractions() {
+        log.debug("show all attractions called in use case");
         return AttractionLoadPort.loadAllAttractions();
     }
 }

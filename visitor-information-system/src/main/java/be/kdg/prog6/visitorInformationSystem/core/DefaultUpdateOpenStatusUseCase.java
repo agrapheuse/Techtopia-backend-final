@@ -27,6 +27,7 @@ public class DefaultUpdateOpenStatusUseCase implements UpdateOpenStatusUseCase {
 
     @Override
     public void updateOpenStatus(PointOfInterestOpenStatusChangedEvent pointOfInterestOpenStatusChangedEvent) {
+        log.debug("update open status for poi {} called in use case", pointOfInterestOpenStatusChangedEvent.POIUuid());
         PointOfInterest pointOfInterest = poiLoadPort.loadPointOfInterest(pointOfInterestOpenStatusChangedEvent.POIUuid());
         pointOfInterest.setOpen(pointOfInterestOpenStatusChangedEvent.open());
         if (pointOfInterest.getClass() == Attraction.class) {

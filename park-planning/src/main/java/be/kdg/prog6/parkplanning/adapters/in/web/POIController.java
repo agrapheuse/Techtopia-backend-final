@@ -1,6 +1,7 @@
 package be.kdg.prog6.parkplanning.adapters.in.web;
 
 import be.kdg.prog6.parkplanning.exceptions.POINotFoundException;
+import be.kdg.prog6.parkplanning.exceptions.StaffMemberNotInPOIException;
 import be.kdg.prog6.parkplanning.exceptions.StaffNotFoundException;
 import be.kdg.prog6.parkplanning.ports.in.*;
 import org.slf4j.Logger;
@@ -67,7 +68,7 @@ public class POIController {
         try {
             removeStaffMemberUseCase.removeStaffMember(new RemoveStaffMemberCommand(UUID.fromString(poiUuid), UUID.fromString(staffMemberUuid)));
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } catch (StaffNotFoundException e) {
+        } catch (StaffNotFoundException | StaffMemberNotInPOIException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

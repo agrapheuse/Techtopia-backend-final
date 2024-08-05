@@ -20,6 +20,7 @@ public class DefaultFindStaffMemberByNameUseCase implements FindStaffMemberByNam
 
     @Override
     public List<StaffMember> findStaffMemberByName(String name) {
+        log.debug("find staff members with name resembling {} called in use case", name);
         return staffMemberLoadPort.loadStaffMembersByName(name);
     }
 }

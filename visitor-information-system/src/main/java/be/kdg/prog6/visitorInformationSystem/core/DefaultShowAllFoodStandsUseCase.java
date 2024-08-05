@@ -20,6 +20,7 @@ public class DefaultShowAllFoodStandsUseCase implements ShowAllFoodStandsUseCase
 
     @Override
     public List<FoodStand> showAllFoodStands() {
+        log.debug("show all foodStands called in use case");
         return foodStandLoadPort.loadAllFoodStands();
     }
 }

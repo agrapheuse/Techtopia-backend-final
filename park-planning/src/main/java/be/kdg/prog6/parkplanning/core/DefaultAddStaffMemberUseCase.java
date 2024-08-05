@@ -29,6 +29,7 @@ public class DefaultAddStaffMemberUseCase implements AddStaffMemberUseCase {
 
     @Override
     public void addStaffMember(AddStaffMemberCommand addStaffMemberCommand) {
+        log.debug("adding staff member {} in DefaultAddStaffMemberUseCase", addStaffMemberCommand.staffMemberUuid());
         StaffMember staffMember = staffMemberLoadPort.loadStaffMember(addStaffMemberCommand.staffMemberUuid());
         PointOfInterest poi = poiLoadPort.loadPointOfInterest(addStaffMemberCommand.poiUuid());
         List<StaffMember> staff = poi.getStaff();

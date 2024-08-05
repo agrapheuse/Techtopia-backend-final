@@ -20,7 +20,7 @@ public class DefaultLoadTicketUseCase implements LoadTicketUseCase {
 
     @Override
     public Ticket getTicket(UUID ticketUUID) {
-        log.debug("get ticket called in DefaultLoadTicketUseCase");
+        log.debug("get ticket {} called in DefaultLoadTicketUseCase", ticketUUID);
         return ticketLoadedPort.getTicket(ticketUUID);
     }
 }

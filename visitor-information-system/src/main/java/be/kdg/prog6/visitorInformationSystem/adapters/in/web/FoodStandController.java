@@ -33,6 +33,7 @@ public class FoodStandController {
             @RequestParam Optional<String> name,
             @RequestParam Optional<Boolean> open
     ) {
+        log.debug("get all food stands called");
         try {
             List<FoodStand> foodStands;
             if (name.isPresent() || open.isPresent()) {

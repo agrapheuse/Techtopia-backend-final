@@ -20,6 +20,7 @@ public class DefaultShowAllPOIUseCase implements ShowAllPOIUseCase {
 
     @Override
     public List<PointOfInterest> showAllPointOfInterests() {
+        log.debug("show all pois called in use case");
         return poiLoadPort.loadPointsOfInterest();
     }
 }

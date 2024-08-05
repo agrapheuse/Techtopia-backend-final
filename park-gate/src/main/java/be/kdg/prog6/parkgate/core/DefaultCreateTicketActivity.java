@@ -18,7 +18,7 @@ public class DefaultCreateTicketActivity implements CreateTicketActivityUseCase 
 
     @Override
     public void createTicketActivity(TicketActivity ticketActivity) {
-        log.debug("create ticket activity called in use case");
+        log.debug("create ticket activity {} called in use case", ticketActivity.activityType());
         ticketActivityCreatePort.createTicketActivity(ticketActivity);
     }
 }

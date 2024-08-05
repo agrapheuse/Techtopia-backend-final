@@ -33,6 +33,7 @@ public class PointOfInterestController {
             @RequestParam Optional<String> name,
             @RequestParam Optional<Boolean> open
     ) {
+        log.debug("get all points of interest called");
         try {
             List<PointOfInterest> pointOfInterests;
             if (name.isPresent() || open.isPresent()) {

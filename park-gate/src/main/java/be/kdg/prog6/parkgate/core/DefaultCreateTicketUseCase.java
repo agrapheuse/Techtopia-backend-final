@@ -28,7 +28,7 @@ public class DefaultCreateTicketUseCase implements CreateTicketUseCase {
 
     @Override
     public void createTicket(TicketCreatedEvent ticketCreatedEvent) {
-        log.debug("create ticket called in DefaultCreateTicketUseCase");
+        log.debug("create ticket {} called in DefaultCreateTicketUseCase", ticketCreatedEvent.uuid());
         ticketCreatedPorts.forEach(port -> port.createTicket(
                 new Ticket(
                         new Ticket.TicketUUID(ticketCreatedEvent.uuid()),

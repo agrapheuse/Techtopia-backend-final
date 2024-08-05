@@ -40,6 +40,7 @@ public class PointOfInterestDBAdapter implements POILoadPort {
 
     @Override
     public List<PointOfInterest> loadPointsOfInterest() {
+        log.debug("load all pois called in db adapter");
         List<AttractionJpaEntity> attractionsJpa = attractionJpaRepository.findAll();
         List<FoodStandJpaEntity> foodStandsJpa = foodStandJpaRepository.findAll();
         return convert(attractionsJpa, foodStandsJpa);
@@ -47,6 +48,7 @@ public class PointOfInterestDBAdapter implements POILoadPort {
 
     @Override
     public List<PointOfInterest> loadFilteredPointsOfInterest(String name, Boolean open) {
+        log.debug("load all pois with name {} and open status {} called in db adapter", name, open);
         List<AttractionJpaEntity> attractionsJpa = attractionJpaRepository.findByNameContainsIgnoreCaseAndOpenEquals(name, open);
         List<FoodStandJpaEntity> foodStandsJpa = foodStandJpaRepository.findByNameContainsIgnoreCaseAndOpenEquals(name, open);
         if (attractionsJpa.isEmpty() && foodStandsJpa.isEmpty()) {
@@ -58,6 +60,7 @@ public class PointOfInterestDBAdapter implements POILoadPort {
 
     @Override
     public PointOfInterest loadPointOfInterest(UUID uuid) {
+        log.debug("load poi {} called in db adapter", uuid);
         Optional<AttractionJpaEntity> attractionJpa = attractionJpaRepository.findById(uuid);
         Optional<FoodStandJpaEntity> foodStandJpa = foodStandJpaRepository.findById(uuid);
 

@@ -2,6 +2,7 @@ package be.kdg.prog6.parkplanning.core;
 
 import be.kdg.prog6.parkplanning.domain.PointOfInterest;
 import be.kdg.prog6.parkplanning.domain.StaffMember;
+import be.kdg.prog6.parkplanning.exceptions.StaffMemberNotInPOIException;
 import be.kdg.prog6.parkplanning.ports.in.RemoveStaffMemberCommand;
 import be.kdg.prog6.parkplanning.ports.in.RemoveStaffMemberUseCase;
 import be.kdg.prog6.parkplanning.ports.out.POILoadPort;
@@ -29,6 +30,7 @@ public class DefaultRemoveStaffMemberUseCase implements RemoveStaffMemberUseCase
 
     @Override
     public void removeStaffMember(RemoveStaffMemberCommand removeStaffMemberCommand) {
+        log.debug("removing staff member {} in DefaultAddStaffMemberUseCase", removeStaffMemberCommand.staffMemberUuid());
         PointOfInterest poi = poiLoadPort.loadPointOfInterest(removeStaffMemberCommand.poiUuid());
         StaffMember staffMember = staffMemberLoadPort.loadStaffMember(removeStaffMemberCommand.staffMemberUuid());
         List<StaffMember> staff = poi.getStaff();
@@ -37,7 +39,7 @@ public class DefaultRemoveStaffMemberUseCase implements RemoveStaffMemberUseCase
             poi.setStaff(staff);
             poiUpdatePort.updatePOI(poi);
         } else {
-            //TODO: add exception: StaffMemberNotInPOIException
+            throw new StaffMemberNotInPOIException();
         }
     }
 }

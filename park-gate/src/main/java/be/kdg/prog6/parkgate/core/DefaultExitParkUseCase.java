@@ -30,7 +30,7 @@ public class DefaultExitParkUseCase implements ExitParkUseCase {
 
     @Override
     public void exitPark(UUID ticketUUID) {
-        log.debug("exit park called in DefaultExitParkUseCase");
+        log.debug("exit park with ticket {} called in DefaultEnterParkUseCase", ticketUUID);
         Ticket ticket = ticketLoadedPort.getTicket(ticketUUID);
         ticket.setStatus(Status.EXITED);
         ticketUpdatedPort.updateTicket(ticket);

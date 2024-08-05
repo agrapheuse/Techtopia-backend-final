@@ -36,18 +36,21 @@ public class AttractionDBAdapter implements AttractionLoadPort, AttractionUpdate
 
     @Override
     public List<Attraction> loadAllAttractions() {
+        log.debug("load all attractions called in db adapter");
         List<AttractionJpaEntity> attractions = attractionRepository.findAll();
         return convert(attractions);
     }
 
     @Override
     public List<Attraction> loadFilteredAttractions(String name, boolean open) {
+        log.debug("load all attractions with name {} and open status {} called in db adapter", name, open);
         List<AttractionJpaEntity> attractions = attractionRepository.findByNameContainsIgnoreCaseAndOpenEquals(name, open);
         return convert(attractions);
     }
 
     @Override
     public void updateAttraction(Attraction attraction) {
+        log.debug("update attraction {} called in db adapter", attraction.getUuid().uuid());
         AttractionJpaEntity attractionJpa = new AttractionJpaEntity(
                 attraction.getUuid().uuid(),
                 attraction.getName(),

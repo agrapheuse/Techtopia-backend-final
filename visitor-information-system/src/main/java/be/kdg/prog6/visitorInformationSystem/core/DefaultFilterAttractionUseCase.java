@@ -20,6 +20,7 @@ public class DefaultFilterAttractionUseCase implements FilterAttractionUseCase {
 
     @Override
     public List<Attraction> filterAttractions(String name, boolean open) {
+        log.debug("load filtered attractions {}, {} called in use case", name, open);
         return attractionLoadPort.loadFilteredAttractions(name, open);
     }
 }

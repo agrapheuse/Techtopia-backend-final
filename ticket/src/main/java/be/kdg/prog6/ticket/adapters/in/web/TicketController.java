@@ -26,6 +26,7 @@ public class TicketController {
 
     @PostMapping("/create")
     public ResponseEntity<Void> createTicket(@RequestBody Ticket ticket) {
+        log.debug("ticket controller called to create ticket for {}", ticket.getName());
         try {
             createTicketUseCase.createTicket(new CreateTicketCommand(
                     ticket.getDate(),

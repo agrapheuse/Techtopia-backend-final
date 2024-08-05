@@ -20,6 +20,7 @@ public class DefaultFilterFoodStandsUseCase implements FilterFoodStandsUseCase {
 
     @Override
     public List<FoodStand> filterFoodStands(String name, boolean open) {
+        log.debug("load filtered foodStands {}, {} called in use case", name, open);
         return foodStandLoadPort.loadFilteredFoodStands(name, open);
     }
 }

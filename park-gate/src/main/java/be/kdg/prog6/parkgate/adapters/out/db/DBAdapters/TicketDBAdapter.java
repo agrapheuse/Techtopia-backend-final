@@ -25,7 +25,7 @@ public class TicketDBAdapter implements TicketCreatedPort, TicketLoadedPort, Tic
 
     @Override
     public void createTicket(Ticket ticket) {
-        log.debug("creating ticket in ticket db adapter");
+        log.debug("creating ticket {} in ticket db adapter", ticket.getUuid().uuid());
         TicketJpaEntity ticketJpaEntity = new TicketJpaEntity(
                 ticket.getUuid().uuid(),
                 ticket.getStatus()
