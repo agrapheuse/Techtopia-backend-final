@@ -7,6 +7,7 @@ import be.kdg.prog6.visitorInformationSystem.adapters.out.repositories.FoodStand
 import be.kdg.prog6.visitorInformationSystem.domain.Attraction;
 import be.kdg.prog6.visitorInformationSystem.domain.FoodStand;
 import be.kdg.prog6.visitorInformationSystem.domain.PointOfInterest;
+import be.kdg.prog6.visitorInformationSystem.exceptions.PointOfInterestNotFoundException;
 import be.kdg.prog6.visitorInformationSystem.ports.out.POILoadPort;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,7 +49,11 @@ public class PointOfInterestDBAdapter implements POILoadPort {
     public List<PointOfInterest> loadFilteredPointsOfInterest(String name, Boolean open) {
         List<AttractionJpaEntity> attractionsJpa = attractionJpaRepository.findByNameContainsIgnoreCaseAndOpenEquals(name, open);
         List<FoodStandJpaEntity> foodStandsJpa = foodStandJpaRepository.findByNameContainsIgnoreCaseAndOpenEquals(name, open);
-        return convert(attractionsJpa, foodStandsJpa);
+        if (attractionsJpa.isEmpty() && foodStandsJpa.isEmpty()) {
+            throw new PointOfInterestNotFoundException();
+        } else {
+            return convert(attractionsJpa, foodStandsJpa);
+        }
     }
 
     @Override
@@ -57,8 +62,7 @@ public class PointOfInterestDBAdapter implements POILoadPort {
         Optional<FoodStandJpaEntity> foodStandJpa = foodStandJpaRepository.findById(uuid);
 
         if (attractionJpa.isEmpty() && foodStandJpa.isEmpty()) {
-            //TODO: add exception: PointOfInterestNotFoundException
-            return null;
+            throw new PointOfInterestNotFoundException();
         } else if (attractionJpa.isPresent()) {
             return new Attraction(
                     new PointOfInterest.PointOfInterestUUID(attractionJpa.get().getUuid()),

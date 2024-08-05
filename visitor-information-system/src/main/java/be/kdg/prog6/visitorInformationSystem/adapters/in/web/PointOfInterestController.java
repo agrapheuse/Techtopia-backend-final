@@ -1,6 +1,7 @@
 package be.kdg.prog6.visitorInformationSystem.adapters.in.web;
 
 import be.kdg.prog6.visitorInformationSystem.domain.PointOfInterest;
+import be.kdg.prog6.visitorInformationSystem.exceptions.PointOfInterestNotFoundException;
 import be.kdg.prog6.visitorInformationSystem.ports.in.FilterPOIUseCase;
 import be.kdg.prog6.visitorInformationSystem.ports.in.ShowAllPOIUseCase;
 import org.slf4j.Logger;
@@ -40,6 +41,8 @@ public class PointOfInterestController {
                 pointOfInterests = showAllPOIUseCase.showAllPointOfInterests();
             }
             return new ResponseEntity<>(pointOfInterests, HttpStatus.OK);
+        } catch (PointOfInterestNotFoundException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

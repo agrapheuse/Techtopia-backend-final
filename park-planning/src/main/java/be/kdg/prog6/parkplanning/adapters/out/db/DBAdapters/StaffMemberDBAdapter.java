@@ -3,6 +3,7 @@ package be.kdg.prog6.parkplanning.adapters.out.db.DBAdapters;
 import be.kdg.prog6.parkplanning.adapters.out.db.JPAEntities.StaffMemberJpaEntity;
 import be.kdg.prog6.parkplanning.domain.StaffMember;
 import be.kdg.prog6.parkplanning.adapters.out.db.JPARepositories.StaffMemberJpaRepository;
+import be.kdg.prog6.parkplanning.exceptions.StaffNotFoundException;
 import be.kdg.prog6.parkplanning.ports.out.StaffMemberConversionPort;
 import be.kdg.prog6.parkplanning.ports.out.StaffMemberLoadPort;
 import org.slf4j.Logger;
@@ -47,10 +48,9 @@ public class StaffMemberDBAdapter implements StaffMemberLoadPort, StaffMemberCon
     @Override
     public StaffMember loadStaffMember(UUID uuid) {
         Optional<StaffMemberJpaEntity> staffMember = staffMemberJpaRepository.findById(uuid);
-        //TODO: add exception: StaffMemberNotFoundException
         return staffMember.map(staffMemberJpaEntity -> new StaffMember(
                 new StaffMember.StaffMemberUUID(staffMemberJpaEntity.getUuid()),
                 staffMemberJpaEntity.getName()
-        )).orElse(null);
+        )).orElseThrow(StaffNotFoundException::new);
     }
 }

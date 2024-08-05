@@ -1,5 +1,7 @@
 package be.kdg.prog6.parkplanning.adapters.in.web;
 
+import be.kdg.prog6.parkplanning.exceptions.POINotFoundException;
+import be.kdg.prog6.parkplanning.exceptions.StaffNotFoundException;
 import be.kdg.prog6.parkplanning.ports.in.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,6 +35,8 @@ public class POIController {
         try {
             changePOIOpenStatusUseCase.changeOpenStatus(new ChangeOpenStatusCommand(UUID.fromString(uuid), open));
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (POINotFoundException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -47,6 +51,8 @@ public class POIController {
         try {
             addStaffMemberUseCase.addStaffMember(new AddStaffMemberCommand(UUID.fromString(poiUuid), UUID.fromString(staffMemberUuid)));
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (StaffNotFoundException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -61,6 +67,8 @@ public class POIController {
         try {
             removeStaffMemberUseCase.removeStaffMember(new RemoveStaffMemberCommand(UUID.fromString(poiUuid), UUID.fromString(staffMemberUuid)));
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (StaffNotFoundException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

@@ -3,6 +3,7 @@ package be.kdg.prog6.parkgate.adapters.out.db.DBAdapters;
 import be.kdg.prog6.parkgate.adapters.out.db.JPAEntities.TicketJpaEntity;
 import be.kdg.prog6.parkgate.adapters.out.db.repositories.TicketJpaRepository;
 import be.kdg.prog6.parkgate.domain.Ticket;
+import be.kdg.prog6.parkgate.exceptions.TicketNotFoundException;
 import be.kdg.prog6.parkgate.ports.out.TicketCreatedPort;
 import be.kdg.prog6.parkgate.ports.out.TicketLoadedPort;
 import be.kdg.prog6.parkgate.ports.out.TicketUpdatedPort;
@@ -34,11 +35,10 @@ public class TicketDBAdapter implements TicketCreatedPort, TicketLoadedPort, Tic
     @Override
     public Ticket getTicket(UUID ticketUUID) {
         Optional<TicketJpaEntity> ticket = ticketJpaRepository.findById(ticketUUID);
-        //TODO: add TicketNotFoundException
         return ticket.map(ticketJpaEntity -> new Ticket(
                 new Ticket.TicketUUID(ticketJpaEntity.getUuid()),
                 ticketJpaEntity.getStatus()
-        )).orElse(null);
+        )).orElseThrow(TicketNotFoundException::new);
     }
 
     @Override

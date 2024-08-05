@@ -1,5 +1,6 @@
 package be.kdg.prog6.parkgate.adapters.in.web;
 
+import be.kdg.prog6.parkgate.exceptions.TicketNotFoundException;
 import be.kdg.prog6.parkgate.ports.in.EnterParkUseCase;
 import be.kdg.prog6.parkgate.ports.in.ExitParkUseCase;
 import org.slf4j.Logger;
@@ -32,8 +33,11 @@ public class TicketActivityController {
         try {
             enterParkUseCase.enterPark(UUID.fromString(ticketUUID));
             return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (TicketNotFoundException e) {
+            log.error("Error creating ticket activity, ticket not found", e);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } catch (Exception e) {
-            log.error("Error creating ticket activity", e);
+            log.error("Error creating ticket activity, internal server error", e);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -45,8 +49,11 @@ public class TicketActivityController {
         try {
             exitParkUseCase.exitPark(UUID.fromString(ticketUUID));
             return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (TicketNotFoundException e) {
+            log.error("Error creating ticket activity, ticket not found", e);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } catch (Exception e) {
-            log.error("Error creating ticket activity", e);
+            log.error("Error creating ticket activity, internal server error", e);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

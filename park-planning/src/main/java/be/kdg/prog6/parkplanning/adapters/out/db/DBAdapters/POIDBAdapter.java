@@ -3,6 +3,7 @@ package be.kdg.prog6.parkplanning.adapters.out.db.DBAdapters;
 import be.kdg.prog6.parkplanning.adapters.out.db.JPAEntities.POIJpaEntity;
 import be.kdg.prog6.parkplanning.adapters.out.db.JPAEntities.StaffMemberJpaEntity;
 import be.kdg.prog6.parkplanning.domain.PointOfInterest;
+import be.kdg.prog6.parkplanning.exceptions.POINotFoundException;
 import be.kdg.prog6.parkplanning.ports.out.*;
 import be.kdg.prog6.parkplanning.adapters.out.db.JPARepositories.POIJpaRepository;
 import org.slf4j.Logger;
@@ -40,15 +41,10 @@ public class POIDBAdapter implements POIOpenedStatusChangedPort, POILoadPort, PO
     public PointOfInterest loadPointOfInterest(UUID uuid) {
         log.info("loading POI with UUID {}", uuid);
         Optional<POIJpaEntity> pointOfInterest = poiJpaRepository.findByIdWithStaff(uuid);
-        if (pointOfInterest.isPresent()) {
-            log.info(pointOfInterest.get().toString());
-            return new PointOfInterest(
-                    new PointOfInterest.PointOfInterestUUID(pointOfInterest.get().getUuid()),
-                    staffMemberConversionPort.convert(pointOfInterest.get().getStaff()),
-                    pointOfInterest.get().isOpen());
-        } else {
-            return null;
-        }
+        return pointOfInterest.map(poiJpaEntity -> new PointOfInterest(
+                new PointOfInterest.PointOfInterestUUID(poiJpaEntity.getUuid()),
+                staffMemberConversionPort.convert(poiJpaEntity.getStaff()),
+                poiJpaEntity.isOpen())).orElseThrow(POINotFoundException::new);
     }
 
     @Override
