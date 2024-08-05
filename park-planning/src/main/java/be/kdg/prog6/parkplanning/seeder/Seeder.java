@@ -73,6 +73,18 @@ public class Seeder implements ApplicationRunner {
                 UUID.fromString("8349eb6e-f9b7-4299-8907-31e2ea6340b6")
         );
 
+        StaffMemberJpaEntity emilyJohnson = new StaffMemberJpaEntity(
+                UUID.randomUUID(),
+                "Emily Johnson",
+                null
+        );
+
+        StaffMemberJpaEntity michaelBrown = new StaffMemberJpaEntity(
+                UUID.randomUUID(),
+                "Michael Brown",
+                null
+        );
+
         staffMemberJpaRepository.save(johnDoe);
         staffMemberJpaRepository.save(janeDoe);
         staffMemberJpaRepository.save(jackSmith);
@@ -81,6 +93,8 @@ public class Seeder implements ApplicationRunner {
         staffMemberJpaRepository.save(emilyGrace);
         staffMemberJpaRepository.save(michaelDavid);
         staffMemberJpaRepository.save(sarahBrown);
+        staffMemberJpaRepository.save(emilyJohnson);
+        staffMemberJpaRepository.save(michaelBrown);
 
         POIJpaEntity flyingDutchman = new POIJpaEntity(
                 UUID.fromString("f0b71052-b917-48da-8825-e4933a30bc9e"),
