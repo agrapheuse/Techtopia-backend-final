@@ -35,7 +35,8 @@ public class TicketDBAdapter implements TicketCreatedPort, TicketLoadPort {
                     ticket.getGender(),
                     ticket.getTicketOption(),
                     ticket.getAgeType(),
-                    ticket.getEmail())
+                    ticket.getEmail(),
+                    ticket.getStatus())
             );
         }
         return result;
@@ -52,7 +53,8 @@ public class TicketDBAdapter implements TicketCreatedPort, TicketLoadPort {
                 ticket.getGender(),
                 ticket.getTicketOption(),
                 ticket.getAgeType(),
-                ticket.getEmail()
+                ticket.getEmail(),
+                ticket.getStatus()
         );
         ticketJpaRepository.save(ticketJpaEntity);
     }

@@ -1,6 +1,6 @@
 package be.kdg.prog6.parkgate.adapters.out.db.JPAEntities;
 
-import be.kdg.prog6.parkgate.domain.Status;
+import be.kdg.prog6.enums.Status;
 import jakarta.persistence.*;
 import org.hibernate.annotations.JdbcTypeCode;
 

@@ -1,5 +1,6 @@
 package be.kdg.prog6.ticket.ports.in;
 
+import be.kdg.prog6.enums.Status;
 import be.kdg.prog6.ticket.domain.Gender;
 import be.kdg.prog6.ticket.domain.TicketAgeType;
 import be.kdg.prog6.ticket.domain.TicketOption;
@@ -13,6 +14,7 @@ public record CreateTicketCommand(
         Gender gender,
         TicketOption ticketOption,
         TicketAgeType ageType,
-        String email
+        String email,
+        Status status
 ) {
 }

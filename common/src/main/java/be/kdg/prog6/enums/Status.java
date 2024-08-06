@@ -1,4 +1,4 @@
-package be.kdg.prog6.parkgate.domain;
+package be.kdg.prog6.enums;
 
 public enum Status {
     NEW,

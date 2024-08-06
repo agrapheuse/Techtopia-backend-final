@@ -1,5 +1,6 @@
 package be.kdg.prog6.ticket.seeder;
 
+import be.kdg.prog6.enums.Status;
 import be.kdg.prog6.ticket.adapters.out.db.JPAEntities.TicketJpaEntity;
 import be.kdg.prog6.ticket.adapters.out.db.repositories.TicketJpaRepository;
 import be.kdg.prog6.ticket.domain.Gender;
@@ -24,6 +25,7 @@ public class Seeder implements ApplicationRunner {
     }
 
     void createData() {
+        log.debug("creating data to be sent to the db");
         TicketJpaEntity ticket1 = new TicketJpaEntity(
                 UUID.fromString("f6500e86-f240-423b-8980-fb98d0f8426d"),
                 LocalDate.now(),
@@ -32,7 +34,8 @@ public class Seeder implements ApplicationRunner {
                 Gender.M,
                 TicketOption.NORMAL,
                 TicketAgeType.ADULT,
-                "jane.doe@gmail.com"
+                "jane.doe@gmail.com",
+                Status.NEW
         );
 
         ticketJpaRepository.save(ticket1);

@@ -31,7 +31,9 @@ public class DefaultCreateTicketUseCase implements CreateTicketUseCase {
                     createTicketCommand.gender(),
                     createTicketCommand.ticketOption(),
                     createTicketCommand.ageType(),
-                    createTicketCommand.email());
+                    createTicketCommand.email(),
+                    createTicketCommand.status()
+                    );
             ticketCreatedPorts.forEach(port -> port.createTicket(ticket));
     }
 }

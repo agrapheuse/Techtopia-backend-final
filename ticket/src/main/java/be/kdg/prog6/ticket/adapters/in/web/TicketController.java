@@ -35,7 +35,8 @@ public class TicketController {
                     ticket.getGender(),
                     ticket.getTicketOption(),
                     ticket.getAgeType(),
-                    ticket.getEmail()
+                    ticket.getEmail(),
+                    ticket.getStatus()
             ));
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {

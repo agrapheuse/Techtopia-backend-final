@@ -1,7 +1,7 @@
 package be.kdg.prog6.parkgate.core;
 
 import be.kdg.prog6.parkgate.domain.ActivityType;
-import be.kdg.prog6.parkgate.domain.Status;
+import be.kdg.prog6.enums.Status;
 import be.kdg.prog6.parkgate.domain.Ticket;
 import be.kdg.prog6.parkgate.domain.TicketActivity;
 import be.kdg.prog6.parkgate.ports.in.EnterParkUseCase;
@@ -13,17 +13,18 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Service
 public class DefaultEnterParkUseCase implements EnterParkUseCase {
-    private final TicketUpdatedPort ticketUpdatedPort;
+    private final List<TicketUpdatedPort> ticketUpdatedPorts;
     private final TicketLoadedPort ticketLoadedPort;
     private final TicketActivityCreatedPort ticketActivityCreatedPort;
     public static final Logger log = LoggerFactory.getLogger(DefaultEnterParkUseCase.class);
 
-    public DefaultEnterParkUseCase(TicketUpdatedPort ticketUpdatedPort, TicketLoadedPort ticketLoadedPort, TicketActivityCreatedPort ticketActivityCreatedPort) {
-        this.ticketUpdatedPort = ticketUpdatedPort;
+    public DefaultEnterParkUseCase(List<TicketUpdatedPort> ticketUpdatedPorts, TicketLoadedPort ticketLoadedPort, TicketActivityCreatedPort ticketActivityCreatedPort) {
+        this.ticketUpdatedPorts = ticketUpdatedPorts;
         this.ticketLoadedPort = ticketLoadedPort;
         this.ticketActivityCreatedPort = ticketActivityCreatedPort;
     }
@@ -33,7 +34,7 @@ public class DefaultEnterParkUseCase implements EnterParkUseCase {
         log.debug("enter park with ticket {} called in DefaultEnterParkUseCase", ticketUUID);
         Ticket ticket = ticketLoadedPort.getTicket(ticketUUID);
         ticket.setStatus(Status.ENTERED);
-        ticketUpdatedPort.updateTicket(ticket);
+        ticketUpdatedPorts.forEach(p -> p.updateTicket(ticket));
         ticketActivityCreatedPort.createTicketActivity(
                 new TicketActivity(
                         ticket.getUuid().uuid(),

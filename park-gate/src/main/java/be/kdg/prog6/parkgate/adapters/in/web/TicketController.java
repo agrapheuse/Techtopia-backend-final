@@ -1,6 +1,6 @@
 package be.kdg.prog6.parkgate.adapters.in.web;
 
-import be.kdg.prog6.parkgate.domain.Status;
+import be.kdg.prog6.enums.Status;
 import be.kdg.prog6.parkgate.exceptions.TicketNotFoundException;
 import be.kdg.prog6.parkgate.ports.in.LoadTicketUseCase;
 import org.slf4j.Logger;

@@ -1,5 +1,7 @@
 package be.kdg.prog6.parkgate.domain;
 
+import be.kdg.prog6.enums.Status;
+
 import java.util.UUID;
 
 public class Ticket {

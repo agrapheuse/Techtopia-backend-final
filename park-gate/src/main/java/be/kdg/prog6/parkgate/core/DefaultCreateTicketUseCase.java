@@ -2,7 +2,7 @@ package be.kdg.prog6.parkgate.core;
 
 import be.kdg.prog6.events.TicketCreatedEvent;
 import be.kdg.prog6.parkgate.domain.ActivityType;
-import be.kdg.prog6.parkgate.domain.Status;
+import be.kdg.prog6.enums.Status;
 import be.kdg.prog6.parkgate.domain.Ticket;
 import be.kdg.prog6.parkgate.domain.TicketActivity;
 import be.kdg.prog6.parkgate.ports.in.CreateTicketUseCase;

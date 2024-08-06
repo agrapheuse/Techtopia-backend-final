@@ -5,7 +5,7 @@ import be.kdg.prog6.parkgate.adapters.out.db.JPAEntities.TicketJpaEntity;
 import be.kdg.prog6.parkgate.adapters.out.db.repositories.TicketActivityJpaRepository;
 import be.kdg.prog6.parkgate.adapters.out.db.repositories.TicketJpaRepository;
 import be.kdg.prog6.parkgate.domain.ActivityType;
-import be.kdg.prog6.parkgate.domain.Status;
+import be.kdg.prog6.enums.Status;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.ApplicationArguments;

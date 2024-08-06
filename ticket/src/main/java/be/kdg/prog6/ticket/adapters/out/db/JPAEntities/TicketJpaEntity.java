@@ -1,5 +1,6 @@
 package be.kdg.prog6.ticket.adapters.out.db.JPAEntities;
 
+import be.kdg.prog6.enums.Status;
 import be.kdg.prog6.ticket.domain.Gender;
 import be.kdg.prog6.ticket.domain.TicketAgeType;
 import be.kdg.prog6.ticket.domain.TicketOption;
@@ -26,8 +27,10 @@ public class TicketJpaEntity {
     @Enumerated(EnumType.STRING)
     private TicketAgeType ageType;
     private String email;
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
-    public TicketJpaEntity(UUID uuid, LocalDate date, String name, int age, Gender gender, TicketOption ticketOption, TicketAgeType ageType, String email) {
+    public TicketJpaEntity(UUID uuid, LocalDate date, String name, int age, Gender gender, TicketOption ticketOption, TicketAgeType ageType, String email, Status status) {
         this.uuid = uuid;
         this.date = date;
         this.name = name;
@@ -36,6 +39,7 @@ public class TicketJpaEntity {
         this.ticketOption = ticketOption;
         this.ageType = ageType;
         this.email = email;
+        this.status = status;
     }
 
     public TicketJpaEntity() {
@@ -103,5 +107,13 @@ public class TicketJpaEntity {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }
