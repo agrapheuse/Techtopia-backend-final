@@ -1,6 +1,7 @@
 package be.kdg.prog6.parkplanning.auth;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -21,7 +22,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-//@Configuration
+@Configuration
 @EnableWebSecurity
 @EnableMethodSecurity(prePostEnabled = true)
 public class SecurityModuleConfig {
@@ -29,7 +30,7 @@ public class SecurityModuleConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.cors(Customizer.withDefaults())
                 .authorizeHttpRequests((authorize) -> authorize
-                        .anyRequest().permitAll()
+                        .anyRequest().authenticated()
                 ).sessionManagement(mgmt -> mgmt.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .oauth2ResourceServer(rs -> rs.jwt(jwt -> jwtAuthenticationConverter()));
         return http.build();
@@ -46,10 +47,10 @@ public class SecurityModuleConfig {
     CorsConfigurationSource corsConfigurationSource() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:3000"));
-        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
+        configuration.setAllowedOrigins(List.of("http://localhost:3000/"));
+        configuration.setAllowedMethods(List.of("GET", "PATCH", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
-        source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
+        source.registerCorsConfiguration("/**", configuration);
         return source;
     }
 }

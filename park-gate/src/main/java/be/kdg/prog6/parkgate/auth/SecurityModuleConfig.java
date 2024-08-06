@@ -1,4 +1,4 @@
-package be.kdg.prog6.ticket.auth;
+package be.kdg.prog6.parkgate.auth;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -48,9 +48,8 @@ public class SecurityModuleConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(List.of("http://localhost:3000"));
-        configuration.setAllowedMethods(List.of("GET", "POST", "OPTIONS"));
+        configuration.setAllowedMethods(List.of("GET", "POST"));
         configuration.setAllowedHeaders(List.of("*"));
-        configuration.setAllowCredentials(true);
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
