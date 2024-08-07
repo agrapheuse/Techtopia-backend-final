@@ -1,7 +1,6 @@
 package be.kdg.prog6.parkgate.adapters.out.amqp;
 
 import be.kdg.prog6.events.PointOfInterestVisitedEvent;
-import be.kdg.prog6.events.TicketStatusChangedEvent;
 import be.kdg.prog6.parkgate.adapters.config.RabbitMQTopology;
 import be.kdg.prog6.parkgate.domain.TicketActivity;
 import be.kdg.prog6.parkgate.ports.out.TicketActivityCreatedPort;
@@ -22,7 +21,18 @@ public class PersonVisitedPOIPublisher implements TicketActivityCreatedPort {
 
     @Override
     public void createTicketActivity(TicketActivity ticketActivity) {
-        log.debug("rabbitMQ message will be sent to park gate saying: A person has visited POI with uuid {}", ticketActivity.poiUUID());
-        if (ticketActivity.poiUUID() != null) rabbitTemplate.convertAndSend(RabbitMQTopology.VISITED_POI_EVENTS_TOPIC, "poi.event.visited", new PointOfInterestVisitedEvent(ticketActivity.poiUUID()));
+        log.info("rabbitMQ message will be sent to park gate saying: A person has visited POI with uuid {}", ticketActivity.poiUUID());
+        if (ticketActivity.poiUUID() != null) {
+            log.info(String.valueOf(ticketActivity.poiUUID()));
+            try {
+                rabbitTemplate.convertAndSend(
+                        RabbitMQTopology.VISITED_POI_EVENTS_TOPIC,
+                        "POI.event.visited",
+                        new PointOfInterestVisitedEvent(ticketActivity.poiUUID())
+                );
+            } catch (Exception e) {
+                log.error(e.getMessage());
+            }
+        }
     }
 }

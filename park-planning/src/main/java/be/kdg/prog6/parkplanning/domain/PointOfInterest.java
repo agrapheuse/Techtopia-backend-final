@@ -9,11 +9,13 @@ public class PointOfInterest {
     private PointOfInterestUUID uuid;
     private List<StaffMember> staff;
     private boolean open;
+    private int amountOfPeople;
 
-    public PointOfInterest(PointOfInterestUUID uuid, List<StaffMember> staff, boolean open) {
+    public PointOfInterest(PointOfInterestUUID uuid, List<StaffMember> staff, boolean open, int amountOfPeople) {
         this.uuid = uuid;
         this.staff = staff;
         this.open = open;
+        this.amountOfPeople = amountOfPeople;
     }
 
     public PointOfInterestUUID getUuid() {
@@ -38,6 +40,18 @@ public class PointOfInterest {
 
     public void setOpen(boolean open) {
         this.open = open;
+    }
+
+    public int getAmountOfPeople() {
+        return amountOfPeople;
+    }
+
+    public void setAmountOfPeople(int amountOfPeople) {
+        this.amountOfPeople = amountOfPeople;
+    }
+
+    public void addPerson() {
+        this.amountOfPeople += 1;
     }
 
     @Override

@@ -34,7 +34,7 @@ public class Seeder implements ApplicationRunner {
                 Gender.M,
                 TicketOption.NORMAL,
                 TicketAgeType.ADULT,
-                "jane.doe@gmail.com",
+                "john.doe@gmail.com",
                 Status.NEW
         );
 

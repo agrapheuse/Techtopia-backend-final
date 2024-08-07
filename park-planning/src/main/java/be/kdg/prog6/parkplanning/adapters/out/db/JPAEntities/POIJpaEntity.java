@@ -21,15 +21,16 @@ public class POIJpaEntity {
     private List<StaffMemberJpaEntity> staff;
 
     private boolean open;
+    private int amountOfPeople;
 
-    public POIJpaEntity(UUID uuid, List<StaffMemberJpaEntity> staff, boolean open) {
+    public POIJpaEntity(UUID uuid, List<StaffMemberJpaEntity> staff, boolean open, int amountOfPeople) {
         this.uuid = uuid;
         this.staff = staff;
         this.open = open;
+        this.amountOfPeople = amountOfPeople;
     }
 
     public POIJpaEntity() {
-
     }
 
     public UUID getUuid() {
@@ -54,6 +55,14 @@ public class POIJpaEntity {
 
     public void setOpen(boolean open) {
         this.open = open;
+    }
+
+    public int getAmountOfPeople() {
+        return amountOfPeople;
+    }
+
+    public void setAmountOfPeople(int queueLength) {
+        this.amountOfPeople = queueLength;
     }
 
     @Override

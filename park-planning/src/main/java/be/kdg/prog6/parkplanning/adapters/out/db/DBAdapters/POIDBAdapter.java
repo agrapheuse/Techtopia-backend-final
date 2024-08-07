@@ -42,9 +42,12 @@ public class POIDBAdapter implements POIOpenedStatusChangedPort, POILoadPort, PO
         log.debug("loading POI with UUID {}", uuid);
         Optional<POIJpaEntity> pointOfInterest = poiJpaRepository.findByIdWithStaff(uuid);
         return pointOfInterest.map(poiJpaEntity -> new PointOfInterest(
-                new PointOfInterest.PointOfInterestUUID(poiJpaEntity.getUuid()),
-                staffMemberConversionPort.convert(poiJpaEntity.getStaff()),
-                poiJpaEntity.isOpen())).orElseThrow(POINotFoundException::new);
+                new PointOfInterest.PointOfInterestUUID(
+                        poiJpaEntity.getUuid()),
+                        staffMemberConversionPort.convert(poiJpaEntity.getStaff()),
+                        poiJpaEntity.isOpen(),
+                        poiJpaEntity.getAmountOfPeople()
+        )).orElseThrow(POINotFoundException::new);
     }
 
     @Override
@@ -59,7 +62,8 @@ public class POIDBAdapter implements POIOpenedStatusChangedPort, POILoadPort, PO
         POIJpaEntity poiJpaEntity = new POIJpaEntity(
                 pointOfInterest.getUuid().uuid(),
                 staffMembers,
-                pointOfInterest.isOpen()
+                pointOfInterest.isOpen(),
+                pointOfInterest.getAmountOfPeople()
         );
         poiJpaRepository.save(poiJpaEntity);
     }

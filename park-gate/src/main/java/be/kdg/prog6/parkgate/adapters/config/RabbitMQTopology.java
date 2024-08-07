@@ -1,9 +1,6 @@
 package be.kdg.prog6.parkgate.adapters.config;
 
-import org.springframework.amqp.core.Binding;
-import org.springframework.amqp.core.BindingBuilder;
-import org.springframework.amqp.core.Queue;
-import org.springframework.amqp.core.TopicExchange;
+import org.springframework.amqp.core.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -60,6 +57,6 @@ public class RabbitMQTopology {
 
     @Bean
     Binding visitedPOIEventsBinding(TopicExchange visitedPOIEventsExchange, Queue visitedPOIEventsQueue) {
-        return BindingBuilder.bind(visitedPOIEventsQueue).to(visitedPOIEventsExchange).with("visitedPOI.command.#");
+        return BindingBuilder.bind(visitedPOIEventsQueue).to(visitedPOIEventsExchange).with("POI.event.#");
     }
 }
