@@ -7,18 +7,20 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class DefaultCreateTicketActivity implements CreateTicketActivityUseCase {
-    private final TicketActivityCreatedPort ticketActivityCreatePort;
+    private final List<TicketActivityCreatedPort> ticketActivityCreatePorts;
     public static final Logger log = LoggerFactory.getLogger(TicketActivityCreatedPort.class);
 
-    public DefaultCreateTicketActivity(TicketActivityCreatedPort ticketActivityCreatePort) {
-        this.ticketActivityCreatePort = ticketActivityCreatePort;
+    public DefaultCreateTicketActivity(List<TicketActivityCreatedPort> ticketActivityCreatePorts) {
+        this.ticketActivityCreatePorts = ticketActivityCreatePorts;
     }
 
     @Override
     public void createTicketActivity(TicketActivity ticketActivity) {
         log.debug("create ticket activity {} called in use case", ticketActivity.activityType());
-        ticketActivityCreatePort.createTicketActivity(ticketActivity);
+        ticketActivityCreatePorts.forEach(p -> p.createTicketActivity(ticketActivity));
     }
 }

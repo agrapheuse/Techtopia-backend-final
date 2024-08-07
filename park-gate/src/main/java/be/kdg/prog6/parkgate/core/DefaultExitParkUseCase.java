@@ -20,13 +20,13 @@ import java.util.UUID;
 public class DefaultExitParkUseCase implements ExitParkUseCase {
     private final TicketLoadedPort ticketLoadedPort;
     private final List<TicketUpdatedPort> ticketUpdatedPorts;
-    private final TicketActivityCreatedPort ticketActivityCreatedPort;
+    private final List<TicketActivityCreatedPort> ticketActivityCreatedPorts;
     public static final Logger log = LoggerFactory.getLogger(DefaultExitParkUseCase.class);
 
-    public DefaultExitParkUseCase(TicketLoadedPort ticketLoadedPort, List<TicketUpdatedPort> ticketUpdatedPorts, TicketActivityCreatedPort ticketActivityCreatedPort) {
+    public DefaultExitParkUseCase(TicketLoadedPort ticketLoadedPort, List<TicketUpdatedPort> ticketUpdatedPorts, List<TicketActivityCreatedPort> ticketActivityCreatedPorts) {
         this.ticketLoadedPort = ticketLoadedPort;
         this.ticketUpdatedPorts = ticketUpdatedPorts;
-        this.ticketActivityCreatedPort = ticketActivityCreatedPort;
+        this.ticketActivityCreatedPorts = ticketActivityCreatedPorts;
     }
 
     @Override
@@ -35,13 +35,13 @@ public class DefaultExitParkUseCase implements ExitParkUseCase {
         Ticket ticket = ticketLoadedPort.getTicket(ticketUUID);
         ticket.setStatus(Status.EXITED);
         ticketUpdatedPorts.forEach(p -> p.updateTicket(ticket));
-        ticketActivityCreatedPort.createTicketActivity(
+        ticketActivityCreatedPorts.forEach(p -> p.createTicketActivity(
                 new TicketActivity(
                         ticket.getUuid().uuid(),
                         null,
                         ActivityType.EXITED,
                         LocalDateTime.now()
                 )
-        );
+        ));
     }
 }

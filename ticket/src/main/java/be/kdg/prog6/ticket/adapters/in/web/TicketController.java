@@ -54,4 +54,19 @@ public class TicketController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping("/fetchByEmailAndStatus")
+    public ResponseEntity<List<Ticket>> getAllTicketForAnAccountAndStatus(
+            @RequestParam String email,
+            @RequestParam String status
+            ) {
+        log.debug("requested to get all tickets for the email {} and status {}", email, status);
+        try {
+            List<Ticket> tickets = getTicketsForAccountUseCase.getTicketsForAccount(email);
+            return new ResponseEntity<>(tickets, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }

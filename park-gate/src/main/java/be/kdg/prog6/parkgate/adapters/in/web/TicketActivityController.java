@@ -1,8 +1,7 @@
 package be.kdg.prog6.parkgate.adapters.in.web;
 
 import be.kdg.prog6.parkgate.exceptions.TicketNotFoundException;
-import be.kdg.prog6.parkgate.ports.in.EnterParkUseCase;
-import be.kdg.prog6.parkgate.ports.in.ExitParkUseCase;
+import be.kdg.prog6.parkgate.ports.in.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -19,11 +18,13 @@ import java.util.UUID;
 public class TicketActivityController {
     private final EnterParkUseCase enterParkUseCase;
     private final ExitParkUseCase exitParkUseCase;
+    private final VisitPOIUseCase visitPOIUseCase;
     public static final Logger log = LoggerFactory.getLogger(TicketActivityController.class);
 
-    public TicketActivityController(EnterParkUseCase enterParkUseCase, ExitParkUseCase exitParkUseCase) {
+    public TicketActivityController(EnterParkUseCase enterParkUseCase, ExitParkUseCase exitParkUseCase, VisitPOIUseCase visitPOIUseCase) {
         this.enterParkUseCase = enterParkUseCase;
         this.exitParkUseCase = exitParkUseCase;
+        this.visitPOIUseCase = visitPOIUseCase;
     }
 
     @PostMapping("/enter")
@@ -58,9 +59,6 @@ public class TicketActivityController {
         }
     }
 
-    //TODO: add visitPOI
-
-/*
     @PostMapping("/visitedPOI")
     public ResponseEntity<Void> visitPOI(
             @RequestParam String ticketUUID,
@@ -69,16 +67,14 @@ public class TicketActivityController {
         log.debug("ticket {} visiting POI {}", ticketUUID, poiUUID);
 
         try {
-            createTicketActivityUseCase.createTicketActivity(new TicketActivity(
+            visitPOIUseCase.visitPOI(new VisitPOICommand(
                     UUID.fromString(ticketUUID),
-                    UUID.fromString(poiUUID),
-                    ActivityType.EXITED,
-                    LocalDateTime.now()
+                    UUID.fromString(poiUUID)
             ));
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
             log.error("Error creating ticket activity", e);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-    }*/
+    }
 }

@@ -1,5 +1,6 @@
 package be.kdg.prog6.ticket.adapters.out.db.DBAdapters;
 
+import be.kdg.prog6.enums.Status;
 import be.kdg.prog6.ticket.adapters.out.db.JPAEntities.TicketJpaEntity;
 import be.kdg.prog6.ticket.adapters.out.db.repositories.TicketJpaRepository;
 import be.kdg.prog6.ticket.domain.Ticket;
@@ -66,6 +67,12 @@ public class TicketDBAdapter implements TicketCreatedPort, TicketLoadPort, Ticke
     @Override
     public List<Ticket> loadTicketsForEmail(String email) {
         List<TicketJpaEntity> tickets = ticketJpaRepository.findByEmailEquals(email);
+        return convert(tickets);
+    }
+
+    @Override
+    public List<Ticket> loadTicketsForEmailAndStatus(String email, Status status) {
+        List<TicketJpaEntity> tickets = ticketJpaRepository.findByEmailEqualsAndStatusEquals(email, status);
         return convert(tickets);
     }
 

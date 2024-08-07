@@ -15,6 +15,9 @@ public class RabbitMQTopology {
     public static final String TICKET_STATUS_EVENTS_TOPIC = "ticket-status-events";
     public static final String TICKET_STATUS_EVENTS_QUEUE = "ticket-status-updated-queue";
 
+    public static final String VISITED_POI_EVENTS_TOPIC = "visited-poi-events";
+    public static final String VISITED_POI_EVENTS_QUEUE = "visited-poi-queue";
+
     @Bean
     TopicExchange ticketEventsExchange() {
         return new TopicExchange(TICKET_EVENTS_TOPIC);
@@ -45,4 +48,18 @@ public class RabbitMQTopology {
         return BindingBuilder.bind(ticketStatusEventsQueue).to(ticketStatusEventsExchange).with("ticket.event.#");
     }
 
+    @Bean
+    TopicExchange visitedPOIEventsExchange() {
+        return new TopicExchange(VISITED_POI_EVENTS_TOPIC);
+    }
+
+    @Bean
+    Queue visitedPOIEventsQueue() {
+        return new Queue(VISITED_POI_EVENTS_QUEUE);
+    }
+
+    @Bean
+    Binding visitedPOIEventsBinding(TopicExchange visitedPOIEventsExchange, Queue visitedPOIEventsQueue) {
+        return BindingBuilder.bind(visitedPOIEventsQueue).to(visitedPOIEventsExchange).with("visitedPOI.command.#");
+    }
 }

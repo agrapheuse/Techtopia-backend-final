@@ -18,12 +18,12 @@ import java.util.List;
 @Service
 public class DefaultCreateTicketUseCase implements CreateTicketUseCase {
     private final List<TicketCreatedPort> ticketCreatedPorts;
-    private final TicketActivityCreatedPort ticketActivityCreatePort;
+    private final List<TicketActivityCreatedPort> ticketActivityCreatePorts;
     public static final Logger log = LoggerFactory.getLogger(DefaultCreateTicketUseCase.class);
 
-    public DefaultCreateTicketUseCase(List<TicketCreatedPort> ticketCreatedPorts, TicketActivityCreatedPort ticketActivityCreatePort) {
+    public DefaultCreateTicketUseCase(List<TicketCreatedPort> ticketCreatedPorts, List<TicketActivityCreatedPort> ticketActivityCreatePorts) {
         this.ticketCreatedPorts = ticketCreatedPorts;
-        this.ticketActivityCreatePort = ticketActivityCreatePort;
+        this.ticketActivityCreatePorts = ticketActivityCreatePorts;
     }
 
     @Override
@@ -36,11 +36,11 @@ public class DefaultCreateTicketUseCase implements CreateTicketUseCase {
                 )
         ));
 
-        ticketActivityCreatePort.createTicketActivity(new TicketActivity(
+        ticketActivityCreatePorts.forEach(p -> p.createTicketActivity(new TicketActivity(
                 ticketCreatedEvent.uuid(),
                 null,
                 ActivityType.CREATED,
                 LocalDateTime.now()
-        ));
+        )));
     }
 }
