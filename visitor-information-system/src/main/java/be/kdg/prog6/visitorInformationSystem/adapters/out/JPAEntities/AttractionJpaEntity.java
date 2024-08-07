@@ -20,12 +20,12 @@ public class AttractionJpaEntity {
     private float posY;
     private String picturePath;
     private boolean open;
-    private int queueTime;
+    private float queueTime;
     private int minHeight;
 
     public AttractionJpaEntity() {    }
 
-    public AttractionJpaEntity(UUID uuid, String name, String description, float posX, float posY, String picturePath, boolean open, int queueTime, int minHeight) {
+    public AttractionJpaEntity(UUID uuid, String name, String description, float posX, float posY, String picturePath, boolean open, float queueTime, int minHeight) {
         this.uuid = uuid;
         this.name = name;
         this.description = description;
@@ -93,11 +93,11 @@ public class AttractionJpaEntity {
         this.open = open;
     }
 
-    public int getQueueTime() {
+    public float getQueueTime() {
         return queueTime;
     }
 
-    public void setQueueTime(int queueTime) {
+    public void setQueueTime(float queueTime) {
         this.queueTime = queueTime;
     }
 
