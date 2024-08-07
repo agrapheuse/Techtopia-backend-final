@@ -28,7 +28,17 @@ public class AttractionDBAdapter implements AttractionLoadPort, AttractionUpdate
         }
         List<Attraction> result = new ArrayList<>();
         for (AttractionJpaEntity attraction : attractions) {
-            result.add(new Attraction(new PointOfInterest.PointOfInterestUUID(attraction.getUuid()), attraction.getName(), attraction.getDescription(), attraction.getPosX(), attraction.getPosY(), attraction.getPicturePath(), attraction.isOpen(), attraction.getMinHeight()));
+            result.add(new Attraction(
+                    new PointOfInterest.PointOfInterestUUID(attraction.getUuid()),
+                    attraction.getName(),
+                    attraction.getDescription(),
+                    attraction.getPosX(),
+                    attraction.getPosY(),
+                    attraction.getPicturePath(),
+                    attraction.isOpen(),
+                    attraction.getQueueTime(),
+                    attraction.getMinHeight()
+            ));
         }
         return result;
     }
@@ -59,6 +69,7 @@ public class AttractionDBAdapter implements AttractionLoadPort, AttractionUpdate
                 attraction.getPosY(),
                 attraction.getPicturePath(),
                 attraction.isOpen(),
+                attraction.getQueueTime(),
                 attraction.getMinHeight()
         );
         attractionRepository.save(attractionJpa);

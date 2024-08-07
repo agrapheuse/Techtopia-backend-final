@@ -20,9 +20,10 @@ public class FoodStandJpaEntity {
     private float posY;
     private String picturePath;
     private boolean open;
+    private int queueTime;
     private String menu;
 
-    public FoodStandJpaEntity(UUID uuid, String name, String description, float posX, float posY, String picturePath, boolean open, String menu) {
+    public FoodStandJpaEntity(UUID uuid, String name, String description, float posX, float posY, String picturePath, boolean open, int queueTime, String menu) {
         this.uuid = uuid;
         this.name = name;
         this.description = description;
@@ -30,6 +31,7 @@ public class FoodStandJpaEntity {
         this.posY = posY;
         this.picturePath = picturePath;
         this.open = open;
+        this.queueTime = queueTime;
         this.menu = menu;
     }
 
@@ -91,6 +93,14 @@ public class FoodStandJpaEntity {
 
     public void setOpen(boolean open) {
         this.open = open;
+    }
+
+    public int getQueueTime() {
+        return queueTime;
+    }
+
+    public void setQueueTime(int queueTime) {
+        this.queueTime = queueTime;
     }
 
     public String getMenu() {

@@ -1,0 +1,18 @@
+package be.kdg.prog6.visitorInformationSystem.adapters.in.amqp;
+
+import be.kdg.prog6.events.PointOfInterestAmountOfPeopleUpdatedEvent;
+import be.kdg.prog6.visitorInformationSystem.adapters.config.RabbitMQTopology;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.stereotype.Component;
+
+@Component
+public class POIAmountOfPeopleUpdatedReceiver {
+    public static final Logger log = LoggerFactory.getLogger(POIAmountOfPeopleUpdatedReceiver.class);
+
+    @RabbitListener(queues = RabbitMQTopology.POI_QUEUE_EVENTS_QUEUE, messageConverter = "#{jackson2JsonMessageConverter}")
+    public void updateQueueTime(PointOfInterestAmountOfPeopleUpdatedEvent pointOfInterestAmountOfPeopleUpdatedEvent) {
+        log.info("message received: {} {}", pointOfInterestAmountOfPeopleUpdatedEvent.poiUUID(), pointOfInterestAmountOfPeopleUpdatedEvent.amountOfPeople());
+    }
+}

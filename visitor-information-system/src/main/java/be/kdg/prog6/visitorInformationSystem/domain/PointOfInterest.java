@@ -11,6 +11,7 @@ public abstract class PointOfInterest {
     private float posX;
     private float posY;
     private String picturePath;
+    private int queueTime;
     private boolean open;
 
     public PointOfInterestUUID getUuid() {
@@ -67,6 +68,14 @@ public abstract class PointOfInterest {
 
     public void setOpen(boolean open) {
         this.open = open;
+    }
+
+    public int getQueueTime() {
+        return queueTime;
+    }
+
+    public void setQueueTime(int queueTime) {
+        this.queueTime = queueTime;
     }
 
     @Override

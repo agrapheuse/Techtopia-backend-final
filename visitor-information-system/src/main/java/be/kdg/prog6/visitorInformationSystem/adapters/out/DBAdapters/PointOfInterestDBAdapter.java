@@ -75,6 +75,7 @@ public class PointOfInterestDBAdapter implements POILoadPort {
                     attractionJpa.get().getPosY(),
                     attractionJpa.get().getPicturePath(),
                     attractionJpa.get().isOpen(),
+                    attractionJpa.get().getQueueTime(),
                     attractionJpa.get().getMinHeight()
             );
         } else {
@@ -86,6 +87,7 @@ public class PointOfInterestDBAdapter implements POILoadPort {
                     foodStandJpa.get().getPosY(),
                     foodStandJpa.get().getPicturePath(),
                     foodStandJpa.get().isOpen(),
+                    foodStandJpa.get().getQueueTime(),
                     foodStandJpa.get().getMenu()
             );
         }

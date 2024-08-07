@@ -60,5 +60,4 @@ public class RabbitMQTopology {
     Binding POIQueueEventsEventsBinding(TopicExchange POIQueueEventsExchange, Queue POIQueueEventsQueue) {
         return BindingBuilder.bind(POIQueueEventsQueue).to(POIQueueEventsExchange).with("POI.queue.event.#");
     }
-
 }

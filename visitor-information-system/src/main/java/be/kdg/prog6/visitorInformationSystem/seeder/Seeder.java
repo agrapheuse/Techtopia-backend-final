@@ -32,6 +32,7 @@ public class Seeder implements ApplicationRunner {
                 18,
                 "https://lh3.googleusercontent.com/drive-viewer/AKGpihYk-dMJ359y4C9DULs_DYY7AnF7QSB8V2-lpC05j0XMjoE7XruqLm-zT7R6qjA3X7aisFuHcHwg9WBSPecmTzRssLSRpJje9A=s2560",
                 true,
+                0,
                 120
         );
         AttractionJpaEntity birdRoc = new AttractionJpaEntity(
@@ -42,6 +43,7 @@ public class Seeder implements ApplicationRunner {
                 64,
                 "https://lh3.googleusercontent.com/drive-viewer/AKGpihZR73prch015bZyutf1jqihd8TpgZnc7DkY_o0HEFrOZ9jkl1SsoD1JuZX0KwLlhyN-f2EsFMv58BxMtCn1YUBzINMm_AHuIbY=s1600-rw-v1",
                 true,
+                0,
                 120
         );
         AttractionJpaEntity fataMorgana = new AttractionJpaEntity(
@@ -52,6 +54,7 @@ public class Seeder implements ApplicationRunner {
                 12,
                 "https://lh3.googleusercontent.com/drive-viewer/AKGpihZouo9qDLuYo2JeIY43YWYazP4OnRs-UL5o53cT7i4-9vv4a4Y6EEG1f2NM7KVASSm5yE48IfTUY78n1XRaQU20-HM29dlTE20=s1600-rw-v1",
                 true,
+                0,
                 0
         );
         AttractionJpaEntity pagode = new AttractionJpaEntity(
@@ -62,6 +65,7 @@ public class Seeder implements ApplicationRunner {
                 46,
                 "https://lh3.googleusercontent.com/drive-viewer/AKGpihaZREW5un8gi14g3AT3vmH_dDZeTgy4olKWPAC9QC5R4ojKVm83JWLmuKaki05C253_A9qtDsL8O2iH7EGmXwniBdLiG9CzXA=s1600-rw-v1",
                 true,
+                0,
                 100
         );
         AttractionJpaEntity villaVolta = new AttractionJpaEntity(
@@ -72,6 +76,7 @@ public class Seeder implements ApplicationRunner {
                 78,
                 "https://lh3.googleusercontent.com/drive-viewer/AKGpihbMHVO8aGcS3MpSbvjcK_tMzFjvI9CYPkB5Szx9ZJsQ1pLvgYDz6LBpPr4Pq-metFqt9qEqETSQRJHryNmT6-A-Zx_c9XdntQ=s1600-rw-v1",
                 true,
+                0,
                 100
         );
 
@@ -89,6 +94,7 @@ public class Seeder implements ApplicationRunner {
                 26,
                 "https://lh3.googleusercontent.com/drive-viewer/AKGpihZpRrClD5X6bpc2dOpf-ZIuyVUKAVH6VRim_jvAFf5-dNqZn7fRMO_3qdyi_9zVux4Z2Xfnw5Qc0yUDMwgCpYVNU0ss-CaLPO4=s1600-rw-v1",
                 false,
+                0,
                 """
                         hot dog: 3$\s
                         fries: 3$\s
@@ -103,6 +109,7 @@ public class Seeder implements ApplicationRunner {
                 23,
                 "https://lh3.googleusercontent.com/drive-viewer/AKGpihZE7gg_jTSxlu0DbE5B1lqlN8__86sVfYnFxBLaCLx9mPXfnCFDIsW_fGI8AZM8EquKfAobVxhvzZ9vAexFClEQKK_XYNbrgPY=s1600-rw-v1",
                 true,
+                0,
                 """
                         pizza: 5$\s
                         fries: 3$\s
@@ -117,6 +124,7 @@ public class Seeder implements ApplicationRunner {
                 62,
                 "https://lh3.googleusercontent.com/drive-viewer/AKGpihb1K9vuzBYlBHnBPbqH-HIcPWA5xTwUMSoGBeubfdp9Ue77_dOio-S27F8URW5KbNu1CoJIE4FFZvaqE73yP65sHih-QtESoL4=s1600-rw-v1",
                 true,
+                0,
                 """
                         ice cream: 3$\s
                         fries: 3$\s

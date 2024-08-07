@@ -28,7 +28,16 @@ public class FoodStandDBAdapter implements FoodStandLoadPort, FoodStandUpdatePor
         }
         List<FoodStand> result = new ArrayList<>();
         for (FoodStandJpaEntity foodStand : foodStands) {
-            result.add(new FoodStand(new PointOfInterest.PointOfInterestUUID(foodStand.getUuid()), foodStand.getName(), foodStand.getDescription(), foodStand.getPosX(), foodStand.getPosY(), foodStand.getPicturePath(), foodStand.isOpen(), foodStand.getMenu()));
+            result.add(new FoodStand(
+                    new PointOfInterest.PointOfInterestUUID(foodStand.getUuid()),
+                    foodStand.getName(),
+                    foodStand.getDescription(),
+                    foodStand.getPosX(),
+                    foodStand.getPosY(),
+                    foodStand.getPicturePath(),
+                    foodStand.isOpen(),
+                    foodStand.getQueueTime(),
+                    foodStand.getMenu()));
         }
         return result;
     }
@@ -58,6 +67,7 @@ public class FoodStandDBAdapter implements FoodStandLoadPort, FoodStandUpdatePor
                 foodStand.getPosY(),
                 foodStand.getPicturePath(),
                 foodStand.isOpen(),
+                foodStand.getQueueTime(),
                 foodStand.getMenu()
         );
         foodStandJpaRepository.save(foodStandJpa);

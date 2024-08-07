@@ -3,7 +3,7 @@ package be.kdg.prog6.visitorInformationSystem.domain;
 public class FoodStand extends PointOfInterest {
     private String menu;
 
-    public FoodStand(PointOfInterestUUID uuid, String name, String description, float positionX, float positionY, String picturePath, boolean open, String menu) {
+    public FoodStand(PointOfInterestUUID uuid, String name, String description, float positionX, float positionY, String picturePath, boolean open, int queueTime, String menu) {
         super.setUuid(uuid);
         super.setName(name);
         super.setDescription(description);
@@ -11,6 +11,7 @@ public class FoodStand extends PointOfInterest {
         super.setPosY(positionY);
         super.setOpen(open);
         super.setPicturePath(picturePath);
+        super.setQueueTime(queueTime);
         this.menu = menu;
     }
 
