@@ -36,3 +36,34 @@ spring:
         jwt:
           jwk-set-uri: http://localhost:8180/realms/techtopia/protocol/openid-connect/certs
           issuer-uri: http://localhost:8180/realms/techtopia
+
+resilience4j:
+  retry:
+    metrics:
+      enabled: true
+    instances:
+      retryRemote:
+        max-attempts: 5
+        wait-duration: 1000
+  timelimiter:
+    instances:
+      limitRemote:
+        baseConfig: default
+    metrics:
+      enabled: true
+    configs:
+      default:
+        cancel-running-future: true
+        timeout-duration: 5000
+  bulkhead:
+    configs:
+      default:
+        max-concurrent-calls: 5
+        max-wait-duration: 0
+  circuitbreaker:
+    configs:
+      default:
+        registerHealthIndicator: true
+        slidingWindowSize: 10
+        sliding-window-type: count_based
+        minimum-number-of-calls: 5

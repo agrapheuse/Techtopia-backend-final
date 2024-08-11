@@ -1,4 +1,4 @@
-package be.kdg.prog6.parkplanning.adapters.config;
+package be.kdg.prog6.parkplanning.adapters.config.rabbitMQ;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;

@@ -1,7 +1,7 @@
 package be.kdg.prog6.parkplanning.adapters.out.amqp;
 
 import be.kdg.prog6.events.PointOfInterestAmountOfPeopleUpdatedEvent;
-import be.kdg.prog6.parkplanning.adapters.config.RabbitMQTopology;
+import be.kdg.prog6.parkplanning.adapters.config.rabbitMQ.RabbitMQTopology;
 import be.kdg.prog6.parkplanning.ports.out.POIQueueUpdatedPort;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

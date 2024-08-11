@@ -21,7 +21,7 @@ public class POIAmountOfPeopleUpdatedReceiver {
 
     @RabbitListener(queues = RabbitMQTopology.POI_QUEUE_EVENTS_QUEUE, messageConverter = "#{jackson2JsonMessageConverter}")
     public void updateQueueTime(PointOfInterestAmountOfPeopleUpdatedEvent pointOfInterestAmountOfPeopleUpdatedEvent) {
-        log.info("message received: {} {}", pointOfInterestAmountOfPeopleUpdatedEvent.poiUUID(), pointOfInterestAmountOfPeopleUpdatedEvent.amountOfPeople());
+        log.debug("message received: {} {}", pointOfInterestAmountOfPeopleUpdatedEvent.poiUUID(), pointOfInterestAmountOfPeopleUpdatedEvent.amountOfPeople());
         updateQueueTimeUseCase.updateQueueTime(new UpdateQueueTimeCommand(
                 pointOfInterestAmountOfPeopleUpdatedEvent.poiUUID(),
                 pointOfInterestAmountOfPeopleUpdatedEvent.amountOfPeople()

@@ -1,4 +1,4 @@
-package be.kdg.prog6.parkplanning.adapters.config;
+package be.kdg.prog6.parkplanning.adapters.config.rabbitMQ;
 
 import org.springframework.amqp.core.*;
 import org.springframework.context.annotation.Bean;
